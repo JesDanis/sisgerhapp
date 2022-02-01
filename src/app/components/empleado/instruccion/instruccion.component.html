@@ -1,0 +1,38 @@
+<div style="height: 100%; width: 100%; background-color:#F4F5F6;">
+    <div style="height: 10px">
+    </div>
+    <div class="card text-center" id="cardEncabezado">
+        <div style="background-color: #E5E7E9; padding-top: 5px; ">
+            <h5 style="color: #192A67;font-size: 24px;"><strong>Instrucción</strong> del empleado
+            </h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive div-T" id="divTable">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" title="Detalle instrucción">
+                    <thead>
+                        <tr style="background-color:#192A67;">
+                            <th scope="col" id="colortext">Nivel</th>
+                            <th scope="col" id="colortext">Titulo</th>
+                            <th scope="col" id="colortext">Especialidad</th>
+                            <th scope="col" id="colortext">Fecha</th>
+                            <th scope="col" id="colortext">Adjunto</th>
+                        </tr>
+                    </thead>
+                    <tbody style="text-align: justify;font-size: small;">
+                        <tr *ngFor="let ins of instruccion">
+                            <td> {{ins.NIVEL}} </td>
+                            <td>{{ins.TITULO}} </td>
+                            <td>{{ins.ESPECIALIDAD}} </td>
+                            <td>{{ins.FECHA}} </td>
+                            <td style="text-align: center">
+                                <button class="btn btn-primary" (click)="descargar(ins.DSLPT_CODIGO)" title="Descargar adjunto">Descarga</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div style="height: 50px">
+    </div>
+</div>

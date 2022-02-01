@@ -1,0 +1,156 @@
+.card-user .image {
+    height: 130px;
+}
+
+.card-user .image img {
+    border-radius: 12px;
+}
+
+.card-user .author {
+    text-align: center;
+    text-transform: none;
+}
+
+.card-user .author a+p.description {
+    margin-top: -7px;
+}
+
+.card .card-footer {
+    background-color: transparent;
+    border: 0;
+}
+
+.card .card-footer .stats i {
+    margin-right: 5px;
+    position: relative;
+    top: 0px;
+    color: #66615B;
+}
+
+.card .card-footer .btn {
+    margin: 0;
+}
+
+.card-plain .card-footer {
+    margin-left: 0;
+    margin-right: 0;
+    background-color: transparent;
+}
+
+.card-chart .card-footer {
+    margin-top: 15px;
+}
+
+.card-chart .card-footer .stats {
+    color: #9A9A9A;
+}
+
+.card-user .card-body+.card-footer {
+    padding-top: 0;
+}
+
+.card-user .card-footer h5 {
+    font-size: 1.25em;
+    margin-bottom: 0;
+}
+
+.title {
+    font-weight: 700;
+    color: #20315F;
+}
+
+.title.title-up {
+    text-transform: uppercase;
+}
+
+.title.title-up a {
+    color: #2c2c2c;
+    text-decoration: none;
+}
+
+.title+.category {
+    margin-top: -10px;
+}
+
+.card-stats .card-body {
+    padding: 15px 15px 0px;
+}
+
+.card-stats .card-body .numbers {
+    text-align: right;
+    font-size: 2em;
+}
+
+.card-stats .card-body .numbers p {
+    margin-bottom: 0;
+}
+
+.card-stats .card-body .numbers .card-category {
+    color: #20315F;
+    font-size: 14px;
+    line-height: 1.4em;
+    font-weight: bold;
+}
+
+.card-stats .card-footer {
+    padding: 0px 15px 15px;
+}
+
+.card-stats .card-footer .stats {
+    color: #9A9A9A;
+}
+
+.card-stats .card-footer hr {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.card-stats .icon-big {
+    font-size: 2em;
+    min-height: 20px;
+}
+
+.card-stats .icon-big i {
+    line-height: 59px;
+}
+
+.card-tasks .card-body .table {
+    margin-bottom: 0;
+}
+
+.card-tasks .card-body .table>thead>tr>th,
+.card-tasks .card-body .table>tbody>tr>th,
+.card-tasks .card-body .table>tfoot>tr>th,
+.card-tasks .card-body .table>thead>tr>td,
+.card-tasks .card-body .table>tbody>tr>td,
+.card-tasks .card-body .table>tfoot>tr>td {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.card .numbers {
+    font-size: 2em;
+}
+
+.card .card-footer {
+    background-color: transparent;
+    border: 0;
+}
+
+.card .card-footer .stats i {
+    margin-right: 5px;
+    position: relative;
+    top: 0px;
+    color: #20315F;
+}
+
+.card .card-footer .btn {
+    margin: 0;
+}
+
+.bordes {
+    border-color: #007bff;
+    -webkit-box-shadow: 0 0px 4px #007bff, 0 0 2px #20315F inset;
+    -moz-box-shadow: 0 0px 4px #007bff, 0 0 2px #20315F inset;
+    box-shadow: 0 0px 4px #007bff, 0 0 2px #20315F inset;
+}

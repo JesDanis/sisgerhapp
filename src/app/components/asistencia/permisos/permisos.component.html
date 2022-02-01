@@ -1,0 +1,105 @@
+<div style="height: 100%; width: 100%; background-color:#F4F5F6;">
+    <div style="height: 10px">
+    </div>
+    <p style="text-align: center; color: #192A67; font-size: 24px;"> <strong>Permisos</strong> de asistencia</p>
+    <div class="card text-center" id="cardEncabezado">
+        <div class="card-header" style="background-color: #EAEBEF">
+            <div class="row mb-3">
+                <div class="col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-4 col-form-label lblLeft">Estado</label>
+                        <div class="col-sm-8">
+                            <select id="estado" class="form-control" title="Estado"> 
+                                <option value="9">Seleccione...</option>
+                                <option value="0">Solicitado</option>
+                                <option value="1">Aprobado</option>
+                                <option value="2">Autorizado</option>
+                                <option value="3">Anulado</option>
+                                <option value="4">Negado</option>
+                                <option value="5">Todos</option>
+                                </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="row">
+                        <label for="fechaInicio" class="col-sm-4 col-form-label lblLeft">Fecha Inicio</label>
+                        <div class="col-sm-8">
+                            <input type="date" class="form-control" id="fechaInicio" value="{{inDesde}}" title="Fecha Inicio" [max]="actual">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="row">
+                        <label for="fechaFin" class="col-sm-4 col-form-label lblLeft">Fecha Fin</label>
+                        <div class="col-sm-8">
+                            <input type="date" class="form-control" id="fechaFin" title="Fecha Fin" [ngModel]="fecha | date:'yyyy-MM-dd'" [max]="actual">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" style="float:inherit;" id="btnBuscar" class="btn btn-primary" (click)="obtenerPermisos()" title="Consultar permiso">
+<i class="bi bi-search"></i> Consultar
+</button>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive" id="divTable">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" title="Detalle permiso" id="tblPermisos">
+                    <thead>
+                        <tr style="background-color:#192A67;">
+                            <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size:small">Nº Solicitud</th>
+                            <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Descripción</th>
+                            <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Estado</th>
+                            <th scope="col" id="colortext" colspan="3" style="font-size: small;">Fecha</th>
+                            <th scope="col" id="colortext" colspan="3" style="font-size: small;">Hora</th>
+                            <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Días solicitados</th>
+                            <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Días permiso</th>
+                            <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Modalidad</th>
+                            <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Reemplazo</th>
+                            <th scope="col" id="colortext" colspan="2" style="font-size: small;">Días Ordinarios</th>
+                            <th scope="col" id="colortext" colspan="2" style="font-size: small;">Días Adicionales</th>
+                            <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size:small">Adjunto</th>
+                        </tr>
+                        <tr style="background-color:#192A67;">
+                            <th scope="col" id="colortext" style="font-size: small;">Solicitud</th>
+                            <th scope="col" id="colortext" style="font-size: small;">Inicio</th>
+                            <th scope="col" id="colortext" style="font-size: small;">Fin</th>
+                            <th scope="col" id="colortext" style="font-size: small;">Inicio</th>
+                            <th scope="col" id="colortext" style="font-size: small;">Fin</th>
+                            <th scope="col" id="colortext" style="font-size: small;">Total</th>
+                            <th scope="col" id="colortext" style="font-size: small;">Laborales</th>
+                            <th scope="col" id="colortext" style="font-size: small;">No laborales</th>
+                            <th scope="col" id="colortext" style="font-size: small;">Laborales</th>
+                            <th scope="col" id="colortext" style="font-size: small;">No laborales</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size: small;">
+                        <tr *ngFor="let per of permisos">
+                            <td>{{per.DCPRM_NUM_SOLICITUD}}</td>
+                            <td>{{per.DCTPR_DESCRIPCION}}</td>
+                            <td>{{per.DCPRM_APROBADO}}</td>
+                            <td>{{per.DCPRM_FECHA_SOLIC}}</td>
+                            <td>{{per.DCPRM_FECHA_INICIO}}</td>
+                            <td>{{per.DCPRM_FECHA_FIN}}</td>
+                            <td>{{per.DCPRM_HORA_INICIO}}</td>
+                            <td>{{per.DCPRM_HORA_FIN}}</td>
+                            <td>{{per.DCPRM_HORAS_TOTAL}}</td>
+                            <td>{{per.DCPRM_TIEMPO_SOLIC}}</td>
+                            <td>{{per.DCTPR_NUMERO_DIA}}</td>
+                            <td>{{per.DCTPR_MODALIDAD}}</td>
+                            <td>{{per.DCPRM_REEMPLAZO}}</td>
+                            <td>{{per.DCPRM_ORD_LAB}}</td>
+                            <td>{{per.DCPRM_ORD_NLAB}}</td>
+                            <td>{{per.DCPRM_ADS_LAB}}</td>
+                            <td>{{per.DCPRM_ADS_NLAB}}</td>
+                            <td><button class="btn btn-primary" (click)="descargar(per.CODIGO)" title="Descargar adjunto">Descarga</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div style="height: 50px">
+    </div>
+</div>

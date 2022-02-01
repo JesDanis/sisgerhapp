@@ -1,0 +1,400 @@
+<div style="background-color: #f7f7f9; width: auto; height:100%;">
+    <div style="height: 10px">
+    </div>
+    <div class="card text-center" id="cardEncabezado">
+        <div style="background-color: #E5E7E9; padding-top: 5px; ">
+            <h5 style="color: #192A67;font-size: 24px; font-weight: lighter;"><strong>Administración</strong> de información
+            </h5>
+
+        </div>
+        <div class="container" style="padding-top: 10px">
+
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-12 col-lg-11">
+
+                    <div class="table-responsive">
+                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" title="Detalle empleados">
+                            <thead>
+                                <tr style="background-color:#192A67;">
+                                    <th scope="col" id="colortext">Rol</th>
+                                    <th scope="col" id="colortext">Empleado</th>
+                                    <th scope="col" id="colortext">Estado</th>
+                                    <th scope="col" id="colortext">Visualizar</th>
+                                </tr>
+                            </thead>
+                            <tbody style="font-size: small;">
+                                <tr *ngFor="let lst of listado">
+                                    <td width="100px" style="text-align: center;">{{lst.DMPER_NUMERO_ROL}}</td>
+                                    <td width="400px" style="text-align: justify;">{{lst.DMPER_NOMBRE_EMPLEADO}}</td>
+                                    <td width="200px">{{lst.DMAPP_ESTADO_SUBIDA}}</td>
+                                    <td width="100px">
+                                        <button data-toggle="modal" data-target="#modalInformacion" class="btn btn-primary" title="Ver Información" (click)="visualizarInformacion(lst.DMAPP_CODIGO,lst.DMPER_NOMBRE_EMPLEADO)">
+                                            Ver
+                                        </button>
+
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade " id="modalInformacion" tabindex="-1" aria-labelledby="modalInformacionLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #192A67;">
+                <h5 class="modal-title" id="modalTelefonoLabel" style="font-size: 16px; color: white; ">{{nomnbresEmpleado}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="list-group">
+                        <div class="col-md-12">
+                            <div class="nav nav-pills nav-fill" id="nav-tab" role="tablist" style="background-color:#DFDFDF;">
+                                <a class="nav-link active" id="step1-tab" data-toggle="tab" href="#step1"><i class="bi bi-info-circle"></i> General</a>
+                                <a class="nav-link" id="step5-tab" data-toggle="tab" href="#step5"><i class="bi bi-person-lines-fill"></i> Contactos</a>
+                                <a class="nav-link" id="step2-tab" data-toggle="tab" href="#step2"><i class="bi bi-house-door"></i> Domiciliaria</a>
+                                <a class="nav-link" id="step3-tab" data-toggle="tab" href="#step3"><i class="bi bi-book"></i> Académica</a>
+                                <a class="nav-link" id="step4-tab" data-toggle="tab" href="#step4"><i class="bi bi-plus-circle"></i> Adicional</a>
+                            </div>
+                            <div class="tab-content py-4" id="nav-tabContent">
+                                <!--STEP 1 GENERAL-->
+                                <div class="card card-user tab-pane fade show active" id="step1" style="overflow-x: hidden;overflow -y: scroll; height: 310px;">
+                                    <div class="card-body">
+                                        <div class="row mb-3">
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <label class="col-sm-5 col-form-label lblLeft">Estado civil</label>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" placeholder="Estado Civil" class="form-control" disabled value="{{estCivil}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <label class="col-sm-5 col-form-label lblLeft">Género</label>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" class="form-control" placeholder="Género" disabled value="{{genero}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <label class="col-sm-5 col-form-label lblLeft">Etnia</label>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" placeholder="Etnia" class="form-control" disabled value="{{etnia}}">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <label class="col-sm-5 col-form-label lblLeft">Tipo Sanguineo </label>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" class="form-control" placeholder="Tipo Sanguineo" disabled value="{{tipoSang}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <label class="col-sm-5 col-form-label lblLeft">Cédula</label>
+
+                                                    <div class="col-sm-1">
+                                                        <button title="Ver cédula" (click)="verAdjuntoCedula()" class="btn btn-primary">
+                                                            Visualizar
+                                                        </button>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <label class="col-sm-6 col-form-label lblLeft">Papeleta votación</label>
+
+                                                    <div class="col-sm-1">
+                                                        <button title="Ver cédula" (click)="verAdjuntoPapeleta()" class="btn btn-primary">
+                                                            Visualizar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <label class="col-sm-5 col-form-label lblLeft">Discapacidad</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="radio" value="discSi" title="Discapacidad" name="disc" [checked]="discapacidad!=' '" disabled> Si
+                                                        <input type="radio" value="discNo" title="Discapacidad" name="disc" style="margin-left: 20px;" [checked]="discapacidad==' '" disabled> No
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3" id="divDiscapacidad">
+
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <label class="col-sm-5 col-form-label lblLeft">Tipo</label>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" class="form-control" placeholder="Tipo" value="{{discapacidad}}" id="">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <label class="col-sm-5 col-form-label lblLeft">Porcentaje</label>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" class="form-control" placeholder="Porcentaje" value="" id="txtPorcentaje" disabled>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6" style="padding-top: 12px;">
+                                                <div class="row">
+                                                    <label class="col-sm-5 col-form-label lblLeft">Carnet</label>
+
+                                                    <div class="col-sm-1">
+                                                        <button title="Ver cédula" (click)="verAdjuntoDisc()" class="btn btn-primary">
+                                                            Visualizar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!--STEP 2 CONTACTOS-->
+                                <div class="card card-user tab-pane fade" id="step5" style="overflow-x: hidden;overflow -y: scroll; height: 310px;">
+                                    <div class="card text-center" id="cardEncabezado">
+                                        <div class="card-body">
+                                            <div class="row mb-3">
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover">
+                                                        <thead>
+                                                            <tr style="background-color:#192A67;">
+                                                                <th scope="col" id="colortext">Contacto</th>
+                                                                <th scope="col" id="colortext">Descripción</th>
+                                                                <th scope="col" id="colortext">Operadora</th>
+                                                                <th scope="col" id="colortext">Principal </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody style="font-size: 12px;">
+                                                            <tr *ngFor="let con of datoContacto;">
+                                                                <td>{{con.contacto}}</td>
+                                                                <td>{{con.descripcion}}</td>
+                                                                <td>{{con.operadora}}</td>
+                                                                <td><input type="checkbox" class="form-check-input" id="chkPrincipal" [checked]="con.principal==1" disabled></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--STEP 3 DOMICILIARIA-->
+                                <div class="card card-user tab-pane fade" id="step2" style="overflow-x: hidden;overflow -y: scroll; height: 310px;">
+                                    <div class="card-body">
+                                        <div class="row mb-3">
+                                            <div class="col-sm-10">
+                                                <div class="row">
+                                                    <label class="col-sm-4 col-form-label lblLeft">División política</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" placeholder="División política" title="División política" value="{{divPol}}" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-10">
+                                                <div class="row">
+                                                    <label class="col-sm-4 col-form-label lblLeft">Parroquia</label>
+                                                    <div class="col-sm-8 input-group">
+                                                        <input type="text" class="form-control" placeholder="Parroquia" title="Parroquia" value="{{parroquia}}" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-sm-10">
+                                                <div class="row">
+                                                    <label class="col-sm-4 col-form-label lblLeft">Referencia</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" placeholder="Referencia" title="Referencia domiciliaria" value="{{referencia}}" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-10">
+                                                <div class="row">
+                                                    <label class="col-sm-4 col-form-label lblLeft">Nº Casa</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" placeholder="Nº Casa" title="Número de casa" value="{{numCasa}}" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-10">
+                                                <div class="row">
+                                                    <label class="col-sm-4 col-form-label lblLeft">Calle Principal</label>
+                                                    <div class="col-sm-8">
+                                                        <textarea class="form-control textarea" placeholder="Calle Principal" title="Calle Principal" style="resize: none;" disabled>{{callePrin}}</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-10">
+                                                <div class="row">
+                                                    <label class="col-sm-4 col-form-label lblLeft">Calle Secundaria</label>
+                                                    <div class="col-sm-8">
+                                                        <textarea class="form-control textarea" placeholder="Calle Secundaria" title="Calle Secundaria" style="resize: none;" disabled id="calleSegunda">{{calleSec}}</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!--STEP 4 ACADEMICA-->
+                                <div class="card card-user tab-pane fade" id="step3" style="overflow-x: hidden;overflow -y: scroll; height: 310px;">
+                                    <div class="card text-center" id="cardEncabezado">
+
+                                        <div class="card-body">
+                                            <div class="row mb-3">
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover" title="Detalle información académica">
+                                                        <thead>
+                                                            <tr style="background-color:#192A67;">
+                                                                <th scope="col" id="colortext">Nivel</th>
+                                                                <th scope="col" id="colortext">Titulo</th>
+                                                                <th scope="col" id="colortext">Especialidad</th>
+                                                                <th scope="col" id="colortext">Fecha</th>
+                                                                <th scope="col" id="colortext">Adjunto</th>
+                                                                <th></th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody style="font-size: 12px;">
+                                                            <tr *ngFor="let ins of datoInstruccion">
+                                                                <td>{{ins.NIVEL}}</td>
+                                                                <td style="text-align: justify;">{{ins.TITULO}}</td>
+                                                                <td>{{ins.ESPECIALIDAD}} </td>
+                                                                <td>{{ins.FECHA}}</td>
+                                                                <td>
+                                                                    <button class="btn btn-primary" (click)="verAdjunto(ins.ADJUNTO,ins.NOMBRE)" title="Abrir adjunto">Abrir</button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--STEP 5 ADICIONAL-->
+                                <div class="card card-user tab-pane fade" id="step4" style="overflow-x: hidden;overflow -y: scroll; height: 333px;">
+                                    <div class="card-body">
+                                        <div class="row mb-3">
+                                            <div class="col-sm-11">
+                                                <div class="row">
+                                                    <label class="col-sm-8 col-form-label lblLeft"><b>Datos del padre</b></label>
+                                                    <label class="col-sm-4 col-form-label lblLeft"><b>Vive</b></label>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" placeholder="Nombres y Apellidos" disabled title="Nombres y Apellidos del padre" value="{{nombrePadre}}" id="nombrePadre">
+                                                    </div>
+                                                    <div class="col-sm-4" style="padding-top: 15px;">
+                                                        <input type="radio" value="siP" name="padre" required [checked]="vivePadre==1" disabled> Si
+                                                        <input type="radio" value="noP" name="padre" required style="margin-left: 20px;" [checked]="vivePadre==0" disabled> No
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-11">
+                                                <div class="row">
+                                                    <label class="col-sm-8 col-form-label lblLeft"><b>Datos de la madre</b></label>
+                                                    <label class="col-sm-4 col-form-label lblLeft"><b>Vive</b></label>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" placeholder="Nombres y Apellidos" title="Nombres y Apellidos de la madre" value="{{nombreMadre}}" id="nombreMadre">
+                                                    </div>
+                                                    <div class="col-sm-4" style="padding-top: 15px;">
+                                                        <input type="radio" value="siM" name="madre" required [checked]="viveMadre==1"> Si
+                                                        <input type="radio" value="noM" name="madre" required style="margin-left: 20px;" [checked]="viveMadre==0"> No
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="divEstadoCivil">
+                                            <div class="row mb-3">
+                                                <div class="col-sm-11">
+                                                    <div class="row">
+                                                        <label class="col-sm-8 col-form-label lblLeft"><b>Datos del Cónyuge</b></label>
+                                                        <label class="col-sm-4 col-form-label lblLeft"><b>Trabaja</b></label>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" placeholder="Nombres y Apellidos" title="Nombres y Apellidos del cónyuge" value="{{nombreCony}}" id="nombreCony">
+                                                        </div>
+                                                        <div class="col-sm-4" style="padding-top: 15px;">
+                                                            <input type="radio" value="siT" name="trab" required [checked]="trabajaCony==1"> Si
+                                                            <input type="radio" value="noT" name="trab" required style="margin-left: 20px;" [checked]="trabajaCony==0"> No
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3" id="divTrabajo">
+                                                <div class="col-sm-11">
+                                                    <div class="row">
+                                                        <label class="col-sm-8 col-form-label lblRight"><b>Institución</b></label>
+
+                                                        <div class="col-sm-4">
+                                                            <input type="text" class="form-control" placeholder="Institución" title="Institución trabajo cónyuge" value="{{lugarCony}}" id="trabajoCony">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer ">
+                <input type="text " placeholder="Observación " class="form-control " [(ngModel)]="txtObservacion">
+                <button type="button " class="btn btn-primary " data-dismiss="modal" (click)="aprobarInformacion('P','INFORMACION MODIFICADA DESDE SISGERH APP')"><i class="bi bi-save "></i> Aprobar</button>
+                <button type="button " class="btn btn-danger " data-dismiss="modal" (click)="aprobarInformacion('R',txtObservacion) "><i class="bi bi-save "></i> Rechazar</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+<div style="height: 100%; width: 100%; background-color:#F4F5F6;">
+    <div style="height: 10px">
+    </div>
+    <p style="text-align: center; color: #192A67; font-size: 24px;">Asistencia <strong>consolidada</strong></p>
+    <div class="card text-center" id="cardEncabezado">
+        <div class="card-header" style="background-color: #EAEBEF">
+            <div class="row mb-3">
+                <div class="col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-4 col-form-label lblLeft">Fecha Inicio</label>
+                        <div class="col-sm-8">
+                            <input type="date" class="form-control" id="fechaInicio" value="{{inDesde}}" [max]="actual" title="Fecha inicio">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-4 col-form-label lblLeft">Fecha Fin</label>
+                        <div class="col-sm-8">
+                            <input type="date" class="form-control" id="fechaFin" [ngModel]="fecha | date:'yyyy-MM-dd'" [max]="actual" title="Fecha fin">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button type="button" id="btnConsultar" class="btn btn-primary" (click)="obtenerConsolidado()" title="Consultar">
+                                <i class="bi bi-search"></i> Consultar
+                               </button>
+                        </div>
+                        <div class="col-sm-6" id="btnImprimir">
+                            <button type="button" class="btn btn-secondary" (click)="reporteAsistencia()" title="Reporte asistencia">
+  <i class="bi bi-printer"></i> Imprimir
+ </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive" id="divTable">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" id="tblConsolidado" title="Detalle consolidado">
+                    <thead>
+                        <tr style="background-color:#192A67;">
+                            <th scope="col" id="colortext">Nº</th>
+                            <th scope="col" id="colortext">Fecha</th>
+                            <th scope="col" id="colortext">Abrev.</th>
+                            <th scope="col" id="colortext">Transacciones</th>
+                            <th scope="col" id="colortext">Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody style="text-align: left;font-size: small;">
+                        <tr *ngFor="let con of consolidado; let i = index">
+                            <td>{{i+1}}</td>
+                            <td style="text-align: center;">{{con.FECHA_ASI}}</td>
+                            <td style="text-align: center;">{{con.ABREVIATURA}}</td>
+                            <td>{{con.PICADAS}}</td>
+                            <td>{{con.DESCRIPCION}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div style="height: 50px">
+    </div>
+</div>

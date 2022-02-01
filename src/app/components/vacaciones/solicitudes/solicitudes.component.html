@@ -1,0 +1,46 @@
+<div style="height: 100%; width: 100%; background-color:#F4F5F6;">
+    <div style="height: 10px">
+    </div>
+    <div class="card text-center" id="cardEncabezado">
+        <div style="background-color: #E5E7E9; padding-top: 5px; ">
+            <h5 style="color: #192A67;font-size: 24px;"><strong>Solicitudes</strong> de vacaciones
+            </h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive" id="divTable">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" title="Detalle solicitudes">
+                    <thead>
+                        <tr style="background-color:#192A67;">
+                            <th scope="col" id="colortext">Estado</th>
+                            <th scope="col" id="colortext">Tipo</th>
+                            <th scope="col" id="colortext">Documento</th>
+                            <th scope="col" id="colortext">Nº días</th>
+                            <th scope="col" id="colortext">Fecha solicitud</th>
+                            <th scope="col" id="colortext">Fecha aprobación</th>
+                            <th scope="col" id="colortext">Fecha inicio</th>
+                            <th scope="col" id="colortext">Fecha fin</th>
+                            <th scope="col" id="colortext">Adjunto</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size: small;">
+                        <tr *ngFor="let sol of solicitud">
+                            <td>{{sol.DCAVC_ESTADO_SOLICITUD}}</td>
+                            <td>{{sol.DCAVC_TIPO_SOLICITUD}}</td>
+                            <td>{{sol.DCAVC_NUM_DOCUMENTO}}</td>
+                            <td>{{sol.DCAVC_NUM_DIAS}}</td>
+                            <td>{{sol.DCAVC_FECHA_SOLICITUD}}</td>
+                            <td>{{sol.DCAVC_FECHA_APRUEBA}}</td>
+                            <td>{{sol.DCAVC_FECHA_INICIO}}</td>
+                            <td>{{sol.DCAVC_FECHA_FIN}}</td>
+                            <td>
+                                <button class="btn btn-primary" (click)="descargar(sol.CODIGO)" title="Descargar adjunto">Descarga</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div style="height: 50px">
+    </div>
+</div>

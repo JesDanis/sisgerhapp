@@ -1,0 +1,656 @@
+<div style="background-color: #f7f7f9; width: auto; height:100%;">
+    <div style="height: 10px">
+    </div>
+    <div class="card text-center" id="cardEncabezado">
+        <div style="background-color: #E5E7E9; padding-top: 5px; ">
+            <!-- <h5 style="color: #192A67;font-size: 24px; font-weight: lighter;">Información del empleado 
+                <a routerLink="/actualizacion" class="btn btn-primary" role="button" title="Editar"><i class="bi bi-pencil-square"></i>Editar</a> -->
+            <h5 style="color: #192A67;font-size: 24px; font-weight: lighter;"><strong>Actualización</strong> de información
+                <button type="submit" class="btn btn-primary btn-round" (click)="actualizar()" style="float: right;" title="Actualizar información"><i class="bi bi-pencil-square"></i>Actualizar</button>
+
+            </h5>
+        </div>
+        <div class="container" style="padding-top: 15px">
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-12">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="nav nav-pills nav-fill" id="nav-tab" role="tablist" style="background-color:#DFDFDF;">
+                                    <a class="nav-link active" id="step1-tab" data-toggle="tab" href="#step1" title="General"><i class="bi bi-info-circle"></i> General</a>
+                                    <a class="nav-link" id="step5-tab" data-toggle="tab" href="#step5" title="Contactos"><i class="bi bi-person-lines-fill"></i> Contactos</a>
+                                    <a class="nav-link" id="step2-tab" data-toggle="tab" href="#step2" title="Domiciliaria"><i class="bi bi-house-door"></i> Domiciliaria</a>
+                                    <a class="nav-link" id="step3-tab" data-toggle="tab" href="#step3" title="Académica"><i class="bi bi-book"></i> Académica</a>
+                                    <a class="nav-link" id="step4-tab" data-toggle="tab" href="#step4" title="Adicional"><i class="bi bi-plus-circle"></i> Adicional</a>
+                                </div>
+                                <div class="tab-content py-4" id="nav-tabContent">
+                                    <!--STEP 1 GENERAL-->
+                                    <div class="card card-user tab-pane fade show active" id="step1" style="overflow-x: hidden;overflow -y: scroll; height: 375px;">
+                                        <div class="card-body">
+                                            <div class="row mb-3">
+                                                <div class="col-sm-6">
+                                                    <div class="row">
+                                                        <label class="col-sm-5 col-form-label lblLeft">Estado civil</label>
+                                                        <div class="col-sm-7">
+                                                            <select class="form-control" id="estCivil" (change)="estadoCivil()" title="Estado civil">
+                                                                <option value="0" [selected]="codEstadoCivil==0">SOLTERO</option>
+                                                                <option value="1" [selected]="codEstadoCivil==1">CASADO</option>
+                                                                <option value="2" [selected]="codEstadoCivil==2">DIVORCIADO</option>
+                                                                <option value="3" [selected]="codEstadoCivil==3">UNIÓN LIBRE</option>
+                                                                <option value="4" [selected]="codEstadoCivil==4">VIUDO</option>
+                                                                </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="row">
+                                                        <label class="col-sm-3 col-form-label lblLeft">Etnia</label>
+                                                        <div class="col-sm-7">
+                                                            <select class="form-control" id="sltEtnina" title="Etnia">
+                                                             <option *ngFor="let et of etnia" [value]="et.DMETI_CODIGO" [selected]="et.DMETI_CODIGO==codEtnia" >{{et.DMETI_DESCRIPCION}}</option>
+                                                              </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-sm-6">
+                                                    <div class="row">
+                                                        <label class="col-sm-5 col-form-label lblLeft">Género</label>
+                                                        <div class="col-sm-7">
+                                                            <select class="form-control" id="sltSexo" title="Género">
+                                                                <option value="0"  [selected]="genero==0">MASCULINO</option>
+                                                                <option value="1" [selected]="genero==1">FEMENINO</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-sm-6">
+                                                    <div class="row">
+                                                        <label class="col-sm-5 col-form-label lblLeft">Tipo Sanguineo </label>
+                                                        <div class="col-sm-7">
+                                                            <select class="form-control" id="tipoSang" title="Tipo Sanguineo">
+                                                                <option *ngFor="let sg of sangre" [value]="sg.DMGTS_CODIGO" [selected]="sg.DMGTS_CODIGO==tipoSang" >{{sg.DMGTS_OBSERVACION}}</option>
+                                                                 </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-sm-6">
+                                                    <div class="row">
+                                                        <label class="col-sm-5 col-form-label lblLeft">Cédula</label>
+                                                        <div class="col-sm-6">
+                                                            <input class="form-control" title="Cédula" (change)="obtenerCedula($event)" type="file" id="fileCedula" accept="application/pdf">
+                                                            <label style="font-size: 12px;">{{nombreCedulaAdj}}</label>
+                                                        </div>
+                                                        <div class="col-sm-1">
+                                                            <a (click)="visualizarCedula()" style="font-size: 1.5rem; color: #007bff;" title="Ver cédula"><i class="bi bi-eye-fill"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="row">
+                                                        <label class="col-sm-3 col-form-label lblLeft">Papeleta votación</label>
+                                                        <div class="col-sm-6">
+                                                            <input class="form-control" title="Papeleta votación" type="file" id="filePapeleta" (change)="obtenerPapeleta($event)" accept="application/pdf">
+                                                            <label style="font-size: 12px;">{{nombrePapeletaAdj}}</label>
+                                                        </div>
+                                                        <div class="col-sm-1">
+                                                            <a (click)="visualizarPapeleta()" style="font-size: 1.5rem; color: #007bff;" title="Ver Papeleta de votación" target="_blank"><i class="bi bi-eye-fill"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <div class="col-sm-6">
+                                                    <div class="row">
+                                                        <label class="col-sm-4 col-form-label lblLeft">Discapacidad</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="radio" value="discSi" title="Discapacidad" name="disc" required [checked]="codDiscapacidad!=' '" (click)="discapacidadSi()"> Si
+                                                            <input type="radio" value="discNo" title="Discapacidad" name="disc" required style="margin-left: 20px;" [checked]="codDiscapacidad==' '" (click)="discapacidadNo()"> No
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3" id="divDiscapacidad">
+
+                                                <div class="col-sm-6">
+                                                    <div class="row">
+                                                        <label class="col-sm-5 col-form-label lblLeft">Tipo</label>
+                                                        <div class="col-sm-7">
+                                                            <select class="form-control" id="sltDiscapacidad" title="Tipo discapacidad">
+                                                        <option *ngFor="let ds of discapacidad" [value]="ds.DMDSC_CODIGO" [selected]="ds.DMDSC_CODIGO==datoDisc" >{{ds.DMDSC_OBSERVACION}}</option>
+                                                         </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <div class="row">
+                                                        <label class="col-sm-3 col-form-label lblLeft">Porcentaje</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="number" class="form-control" title="Porcentaje discapacidad" placeholder="Porcentaje" value="{{porcDis}}" id="txtPorcentaje">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6" style="padding-top: 12px;">
+                                                    <div class="row">
+                                                        <label class="col-sm-5 col-form-label lblLeft">Carnet</label>
+                                                        <div class="col-sm-6">
+                                                            <input class="form-control" title="Carnet discapacidad" (change)="obtenerCertificadoDis($event)" type="file" id="fileArchivo" accept="application/pdf">
+                                                            <label style="font-size: 12px;">{{nombreDiscAdj}}</label>
+                                                        </div>
+                                                        <div class="col-sm-1">
+                                                            <a (click)="visualizarCertificado()" style="font-size: 1.5rem; color: #007bff;" title="Ver cédula" target="_blank"><i class="bi bi-eye-fill"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!--STEP 2 CONTACTOS-->
+                                    <div class="card card-user tab-pane fade" id="step5" style="overflow-x: hidden;overflow -y: scroll; height: 400px;">
+                                        <div class="card text-center" id="cardEncabezado">
+                                            <div>
+                                                <a class="btn btn-primary" role="button" style="float: center;" title="Añadir contactos" target="_blank" data-toggle="modal" data-target="#modalTelefono" (click)="limpiarDatos()"><i class="bi bi-plus-circle"></i> Añadir</a>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row mb-3">
+
+                                                    <div class="table-responsive">
+                                                        <table class="table table-hover" title="Detalle de contactos">
+                                                            <thead>
+                                                                <tr style="background-color:#192A67;">
+                                                                    <th scope="col" id="colortext">Contacto</th>
+                                                                    <th scope="col" id="colortext">Descripción</th>
+                                                                    <th scope="col" id="colortext">Operadora</th>
+                                                                    <th scope="col" id="colortext">Principal </th>
+                                                                    <th scope="col" id="colortext"></th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody style="font-size: 12px;">
+                                                                <tr *ngFor="let con of contactos">
+                                                                    <td>{{con.DTCON_DESCRIPCION}}</td>
+                                                                    <td>{{con.DPCNT_DESCRIPCION}}</td>
+                                                                    <td>{{con.DPCNT_OPERADORA_DET}}</td>
+                                                                    <td><input type="checkbox" class="form-check-input" id="chkPrincipal" [checked]="con.DPCNT_PRINCIPAL==1" disabled></td>
+                                                                    <td><a title="Eliminar contacto" (click)="confirmarBorrar(con.DPCNT_CODIGO)"><i class="bi bi-trash"></i></a></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--STEP 3 DOMICILIARIA-->
+                                    <div class="card card-user tab-pane fade" id="step2" style="overflow-x: hidden;overflow -y: scroll; height: 400px;">
+                                        <div class="card-body">
+                                            <div class="row mb-3">
+                                                <div class="col-sm-10">
+                                                    <div class="row">
+                                                        <label class="col-sm-4 col-form-label lblLeft">División política</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" placeholder="División política" title="División política" value="{{divPol}}" disabled>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-sm-10">
+                                                    <div class="row">
+                                                        <label class="col-sm-4 col-form-label lblLeft">Parroquia</label>
+                                                        <div class="col-sm-8 input-group">
+                                                            <input type="text" class="form-control" placeholder="Parroquia" title="Parroquia" value="{{parroquia}}" disabled>
+                                                            <a data-toggle="modal" data-target="#modalParroquia"><span class="input-group-text" title="Seleccionar parroquia"><i class="bi bi-search" style="font-size: 1rem; color: #007bff;"></i></span></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <div class="col-sm-10">
+                                                    <div class="row">
+                                                        <label class="col-sm-4 col-form-label lblLeft">Referencia</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" placeholder="Referencia" title="Referencia domiciliaria" id="referencia" value="{{referencia}}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-sm-10">
+                                                    <div class="row">
+                                                        <label class="col-sm-4 col-form-label lblLeft">Nº Casa</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" placeholder="Nº Casa" title="Número de casa" id="numCasa" value="{{numCasa}}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-sm-10">
+                                                    <div class="row">
+                                                        <label class="col-sm-4 col-form-label lblLeft">Calle Principal</label>
+                                                        <div class="col-sm-8">
+                                                            <textarea class="form-control textarea" placeholder="Calle Principal" title="Calle Principal" style="resize: none;" id="callePrincipal">{{callePrin}}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-sm-10">
+                                                    <div class="row">
+                                                        <label class="col-sm-4 col-form-label lblLeft">Calle Secundaria</label>
+                                                        <div class="col-sm-8">
+                                                            <textarea class="form-control textarea" placeholder="Calle Secundaria" title="Calle Secundaria" style="resize: none;" id="calleSegunda">{{calleSec}}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!--STEP 4 ACADEMICA-->
+                                    <div class="card card-user tab-pane fade" id="step3" style="overflow-x: hidden;overflow -y: scroll; height: 400px;">
+                                        <div class="card text-center" id="cardEncabezado">
+                                            <div>
+                                                <a class="btn btn-primary" role="button" style="float: center;" title="Añadir instrucción" target="_blank" data-toggle="modal" data-target="#modalNuevaInformacion" (click)="limpiarCamposTit()"><i class="bi bi-plus-circle"></i> Añadir</a>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row mb-3">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-hover" title="Detalle información académica">
+                                                            <thead>
+                                                                <tr style="background-color:#192A67;">
+                                                                    <th scope="col" id="colortext">Nivel</th>
+                                                                    <th scope="col" id="colortext">Titulo</th>
+                                                                    <th scope="col" id="colortext">Especialidad</th>
+                                                                    <th scope="col" id="colortext">Fecha</th>
+                                                                    <th scope="col" id="colortext">Adjunto</th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody style="font-size: 12px;">
+                                                                <tr *ngFor="let ins of instruccion">
+                                                                    <td>{{ins.NIVEL}}</td>
+                                                                    <td style="text-align: justify;">{{ins.TITULO}}</td>
+                                                                    <td>{{ins.ESPECIALIDAD}} </td>
+                                                                    <td>{{ins.FECHA}}</td>
+                                                                    <td>{{ins.NOMBRE}}</td>
+                                                                    <td><a title="Editar información" data-toggle="modal" data-target="#modalInformacion" (click)="informacionIntruccion(ins.DSLPT_CODIGO)"><i class="bi bi-pencil-square"></i></a></td>
+                                                                    <td><a title="Borrar información" (click)="confirmarBorrarInst(ins.DSLPT_CODIGO)"><i class="bi bi-trash"></i></a></td>
+
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--STEP 5 ADICIONAL-->
+                                    <div class="card card-user tab-pane fade" id="step4" style="overflow-x: hidden;overflow -y: scroll; height: 400px;">
+                                        <div class="card-body">
+                                            <div class="row mb-3">
+                                                <div class="col-sm-11">
+                                                    <div class="row">
+                                                        <label class="col-sm-7 col-form-label lblLeft"><b>Datos del padre</b></label>
+                                                        <label class="col-sm-3 col-form-label lblCenter"><b>Vive</b></label>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-7">
+                                                            <input type="text" class="form-control" placeholder="Nombres y Apellidos" title="Nombres y Apellidos del padre" value="{{nombrePadre}}" id="nombrePadre">
+                                                        </div>
+                                                        <div class="col-sm-3" style="padding-top: 15px;">
+                                                            <input type="radio" value="siP" name="padre" required [checked]="vivePadre==1"> Si
+                                                            <input type="radio" value="noP" name="padre" required style="margin-left: 20px;" [checked]="vivePadre==0"> No
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-sm-11">
+                                                    <div class="row">
+                                                        <label class="col-sm-7 col-form-label lblLeft"><b>Datos de la madre</b></label>
+                                                        <label class="col-sm-3 col-form-label lblCenter"><b>Vive</b></label>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-7">
+                                                            <input type="text" class="form-control" placeholder="Nombres y Apellidos" title="Nombres y Apellidos de la madre" value="{{nombreMadre}}" id="nombreMadre">
+                                                        </div>
+                                                        <div class="col-sm-3" style="padding-top: 15px;">
+                                                            <input type="radio" value="siM" name="madre" required [checked]="viveMadre==1"> Si
+                                                            <input type="radio" value="noM" name="madre" required style="margin-left: 20px;" [checked]="viveMadre==0"> No
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="divEstadoCivil">
+                                                <div class="row mb-3">
+                                                    <div class="col-sm-11">
+                                                        <div class="row">
+                                                            <label class="col-sm-7 col-form-label lblLeft"><b>Datos del Cónyuge</b></label>
+                                                            <label class="col-sm-3 col-form-label lblCenter"><b>Trabaja</b></label>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-7">
+                                                                <input type="text" class="form-control" placeholder="Nombres y Apellidos" title="Nombres y Apellidos del cónyuge" value="{{nombreCony}}" id="nombreCony">
+                                                            </div>
+                                                            <div class="col-sm-3" style="padding-top: 15px;">
+                                                                <input type="radio" value="siT" name="trab" required [checked]="trabajaCony==1" (click)="trabajaSi()"> Si
+                                                                <input type="radio" value="noT" name="trab" required style="margin-left: 20px;" [checked]="trabajaCony==0" (click)="trabajaNo()"> No
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3" id="divInstitucion">
+                                                    <div class="col-sm-11">
+                                                        <div class="row">
+                                                            <label class="col-sm-7 col-form-label lblRight"><b>Institución</b></label>
+                                                            <div class="col-sm-5">
+                                                                <input type="text" class="form-control" placeholder="Institución" title="Institución trabajo cónyuge" value="{{lugarCony}}" id="trabajoCony">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="update ml-auto mr-auto">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--MODAL CONTACTO-->
+<div class="modal fade" id="modalTelefono" tabindex="-1" aria-labelledby="modalTelefonoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #25356F;">
+                <h5 class="modal-title" id="modalTelefonoLabel" style="font-size: 20px; color: white;">Añadir contacto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="list-group">
+                        <div class="alert alert-danger " role="alert" id="divAlert">
+                            <i class="bi bi-x-circle"></i> {{txtAlerta}}
+                        </div>
+                        <div class="row" style="padding-top: 10px;padding-bottom: 10px;">
+                            <div class="col-md-4 pr-1 col-6">
+                                <label class="texto">Contacto</label>
+                            </div>
+                            <div class="col-md-6 pr-1 col-6">
+                                <select class="form-control" id="contacto" title="Tipo contacto"> 
+                              <option value ="9" [selected]="tipo==9">Seleccione...</option>
+                              <option value="DTCON2" [selected]="tipo==0">Celular</option>
+                              <option value="DTCON1" [selected]="tipo==1">Teléfono</option>
+                              <option value="DTCON5" [selected]="tipo==2">Email Personal</option>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-bottom: 10px;">
+                            <div class="col-md-4 pr-1 col-6">
+                                <label class="texto">Descripción</label>
+                            </div>
+                            <div class="col-md-6 pr-1 col-6">
+                                <input type="text" class="form-control" placeholder="Descripción" required title="Descripción" value="{{descripcion}}" id="mdlDescripcion">
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 10px;padding-bottom: 10px;" id="mdlOperadora">
+                            <div class="col-md-4 pr-1 col-6">
+                                <label class="texto">Operadora</label>
+                            </div>
+                            <div class="col-md-5 pr-1 col-6" id="divOperadora">
+                                <select class="form-control" id="slcOperadora" title="Operadora" (change)="close()">
+                                <option value="9" [selected]="operadora==9">Seleccionar..</option>
+                                <option value="1" [selected]="operadora==1">CNT</option>
+                                <option value="2" [selected]="operadora==2">Movistar</option>
+                                <option value="3" [selected]="operadora==3">Claro</option>  
+                                <option value="4" [selected]="operadora==4">Otros</option>
+                                <option value="5" [selected]="operadora==5">Fijo</option>
+                                <option value="0" [selected]="operadora==0">S/O</option>
+                              </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5 pr-1 col-6">
+                                <label>Principal</label>
+                            </div>
+                            <div class="col-md-2 pr-1 col-6">
+                                <input type="checkbox" class="form-check-input" id="chkPrincipal" title="Principal" [checked]="principal==1" [(ngModel)]="check">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div id="cerrarModal">
+                                <button type="button" class="btn btn-primary" (click)="addContacto();" title="Guardar contacto" data-dismiss="modal"> Añadir</button>
+                            </div>
+                            <div id="noCerrar">
+                                <button type="button" class="btn btn-primary" (click)="addContacto();" title="Guardar contacto" data-dismiss=""> Añadir</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--MODAL INF. ACADEMICA-->
+<div class="modal fade" id="modalInformacion" tabindex="-1" aria-labelledby="modalInformacionLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #25356F;">
+                <h5 class="modal-title" id="modalInformacionLabel" style="font-size: 20px; color: white;">Actualizar Instrucción</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="list-group">
+                        <div class="row" style="padding-top: 10px;padding-bottom: 10px;">
+                            <div class="col-md-2 pr-1 col-6">
+                                <label class="texto">Nivel</label>
+                            </div>
+                            <div class="col-md-7 pr-1 col-12">
+                                <input id="txtEspecialidad" type="text" class="form-control" value="{{nombreNivel}}" title="Nivel" disabled>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 10px;padding-bottom: 10px;">
+                            <div class="col-md-2 pr-1 col-12">
+                                <label class="texto2">Titulo</label>
+                            </div>
+                            <div class="col-md-7 pr-1 col-12">
+                                <div style="padding-top: 10px;">
+                                    <textarea id="txtTitulo" class="form-control textarea" placeholder="Título" title="Título" style="resize: none;" disabled>{{titulo}}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 10px;padding-bottom: 10px;">
+                            <div class="col-md-2 pr-1 col-6">
+                                <label class="texto">Especialidad</label>
+                            </div>
+                            <div class="col-md-7 pr-1 col-12">
+                                <input id="txtEspecialidad" type="text" class="form-control" title="Especialidad" value="{{especialidad}}" disabled>
+
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 10px;padding-bottom: 10px;">
+                            <div class="col-md-2 pr-2">
+                                <label class="texto2">Fecha</label>
+                            </div>
+                            <div class="col-md-7 pr-1 col-12">
+                                <input type="date" class="form-control" id="fechaTitulo" value="{{fecha}}" title="Fecha" [max]="actual">
+                            </div>
+                        </div>
+
+                        <div class="row" style="padding-top: 10px;padding-bottom: 10px;">
+                            <div class="col-md-2 pr-2">
+                                <label class="texto2">Adjunto</label>
+                            </div>
+                            <div class="col-md-7 pr-2 col-12">
+                                <input class="form-control" type="file" id="formActualizarTitulo" title="Archivo título" (change)="actualizarTitulo($event)" accept="application/pdf" value="ext.pdf">
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 10px;padding-bottom: 10px;">
+
+                            <div class="col-md-10 pr-1 col-12">
+                                <label class="texto2">{{adjunto}}</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="actualizarInst();" title="Actualizar instrucción"><i class="bi bi-save"  ></i> Actualizar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--MODAL NUEVO -->
+<div class="modal fade" id="modalNuevaInformacion" tabindex="-1" aria-labelledby="modalNuevaInformacion" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #25356F;">
+                <h5 class="modal-title" id="modalNuevaLabel" style="font-size: 20px; color: white;">Añadir Instrucción</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="list-group">
+                        <div class="alert alert-danger " role="alert" id="divAlertInst">
+                            <i class="bi bi-x-circle"></i> {{txtAlerta}}
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row" style="padding-top: 10px;padding-bottom: 10px;">
+                                <div class="col-md-2 pr-1 col-6">
+                                    <label class="texto">Nivel</label>
+                                </div>
+                                <div class="col-md-6 pr-1 col-12">
+                                    <select class="form-control" id="nvlEdu2" [(ngModel)]="txtNivel" (change)="obtenerTitulos(txtNivel)" title="Nivel de instrucción">
+                                    <option id="sltNivel2" *ngFor="let nv of nivelEdu" [value]="nv.DMNED_CODIGO" >{{nv.DMNED_DESCRIPCION}}</option>
+                                     </select>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 10px;padding-bottom: 10px;">
+                                <div class="col-md-2 pr-1 col-12">
+                                    <label class="texto2">Título</label>
+                                </div>
+                                <div class="col-md-8 pr-1 col-12">
+                                    <ng-select [searchable]="true" placeholder="Título" title="Título" [(ngModel)]="txtTitulo" (change)="obtenerDato(txtTitulo)">
+                                        <ng-option *ngFor="let tl2 of lstTitulo" [value]="tl2.DSLTT_CODIGO">{{tl2.DSLTT_DESCRIPCION}}</ng-option>
+                                    </ng-select>
+                                    <div style="padding-top: 10px;">
+                                        <textarea class="form-control textarea" placeholder="Título" style="resize: none;" disabled id="txtValueTit">{{valueTitulo}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 10px;padding-bottom: 10px;">
+                                <div class="col-md-2 pr-1 col-6">
+                                    <label class="texto">Especialidad</label>
+                                </div>
+                                <div class="col-md-7 pr-1 col-12">
+                                    <input id="txtEspecialidad2" type="text" class="form-control" title="Especialidad" placeholder="Especialidad" value="{{especialidad}}" disabled>
+
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 10px;padding-bottom: 10px;">
+                                <div class="col-md-2 pr-1 col-12">
+                                    <label class="texto2">Fecha</label>
+                                </div>
+                                <div class="col-md-6 pr-1 col-12">
+                                    <input type="date" class="form-control" id="fechaTitulo2" [max]="actual" title="Fecha" (change)="cambioFecha()">
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 10px;padding-bottom: 10px;">
+                                <div class="col-md-2 pr-2">
+                                    <label class="texto2">Adjunto</label>
+                                </div>
+                                <div class="col-md-8 pr-1 col-8">
+                                    <input class="form-control" type="file" id="formFile" accept="application/pdf" (change)="nuevoTitulo($event)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div id="cerrarModalInst">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addTitulo()" title="Guardar Instrucción">Añadir</button>
+                    </div>
+                    <div id="noCerrarInst">
+                        <button type="button" class="btn btn-primary" data-dismiss="" (click)="addTitulo()" title="Guardar Instrucción">Añadir</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--MODAL PARROQUIAS-->
+<div class="modal fade" id="modalParroquia" tabindex="-1" aria-labelledby="modalParroquia" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #25356F;">
+                <h5 class="modal-title" id="modalParroquiaLabel" style="font-size: 20px; color: white;">Parroquias</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="list-group">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
+                                    <thead>
+                                        <tr style="background-color:#192A67;">
+                                            <th scope="col" id="colortext">Ciudad</th>
+                                            <th scope="col" id="colortext">Parroquia</th>
+                                            <th scope="col" id="colortext"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="font-size: 12px;">
+                                        <tr *ngFor="let pr of parroquias">
+                                            <td>{{pr.PROVINCIA}}</td>
+                                            <td>{{pr.PARROQUIA}}</td>
+                                            <td>
+                                                <a (click)="seleccionarParroquia(pr.PARROQUIA,pr.DMDIV_CODIGO)" href data-dismiss="modal">Seleccionar</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

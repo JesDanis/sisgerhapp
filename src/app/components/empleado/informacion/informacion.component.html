@@ -1,0 +1,425 @@
+<div style="background-color: #f7f7f9; height: 100%; width: 100%; ">
+    <div style="height: 10px">
+    </div>
+    <div class="card text-center" id="cardEncabezado" style="height:100%;">
+        <div style="background-color: #E5E7E9; padding-top: 1px; ">
+            <h5 style="color: #192A67;font-size: 24px;"><strong>Información</strong> del empleado <a routerLink="/actualizacion" class="btn btn-primary" role="button" style="float: right;" title="Editar"><i class="bi bi-pencil-square"></i>Editar</a>
+            </h5>
+        </div>
+
+        <div class="container-fluid" style="padding-top: 10px">
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-sm-12">
+                    <form action="">
+                        <div class="nav nav-pills nav-fill" id="nav-tab" role="tablist" style="background-color:#DFDFDF;">
+                            <a class="nav-link active" id="step1-tab" data-toggle="tab" href="#step1" title="Información general"><i class="bi bi-info-circle"></i> Información general</a>
+                            <a class="nav-link" id="step2-tab" data-toggle="tab" href="#step2" title="Información laboral"><i class="bi bi-laptop"></i> Información laboral</a>
+                            <a class="nav-link" id="step3-tab" data-toggle="tab" href="#step3" title="Información personal"><i class="bi bi-person"></i> Información personal</a>
+                        </div>
+                        <div class="tab-content" id="nav-tabContent">
+                            <!-- Step 1 INFORMACION -->
+                            <div class=" tab-pane fade show active div-T" id="step1">
+                                <div class="card-body">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-8 col-12 col-mb-8 col-xl-8 col-xxl-8">
+                                            <div class="row">
+                                                <label class="col-sm-4 col-sm-4 col-12 col-mb-4 col-xl-4 col-xxl-4 col-form-label lblLeft">Régimen laboral</label>
+                                                <div class="col-sm-8 col-12 col-mb-8 col-xl-8 col-xxl-8">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Régimen" value="{{informacion.REGIMEN_LABORAL}}" id="regimen" title="Régimen laboral">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-4 col-form-label lblLeft">Zona</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="zona" disabled="" placeholder="Zona" value="{{informacion.ZONA}}" title="Zona">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-8">
+                                            <div class="row">
+                                                <label class="col-sm-4 col-sm-4 col-sm-4 col-12 col-mb-4 col-xl-4 col-xxl-4 col-form-label lblLeft">Departamento</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Departamento" value="{{informacion.DEPARTAMENTO}}" id="departamento" title="Departamento">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-4 col-form-label lblLeft">Nº Rol</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="rol" disabled="" placeholder="Rol" value="{{informacion.ROL}}" title="Rol">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-8">
+                                            <div class="row">
+                                                <label for="estado" class="col-sm-4 col-form-label lblLeft">Tipo contrato</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="contrato" disabled="" placeholder="Tipo contrato" value="{{informacion.CONTRATO}}" title="Tipo contrato">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-8">
+                                            <div class="row">
+                                                <label class="col-sm-4 col-form-label lblLeft">Apellidos y nombres</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="datosEmp" disabled="" placeholder="Apellidos y nombres" title="Apellidos y nombres" value="{{informacion.ABREVIATURA}}{{informacion.NOMBRE_EMPLEADO}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-4 col-form-label lblLeft">Cédula</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="cedula" disabled="" placeholder="Cédula" value="{{informacion.CEDULA}}" title="Cédula">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--STEP 2 INFORMACION LABORAL-->
+                            <div class="tab-pane fade div-T" id="step2">
+                                <div class="card-body">
+
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-6 col-form-label lblLeft">Tiempo de servicio</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control" disabled placeholder="Años" title="Tiempo-Años" value="{{tiempo.anios}} AÑOS">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-5 col-form-label lblLeft"></label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control" disabled placeholder="Meses" title="Tiempo-Meses" value="{{tiempo.meses}} MESES">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-5 col-form-label lblLeft"></label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control" disabled placeholder="Días" title="Tiempo-Días" value="{{tiempo.dias}} DÍAS">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <div class="row">
+                                                <label class="col-sm-2 col-form-label lblLeft">Dependencia</label>
+                                                <div class="col-sm-7">
+                                                    <textarea class="form-control textarea" disabled="" id="Dependencia" title="Dependencia" placeholder="Dependencia" style="resize: none;">{{informacion.ESTRUCTURA}}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <div class="row">
+                                                <label class="col-sm-2 col-form-label lblLeft">Título Puesto</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Título Puesto" title="Título Puesto" value="{{informacion.CARGO}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-6 col-form-label lblLeft">Escala</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control" id="escala" disabled="" placeholder="Escala" title="Escala" value="{{informacion.NUM_ESCALA}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-5 col-form-label lblLeft">RMU</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control" disabled="" placeholder="RMU" title="RMU" value="$ {{informacion.RMU}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-6 col-form-label lblLeft">Fecha Ingreso</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control" disabled="" id="fIngreso" placeholder="Fecha Ingreso" title="Fecha Ingreso" value="{{informacion.FECHA_INGRESO}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-5 col-form-label lblLeft">Fecha Salida</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control" disabled="" id="fSalida" placeholder="Fecha Salida" title="Fecha Salida" value="{{informacion.FECHA_SALIDA}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-5 col-form-label lblLeft">F.S. Antiguedad</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control" disabled="" id="fIngreso" placeholder="F.S. Antiguedad" title="F.S. Antiguedad" value="{{informacion.FECHA_PAGO_ANT}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <div class="row">
+                                                <label class="col-sm-2 col-form-label lblLeft">Ubicación</label>
+                                                <div class="col-sm-7">
+                                                    <textarea class="form-control textarea" disabled="" id="ubicacion" placeholder="Ubicación" title="Ubicación" style="resize: none;">{{informacion.UBICACION_INTERNA}}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-6 col-form-label lblLeft">Teléfono</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Teléfono" title="Teléfono" value="{{informacion.TELF_TRABAJO}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-5 col-form-label lblLeft">Extensión</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Ext." title="Extensión" value="{{informacion.EXT_TRABAJO}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <div class="row">
+                                                <label class="col-sm-2 col-form-label lblLeft">Correo electrónico</label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Correo Electrónico" title="Correo Electrónico" value="{{informacion.EMAIL}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--STEP 3 INFORMACION PERSONAL-->
+                            <div class="tab-pane fade div-T" id="step3">
+                                <div class="card-body">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-8">
+                                            <div class="row">
+                                                <label class="col-sm-4 col-form-label lblLeft">Lugar de Nacimiento</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Lugar Nacimiento" title="Lugar Nacimiento" value="{{informacion.LUGAR_NACIMIENTO}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-4 col-form-label lblLeft">Fecha</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Fecha Nacimiento" title="Fecha Nacimiento" value="{{informacion.FECHA_NACIMIENTO}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-sm-8">
+                                            <div class="row">
+                                                <label class="col-sm-4 col-form-label lblLeft">Dirección domiciliaria</label>
+                                                <div class="col-sm-8">
+                                                    <textarea class="form-control textarea" disabled="" placeholder="Dirección domicilio" title="Dirección domicilio" style="resize: none;">{{informacion.LUGAR_DOMICILIO}} {{informacion.DIR_DOMICILIO}}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-4 col-form-label lblLeft">Teléfono fijo</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Teléfono" title="Teléfono" value="{{informacion.TELEFONO_FIJO}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-5 col-form-label lblLeft">Celular</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Celular" title="Celular" value="{{informacion.TELEFONO_MOVIL}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-4 col-form-label lblLeft">Email</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Correo Electrónico" title="Correo Electrónico" value="{{informacion.EMAIL_PERSONAL}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-4 col-form-label lblLeft">Cédula militar</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Cédula militar" title="Cédula militar" value="{{informacion.CEDULA_MILITAR}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-5 col-form-label lblLeft">Cont. emergencia</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Cont. emergencia" title="Contacto emergencia" value="{{informacion.EMERGENCIA}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-4 col-form-label lblLeft">Afiliación IESS Nº</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Afiliación" title="Afiliación" value="{{informacion.NUM_AFIL_IESS}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-4 col-form-label lblLeft">Historia clínica</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Historia clínica" title="Historia clínica" value="{{informacion.NUM_HSTR_CLINIC}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-5 col-form-label lblLeft">Tipo sanguineo</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Tipo sanguineo" title="Tipo sanguineo" value="{{informacion.TIPO_SANGRE}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-4 col-form-label lblLeft">Género</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Género" title="Género" value="{{informacion.GENERO}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-4 col-form-label lblLeft">Aut. étnica</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Aut. étnica" title="Autoidentificación étnica" value="{{informacion.ETNIA}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-5 col-form-label lblLeft">Discapacidad</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Discapacidad" title="Discapacidad" value="{{informacion.DISCAPACIDAD}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-4 col-form-label lblLeft">Porcentaje</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" disabled="" placeholder="0%" title="Porcentaje" value="{{informacion.PORCENTAJE}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-4 col-form-label lblLeft">Estado civil</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Estado civil" title="Estado civil" value="{{informacion.ESTADO_CIVIL}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <div class="row">
+                                                <label class="col-sm-3 col-form-label lblLeft">Cónyuge</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Cónyuge" title="Cónyuge" value="{{informacion.NOMBRE_CONYUGUE}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <label class="col-sm-4 col-form-label lblLeft">Banco</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Banco" title="Banco" value="{{informacion.BANCO}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <div class="row">
+                                                <label class="col-sm-3 col-form-label lblLeft">Cuenta</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Cta. Ahorros" title="Cuenta. Ahorros" value="{{informacion.TIPO_CUENTA}} - Nº: {{informacion.NUM_CUENTA}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-8">
+                                            <div class="row">
+                                                <label class="col-sm-4 col-form-label lblLeft">Nombre del padre</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Nombre padre" title="Nombre padre" value="{{informacion.NOMBRE_PADRE}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-8">
+                                            <div class="row">
+                                                <label class="col-sm-4 col-form-label lblLeft">Nombre de la madre</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" disabled="" placeholder="Nombre madre" title="Nombre madre" value="{{informacion.NOMBRE_MADRE}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

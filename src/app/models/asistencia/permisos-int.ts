@@ -1,0 +1,22 @@
+export interface PermisosInt {
+    DCPRM_NUM_SOLICITUD: string,
+    DCTPR_DESCRIPCION: string,
+    DCPRM_APROBADO: string,
+    DCPRM_FECHA_SOLIC: string,
+    DCPRM_FECHA_INICIO: string,
+    DCPRM_FECHA_FIN: string,
+    DCPRM_HORA_INICIO: string,
+    DCPRM_HORA_FIN: string,
+    DCPRM_HORAS_TOTAL: string,
+    DCPRM_TIEMPO_SOLIC: string,
+    DCTPR_NUMERO_DIA: string,   
+    DCTPR_MODALIDAD: string,
+    DCPRM_REEMPLAZO: string ,
+    DCPRM_ORD_LAB: string,
+    DCPRM_ORD_NLAB: string,
+    DCPRM_ADS_LAB: string,
+    DCPRM_ADS_NLAB: string,
+
+    DMPER_NUMERO_ROL: string,
+        DMPER_NOMBRE: string,
+}

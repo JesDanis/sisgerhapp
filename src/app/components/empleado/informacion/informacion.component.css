@@ -1,0 +1,44 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+#card {
+    width: 99%;
+    margin-top: 1%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1%;
+    background-color: #ffffff;
+}
+
+@media (max-width:320px) {
+    .div-T {
+        overflow-x: hidden;
+        overflow-y: scroll;
+        height: 350px
+    }
+}
+
+@media (max-width:768px) {
+    .div-T {
+        overflow-x: hidden;
+        overflow-y: scroll;
+        height: 300px
+    }
+}
+
+@media (max-width:1366px) {
+    .div-T {
+        overflow-x: hidden;
+        overflow-y: scroll;
+        height: 350px
+    }
+}
+
+@media (max-width:1920px) {
+    .div-T {
+        overflow-x: hidden;
+        overflow-y: scroll;
+        height: 400px
+    }
+}
