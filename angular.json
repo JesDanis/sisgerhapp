@@ -27,6 +27,7 @@
                             "src/assets",
                             "src/manifest.webmanifest",
                             "src/manifest.webmanifest",
+                            "src/manifest.webmanifest",
                             "src/manifest.webmanifest"
                         ],
                         "styles": [
@@ -39,6 +40,7 @@
                             "node_modules/datatables.net/js/jquery.dataTables.js"
 
                         ],
+                        "buildOptimizer": true,
                         "serviceWorker": true,
                         "ngswConfigPath": "ngsw-config.json"
                     },
@@ -111,6 +113,7 @@
                             "src/assets",
                             "src/manifest.webmanifest",
                             "src/manifest.webmanifest",
+                            "src/manifest.webmanifest",
                             "src/manifest.webmanifest"
                         ],
                         "styles": [
@@ -129,13 +132,6 @@
             }
         }
     },
-    "optimization": {
-        "scripts": true,
-        "styles": {
-            "minify": true,
-            "inlineCritical": false
-        },
-        "fonts": true
-    },
+
     "defaultProject": "sisgerhapp"
 }

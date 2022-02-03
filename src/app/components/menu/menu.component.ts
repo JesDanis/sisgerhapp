@@ -3,9 +3,10 @@ import { SisgerhMovilService } from "src/app/services/sisgerh-movil.service";
 import { DomSanitizer } from '@angular/platform-browser';
 import * as $ from 'jquery';
 import * as CryptoJS from 'crypto-js';
-
+import { Router} from '@angular/router';
 
 import { CookieService } from 'ngx-cookie-service';
+import { InformacionComponent } from "../empleado/informacion/informacion.component";
 @Component({
     selector: 'app-menu',
     templateUrl:'./menu.component.html',
@@ -19,17 +20,17 @@ export class MenuComponent implements OnInit {
   inPerson:any;
   sidebarShow:boolean = true;
   user:any
-  constructor(private cookieService: CookieService,private sisgerhService:SisgerhMovilService, private domSanitizer:DomSanitizer) { }
+  constructor(private cookieService: CookieService,private sisgerhService:SisgerhMovilService, private domSanitizer:DomSanitizer,private router: Router) { }
 
   ngOnInit(): void {
-    this.obtenerSesion();
+    this.obtenerSesion();  
   }
  obtenerSesion(){
    //OBTENCION DE COOKIE
-   let inUser = 'sceli'
+  //let inUser = 'sceli'
     //'sceli' //'wmedina' //'dcadme'//'mchavez'//'jabad'//'//'wachachi'//'jsantamaria';
     
-   //let inUser = this.cookieService.get('user_eeasa');
+   let inUser = this.cookieService.get('user_eeasa');
     this.sesion=[''];
     this.sisgerhService.obtenerSesion(btoa(inUser)).subscribe(res=>{
     this.sesion=res;
@@ -56,8 +57,8 @@ export class MenuComponent implements OnInit {
       }else{
         jQuery("#menuAdmin").css("visibility", "hidden");
       }
-
     })
+    
   } 
   sidebar() {
     if(this.sidebarShow) {

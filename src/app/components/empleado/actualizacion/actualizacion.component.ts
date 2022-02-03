@@ -1098,6 +1098,13 @@ close(){
           text: res.MENSAJE
         })
       }
+      else{
+        Swal.fire({
+          icon: 'warning',
+          title: 'No se ha podido actualizar la información, contáctese con el Administrador',
+          text: res.MENSAJE
+        })
+      }
     })
   }
  

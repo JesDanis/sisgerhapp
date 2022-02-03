@@ -23,7 +23,6 @@ import {HttpClientModule} from '@angular/common/http';
 import { DataTablesModule } from "angular-datatables";
 import { PrincipalComponent } from './components/administracion/principal/principal.component';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { SisgerhMovilService } from "src/app/services/sisgerh-movil.service";
 import { AdministracionGuard } from './guards/administracion.guard';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../environments/environment';
@@ -31,7 +30,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 
 const routes: Routes=[
   
-  {path:'',redirectTo:'empleado',pathMatch:'full'},
+  // {path:'',redirectTo:'empleado',pathMatch:'full'},
+  {path:'',component:InformacionComponent,pathMatch:'full'},
   {path:'empleado',component:InformacionComponent},
   {path:'instruccion', component:InstruccionComponent},
   {path:'experiencia', component:ExperienciaComponent},
@@ -79,7 +79,7 @@ const routes: Routes=[
         enabled: environment.production,
         // Register the ServiceWorker as soon as the app is stable
         // or after 30 seconds (whichever comes first).
-        registrationStrategy: 'registerWhenStable:30000'
+        registrationStrategy: 'registerWhenStable:30'
       })
   ],
   providers: [DatePipe,CookieService,
