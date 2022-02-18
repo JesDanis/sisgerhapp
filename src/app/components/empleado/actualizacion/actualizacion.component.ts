@@ -278,7 +278,7 @@ export class ActualizacionComponent implements OnInit {
     })
     this.instruccion = ['']
     this.sisgerhService.obternerInstruccion(btoa(this.inPer)).subscribe(res => {
-      this.instruccion = res;
+      this.instruccion = res
     });
     
   }
@@ -311,10 +311,11 @@ export class ActualizacionComponent implements OnInit {
     this.instruccion = []
     let v = this.lstInstruccion
     let nombre
+    let adjunto
     for (let index = 0; index < v.length; index++) {
       this.adminService.obtenerInstruccion(v[index].DMNED_CODIGO, v[index].DSLTT_CODIGO).subscribe((res: any) => {
 
-        if (v[index].DSLPT_NOMBRE_ADJ == "undefined") {
+        if (v[index].DSLPT_NOMBRE_ADJ == "undefined" ||v[index].DSLPT_NOMBRE_ADJ == "null" ) {
           nombre = " "
         } else {
           nombre = v[index].DSLPT_NOMBRE_ADJ
@@ -322,6 +323,7 @@ export class ActualizacionComponent implements OnInit {
         this.instruccion.push({ "DMNED_CODIGO": v[index].DMNED_CODIGO, "DSLTT_CODIGO": v[index].DSLTT_CODIGO, "DMNED_DESCRIPCION": res[0].DMNED_DESCRIPCION, "NIVEL": res[0].DMNED_DESCRIPCION, "TITULO": res[0].TITULO, "ESPECIALIDAD": v[index].DSLTT_ESPECIALIDAD, "FECHA": v[index].DSLTT_FECHA, "ADJUNTO": v[index].DSLPT_ADJUNTO, "DSLPT_ADJUNTO": v[index].DSLPT_ADJUNTO, "NOMBRE": nombre })
       })
     }
+
   }
   obtenerAdjuntos() {
     let v = this.lstAdjuntos
@@ -538,23 +540,34 @@ close(){
 
     })
   }
-  informacionIntruccion(codigo: string) {
-    this.codigo = codigo
-    this.sisgerhService.informacionInstruccion(codigo).subscribe((response: any) => {
-      this.nombreNivel = response[0].NIVEL
-      this.nivel = response[0].CODIGO
-      this.titulo = response[0].TITULO
-      this.codTitulo = response[0].COD_TIT
-      var fecha = moment(response[0].FECHA, 'DD-MM-YYYY');
+  // informacionIntruccion(codigo: string) {
+  //   this.codigo = codigo
+  //   this.sisgerhService.informacionInstruccion(codigo).subscribe((response: any) => {
+  //     this.nombreNivel = response[0].NIVEL
+  //     this.nivel = response[0].CODIGO
+  //     this.titulo = response[0].TITULO
+  //     this.codTitulo = response[0].COD_TIT
+  //     var fecha = moment(response[0].FECHA, 'DD-MM-YYYY');
+  //     this.fecha = fecha.format('YYYY-MM-DD');
+  //     this.adjunto = response[0].NOMBRE
+  //     this.especialidad = response[0].ESPECIALIDAD
+  //   })
+  // }
+  informacionIntruccion(nivel:string,codNivel:string, titulo:string,codTitulo:any,especialidad:string,fechaT:string, adjunto:string) {
+     this.nombreNivel = nivel
+      this.nivel = codNivel
+      this.titulo = titulo
+      this.codTitulo = codTitulo
+      var fecha = moment(fechaT, 'DD-MM-YYYY');
       this.fecha = fecha.format('YYYY-MM-DD');
-      this.adjunto = response[0].NOMBRE
-      this.especialidad = response[0].ESPECIALIDAD
-    })
+      this.adjunto = adjunto
+      this.especialidad = especialidad
+    
   }
   actualizarInst() {
-    let cod = this.codigo
+    let cod = this.codTitulo
     let index = this.instruccion.findIndex(function (el: any) {
-      return el.DSLPT_CODIGO == cod;
+      return el.DSLTT_CODIGO == cod;
     });
     this.instruccion.splice(index, 1);
     let fecha: string | any = $("#fechaTitulo").val();
@@ -562,6 +575,7 @@ close(){
     this.instruccion.push({ "DMNED_CODIGO": this.nivel, "DSLPT_ADJUNTO": this.archivotituloAct, "DSLPT_CODIGO": "", "DSLTT_CODIGO": this.codTitulo, "ESPECIALIDAD": this.especialidad, "FECHA": fechaT, "NIVEL": this.nombreNivel, "NOMBRE": this.nombreTituloAct, "TITULO": this.titulo })
   }
   actualizarTitulo(event: any) {
+    console.log(this.adjunto)
     let data = event.target.files[0]
     let reader = new FileReader()
     reader.readAsDataURL(data)
@@ -1092,10 +1106,22 @@ close(){
     this.sisgerhService.insertDatos(json).subscribe((res: any) => {
       //MENSAJE: ''
       if (res.MENSAJE = "El registro fue guardado correctamente") {
+        // Swal.fire({
+        //   icon: 'info',
+        //   title: 'Información',
+        //   text: res.MENSAJE
+        // })
         Swal.fire({
-          icon: 'info',
           title: 'Información',
-          text: res.MENSAJE
+          text: res.MENSAJE,
+          icon: 'info',
+          showCancelButton: false,
+          confirmButtonColor: '#7066e0',
+          confirmButtonText: 'OK'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.reload();
+          }
         })
       }
       else{

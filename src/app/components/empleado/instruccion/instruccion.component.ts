@@ -24,7 +24,7 @@ export class InstruccionComponent implements OnInit {
   
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 10,
+     
       info: true,
       processing: true,
       ordering: true,
@@ -49,6 +49,7 @@ export class InstruccionComponent implements OnInit {
     this.instruccion = ['']
     this.sisgerhService.obternerInstruccion(btoa(this.inPer)).subscribe(res => {
       this.instruccion = res;
+      console.log(this.instruccion)
       this.dtTrigger.next();
     });
   }

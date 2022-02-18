@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SisgerhAdminService {
-  url: string='http://172.20.0.84:7001/WSSisgerhApp/rest/sisgerh/';
- //url: string='http://localhost:7001/WSSisgerhApp/rest/sisgerh/';
+  //url: string='http://172.20.0.84:7001/WSSisgerhApp/rest/sisgerh/';
+ url: string='http://localhost:7001/WSSisgerhApp/rest/sisgerh/';
 
   req:string='';  
   constructor(private httpClient: HttpClient) { }

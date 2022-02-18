@@ -1,31 +1,96 @@
-@media (max-width:320px) {
+@media only screen and (min-width:200px) {
+    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
     .div-T {
-        overflow-x: hidden;
+        overflow-x: scroll;
         overflow-y: scroll;
-        height: 350px
+        height: 475px
     }
 }
 
-@media (max-width:768px) {
+@media only screen and (min-width:320px) {
+    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
     .div-T {
-        overflow-x: hidden;
+        overflow-x: scroll;
         overflow-y: scroll;
-        height: 300px
+        height: 450px
     }
 }
 
-@media (max-width:1366px) {
+@media only screen and (min-width:390px) {
+    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
     .div-T {
-        overflow-x: hidden;
+        overflow-x: scroll;
         overflow-y: scroll;
-        height: 350px
+        height: 700px
     }
 }
 
-@media (max-width:1920px) {
+@media only screen and (min-width:480px) {
+    /* smartphones, Android phones, landscape iPhone */
+    .div-T {
+        overflow-x: scroll;
+        overflow-y: scroll;
+        height: 500px
+    }
+}
+
+@media only screen and (min-width:600px) {
+    /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
     .div-T {
         overflow-x: hidden;
         overflow-y: scroll;
         height: 400px
+    }
+}
+
+@media only screen and (min-width:750px) {
+    /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+    .div-T {
+        overflow-x: hidden;
+        overflow-y: scroll;
+        height: 700px
+    }
+}
+
+@media only screen and (min-width:801px) {
+    /* tablet, landscape iPad, lo-res laptops ands desktops */
+    .div-T {
+        overflow-x: hidden;
+        overflow-y: scroll;
+        height: 710px
+    }
+}
+
+@media only screen and (min-width:1024px) {
+    /* big landscape tablets, laptops, and desktops */
+    .div-T {
+        overflow-x: hidden;
+        overflow-y: scroll;
+        height: 400px
+    }
+}
+
+@media only screen and (min-width:1280px) {
+    /* hi-res laptops and desktops */
+    .div-T {
+        overflow-x: hidden;
+        overflow-y: scroll;
+        height: 500px
+    }
+}
+
+@media only screen and (min-width:1366px) {
+    .div-T {
+        overflow-x: hidden;
+        overflow-y: scroll;
+        height: 470px
+    }
+}
+
+@media only screen and (min-width:1920px) {
+    .div-T {
+        overflow-x: hidden;
+        overflow-y: scroll;
+        height: 600px
     }
 }
