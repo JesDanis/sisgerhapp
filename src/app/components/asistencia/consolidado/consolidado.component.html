@@ -5,32 +5,48 @@
     <div class="card text-center" id="cardEncabezado">
         <div class="card-header" style="background-color: #EAEBEF">
             <div class="row mb-3">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="row">
-                        <label class="col-sm-4 col-form-label lblLeft">Fecha Inicio</label>
+                        <label class="col-sm-4 col-form-label lblLeft">Estado</label>
                         <div class="col-sm-8">
+                            <select id="estado" class="form-control" title="Estado"> 
+                                <option value="9">Seleccione...</option>
+                                <option value="0">Solicitado</option>
+                                <option value="1">Aprobado</option>
+                                <option value="2">Autorizado</option>
+                                <option value="3">Anulado</option>
+                                <option value="4">Negado</option>
+                                <option value="5">Todos</option>
+                                </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="row">
+                        <label class="col-sm-3 col-form-label lblLeft" style="font-size: 15.5px;">Inicio</label>
+                        <div class="col-sm-9">
                             <input type="date" class="form-control" id="fechaInicio" value="{{inDesde}}" [max]="actual" title="Fecha inicio">
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="row">
-                        <label class="col-sm-4 col-form-label lblLeft">Fecha Fin</label>
-                        <div class="col-sm-8">
+                        <label class="col-sm-3 col-form-label lblLeft">Fin</label>
+                        <div class="col-sm-9">
                             <input type="date" class="form-control" id="fechaFin" [ngModel]="fecha | date:'yyyy-MM-dd'" [max]="actual" title="Fecha fin">
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-7">
                             <button type="button" id="btnConsultar" class="btn btn-primary" (click)="obtenerConsolidado()" title="Consultar">
                                 <i class="bi bi-search"></i> Consultar
                                </button>
                         </div>
-                        <div class="col-sm-6" id="btnImprimir">
+                        <div class="col-sm-5" id="btnImprimir">
                             <button type="button" class="btn btn-secondary" (click)="reporteAsistencia()" title="Reporte asistencia">
-  <i class="bi bi-printer"></i> Imprimir
+   Imprimir
  </button>
                         </div>
                     </div>

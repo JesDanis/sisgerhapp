@@ -1,8 +1,4 @@
-body {
-    overflow-x: hidden;
-    overflow-y: hidden;
-    background-color: #F3F3F3;
-}
+body {}
 
 #sidebar-wrapper {
     min-height: 100vh;
@@ -78,8 +74,4 @@ body {
     /* Note: You could also use a custom theme */
     background-color: #25356F;
     border-bottom-color: #25356F;
-}
-
-::-webkit-scrollbar {
-    display: none;
 }

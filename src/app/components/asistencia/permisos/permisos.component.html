@@ -5,7 +5,7 @@
     <div class="card text-center" id="cardEncabezado">
         <div class="card-header" style="background-color: #EAEBEF">
             <div class="row mb-3">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="row">
                         <label class="col-sm-4 col-form-label lblLeft">Estado</label>
                         <div class="col-sm-8">
@@ -21,26 +21,32 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="row">
-                        <label for="fechaInicio" class="col-sm-4 col-form-label lblLeft">Fecha Inicio</label>
-                        <div class="col-sm-8">
+                        <label for="fechaInicio" class="col-sm-3 col-form-label lblLeft" style="font-size: 15.5px;">Inicio</label>
+                        <div class="col-sm-9">
                             <input type="date" class="form-control" id="fechaInicio" value="{{inDesde}}" title="Fecha Inicio" [max]="actual">
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="row">
-                        <label for="fechaFin" class="col-sm-4 col-form-label lblLeft">Fecha Fin</label>
-                        <div class="col-sm-8">
+                        <label for="fechaFin" class="col-sm-3 col-form-label lblLeft">Fin</label>
+                        <div class="col-sm-9">
                             <input type="date" class="form-control" id="fechaFin" title="Fecha Fin" [ngModel]="fecha | date:'yyyy-MM-dd'" [max]="actual">
                         </div>
                     </div>
                 </div>
+                <div class="col-sm-3">
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <button type="button" id="btnBuscar" class="btn btn-primary" (click)="obtenerPermisos()" title="Consultar permiso">
+                        <i class="bi bi-search"></i> Consultar
+                </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <button type="button" style="float:inherit;" id="btnBuscar" class="btn btn-primary" (click)="obtenerPermisos()" title="Consultar permiso">
-<i class="bi bi-search"></i> Consultar
-</button>
         </div>
 
         <div class="card-body">

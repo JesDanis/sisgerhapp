@@ -21,6 +21,7 @@ PdfMakeWrapper.setFonts(pdfFonts);
 export class ConsolidadoComponent implements OnInit {
 
 inDesde:any
+inDesdeR:any
 inHasta:any
 inPer:any
 actual:any
@@ -65,7 +66,7 @@ obtenerConsolidado():void{
  
   let Desde: string|any = $("#fechaInicio").val();
   let Hasta: string|any = $("#fechaFin").val();
-  this.inDesde=this.datePipe.transform(Desde,"yyyy-MM-dd");
+  this.inDesdeR=this.datePipe.transform(Desde,"yyyy-MM-dd");
   this.inHasta=this.datePipe.transform(Hasta,"yyyy-MM-dd");
    
   if (this.inHasta>this.actual){
@@ -75,25 +76,25 @@ obtenerConsolidado():void{
         text: 'Fecha final no puede ser mayor a la actual'
       })
     }
-    else if(this.inDesde > this.inHasta ){
+    else if(this.inDesdeR > this.inHasta ){
       Swal.fire({
         icon: 'error',
         title: 'Error',
         text: 'Fecha de inicio no puede ser mayor a la fecha fin'
       })
-    }else if (this.inDesde==null || this.inHasta==null) {
+    }else if (this.inDesdeR==null || this.inHasta==null) {
       Swal.fire({
         icon: 'error',
         title: 'Error',
         text: 'Debe ingresar una fecha'
       })
     } else {
-      this.inDesde=this.datePipe.transform(Desde,"dd/MM/yyyy");
+      this.inDesdeR=this.datePipe.transform(Desde,"dd/MM/yyyy");
     this.inHasta=this.datePipe.transform(Hasta,"dd/MM/yyyy");//
       this.inPer=localStorage.getItem('codPer');
       this.inPer=CryptoJS.AES.decrypt(this.inPer.toString(),'eeasaPer').toString(CryptoJS.enc.Utf8);  
       this.consolidado=[''];
-      this.sisgerhService.obtenerConsolidado(btoa(this.inPer),this.inDesde,this.inHasta).subscribe(res=>{
+      this.sisgerhService.obtenerConsolidado(btoa(this.inPer),this.inDesdeR,this.inHasta).subscribe(res=>{
         let dtInstance = $('#tblConsolidado').DataTable();
         dtInstance.destroy();
         this.consolidado=res;
@@ -145,7 +146,7 @@ new Columns([
  new Columns([
   {width: 'auto',text:new Txt('NOMBRE:').alignment('center').fontSize(11).bold().end,margin: [30, 2, 0, 0]},{width: 'auto',text:new Txt(this.consolidado[0].NOMBRE).alignment('center').fontSize(10).end,margin: [12, 2, 0, 0]}]).end,
 new Columns([
-  {width: 'auto',text:new Txt('DESDE:').alignment('center').fontSize(11).bold().end,margin: [30, 2, 0, 0]}, {width: 'auto',text:new Txt(this.inDesde).alignment('center').fontSize(10).end,margin: [22, 2, 0, 0]}]).end,
+  {width: 'auto',text:new Txt('DESDE:').alignment('center').fontSize(11).bold().end,margin: [30, 2, 0, 0]}, {width: 'auto',text:new Txt(this.inDesdeR).alignment('center').fontSize(10).end,margin: [22, 2, 0, 0]}]).end,
 new Columns([
   {width: 'auto',text:new Txt('HASTA:').alignment('center').fontSize(11).bold().end,margin: [30, 2, 0, 0]}, {width: 'auto',text:new Txt(this.inHasta).alignment('center').fontSize(10).end,margin: [21, 2, 0, 0]}]).end
 ]).type('none').end) 

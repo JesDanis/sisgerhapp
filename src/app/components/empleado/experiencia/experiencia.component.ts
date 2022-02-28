@@ -21,7 +21,7 @@ export class ExperienciaComponent implements OnInit {
   ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 4,
+      pageLength: 3,
       info: true,
       processing: true,
       ordering: true,

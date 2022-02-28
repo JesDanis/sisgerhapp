@@ -143,15 +143,20 @@ input[type=text]:disabled {
 }
 
 
-/* .card .card-body {
-    padding: 15px 15px 10px 15px;
+/* STYLING SCROLLBAR */
+
+
+/* 
+::-webkit-scrollbar {
+    width: 1vw;
 }
 
-.card .card-body.table-full-width {
-    padding-left: 0;
-    padding-right: 0;
+ ::-webkit-scrollbar-track {
+    background-color: #D0D3D4;
+}
+
+ ::-webkit-scrollbar-thumb {
+    background-color: #212F3C;
+    border: 0.3vw solid #D0D3D4;
+    border-radius: 5vw;
 } */
-
- ::-webkit-scrollbar {
-    display: none;
-}
