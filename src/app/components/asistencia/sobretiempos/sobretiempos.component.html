@@ -1,7 +1,7 @@
 <div style="height: 100%; width: 100%; background-color:#F4F5F6;">
     <div style="height: 10px">
     </div>
-    <p style="text-align: center; color: #192A67; font-size: 24px;">Detalle de<strong>sobretiempo</strong></p>
+    <p style="text-align: center; color: #192A67; font-size: 24px;">Detalle de <strong>sobretiempo</strong></p>
     <div class="card text-center" id="cardEncabezado">
         <div class="card-header" style="background-color: #EAEBEF">
             <div class="row mb-3">
@@ -18,8 +18,8 @@
                         <label for="fechaFin" class="col-sm-4 col-form-label">Mes</label>
                         <div class="col-sm-8">
                             <select id="inMes" class="form-control" style="vertical-align : middle;text-align:center; margin-right:10px;border-radius: 3px; border-color: #20315F; padding-top: 2px;" title="Mes">
-<option *ngFor="let mes of meses " [value]="mes.value" [selected]="mes.value==mesActual">{{mes.text}}</option>
- </select>
+                                <option *ngFor="let mes of meses " [value]="mes.value" [selected]="mes.value==mesActual">{{mes.text}}</option>
+                                </select>
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,3 @@
-::-webkit-scrollbar {
-    display: none;
-}
-
 #card {
     width: 99%;
     margin-top: 1%;
@@ -104,6 +100,6 @@
     .div-T {
         overflow-x: hidden;
         overflow-y: scroll;
-        height: 600px
+        height: 610px;
     }
 }

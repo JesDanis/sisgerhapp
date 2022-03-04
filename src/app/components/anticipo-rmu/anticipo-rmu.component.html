@@ -6,12 +6,12 @@
             <h5 style="color: #192A67;font-size: 24px;"><strong>Anticipo</strong> RMU <a id="btnImprimir" (click)="reportePagos()" class="btn btn-primary" role="button" style="float: right;" title="Editar"><i class="bi bi-printer"></i> Imprimir</a>
             </h5>
         </div>
-        <div class="container" style="padding-top: 10px" id="divDetalles">
+        <div class="container" style="padding-top: 10px; " id="divDetalles">
             <div class="row justify-content-center">
                 <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-sm-12">
-                    <div class="card-body" style="overflow-x: hidden;overflow -y: scroll; height: 100px;">
+                    <div class="card-body">
                         <div class="row">
-                            <div class="col-lg-2 col-md-6 col-sm-6">
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xl-2 col-xxl-2">
                                 <div class="card card-stats bordes">
                                     <div class=" card-body ">
                                         <div class="row ">
@@ -54,6 +54,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-lg-2 col-md-6 col-sm-6 col-xl-2 col-xxl-2 ">
                                 <div class="card card-stats bordes">
                                     <div class="card-body ">
@@ -70,7 +71,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-md-6 col-sm-6 col-xl-2 col-xxl-2 ">
+                            <div class="col-lg-2 col-md-5 col-sm-5 col-xl-2 col-xxl-2 ">
                                 <div class="card card-stats bordes">
                                     <div class="card-body ">
                                         <div class="row ">
@@ -79,7 +80,7 @@
                                                     <img src="../../../assets/Images/cuotasN.png ">
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-md-9 ">
+                                            <div class="col-7 col-md-9 ">
                                                 <div class="numbers ">
                                                     <p class="card-category ">Cuotas</p>
                                                     <p class="card-title ">
@@ -136,16 +137,16 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid" style="padding-top: 10px; ">
+        <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-sm-12">
                     <div class="nav nav-pills nav-fill " id="nav-tab " role="tablist " style="background-color:#DFDFDF; ">
                         <a class="nav-link active" id="step1-tabAnt" data-toggle="tab" href="#step1Anticipos"><i class="bi bi-info-circle "></i> Información</a>
                         <a class="nav-link" id="step2-tabAnt" data-toggle="tab" href="#step2Anticipo"><i class="bi bi-card-list "></i> Detalle</a>
                     </div>
-                    <div class="tab-content py-4 " id="nav-tabContent">
+                    <div class="tab-content" id="nav-tabContent">
                         <!-- STEP 1 -->
-                        <div class="tab-pane fade show active" id="step1Anticipos" style="overflow-x: hidden;overflow -y: scroll; height: 300px; ">
+                        <div class="tab-pane fade show active div-T" id="step1Anticipos">
                             <div class="card-body ">
                                 <div class="row mb-3 ">
                                     <div class="col-sm-8 ">
@@ -196,7 +197,7 @@
                             </div>
                         </div>
                         <!--STEP 2-->
-                        <div class="tab-pane fade " id="step2Anticipo" style="overflow-x: hidden;overflow -y: scroll; height: 300px;">
+                        <div class="tab-pane fade div-T" id="step2Anticipo">
                             <div class="card-body ">
                                 <div class="table-responsive ">
                                     <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
