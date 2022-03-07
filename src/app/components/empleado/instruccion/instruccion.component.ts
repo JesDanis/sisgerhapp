@@ -24,7 +24,7 @@ export class InstruccionComponent implements OnInit {
   
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 4,
+      pageLength: 5,
       info: true,
       processing: true,
       ordering: true,

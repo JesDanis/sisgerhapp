@@ -26,10 +26,11 @@ inHasta:any
 inPer:any
 actual:any
 consolidado:any
-fecha!:Date;
+fecha!:Date
+inEstado:any
 dtOptions: DataTables.Settings = {};
 dtTrigger: Subject<any> = new Subject<any>();
-page:any=0
+page:any=0 
 
   constructor(private datePipe: DatePipe,private sisgerhService:SisgerhMovilService,private router: Router, private route: ActivatedRoute) {   }
 
@@ -68,7 +69,7 @@ obtenerConsolidado():void{
   let Hasta: string|any = $("#fechaFin").val();
   this.inDesdeR=this.datePipe.transform(Desde,"yyyy-MM-dd");
   this.inHasta=this.datePipe.transform(Hasta,"yyyy-MM-dd");
-   
+  this.inEstado=Number($("#estado").val())
   if (this.inHasta>this.actual){
       Swal.fire({
         icon: 'error',
@@ -88,22 +89,46 @@ obtenerConsolidado():void{
         title: 'Error',
         text: 'Debe ingresar una fecha'
       })
-    } else {
+    } else if(this.inEstado==9){
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Seleccionar un Estado'
+      })
+     } else {
       this.inDesdeR=this.datePipe.transform(Desde,"dd/MM/yyyy");
     this.inHasta=this.datePipe.transform(Hasta,"dd/MM/yyyy");//
       this.inPer=localStorage.getItem('codPer');
       this.inPer=CryptoJS.AES.decrypt(this.inPer.toString(),'eeasaPer').toString(CryptoJS.enc.Utf8);  
       this.consolidado=[''];
-      this.sisgerhService.obtenerConsolidado(btoa(this.inPer),this.inDesdeR,this.inHasta).subscribe(res=>{
+      let est:any=''
+     if(this.inEstado==5){
+      est=''
+     }else{
+       est=$("#estado").val()
+     }
+     var table = $('#tblConsolidado').DataTable();
+     table.clear()
+      this.sisgerhService.consolidado(btoa(this.inPer),this.inDesdeR,this.inHasta,est).subscribe(res=>{
         let dtInstance = $('#tblConsolidado').DataTable();
-        dtInstance.destroy();
+       // dtInstance.destroy();
         this.consolidado=res;
         if(this.consolidado.length!=0){
           $("#btnImprimir").show()
+        }else{
+         
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No existen datos para el tipo de asistencia'
+          })
+        $("#btnImprimir").hide()
+        
+
         }
        
         this.dtTrigger.next();
-        
+        dtInstance.destroy();
       });
     }
 

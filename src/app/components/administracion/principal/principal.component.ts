@@ -62,7 +62,7 @@ export class PrincipalComponent implements OnInit {
     this.inPer = CryptoJS.AES.decrypt(this.inPer.toString(), 'eeasaPer').toString(CryptoJS.enc.Utf8);
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 2,
+      pageLength: 5,
       info: true,
       processing: true,
       ordering: true,

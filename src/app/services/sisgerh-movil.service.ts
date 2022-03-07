@@ -103,6 +103,18 @@ constructor(private httpClient: HttpClient) { }
   /**
    * 
    * @param inPersona 
+   * @param inDesde 
+   * @param inHasta 
+   * @param inTipo 
+   * @returns 
+   */
+  consolidado(inPersona: String, inDesde: String, inHasta: String, inTipo:String): Observable<ConsolidadoInt>{
+    this.req = this.url + 'consolidado?inPersona=' + inPersona + '&inDesde=' + inDesde + '&inHasta=' + inHasta+'&estado='+inTipo;
+    return this.httpClient.get<ConsolidadoInt>(this.req);
+  }
+  /**
+   * 
+   * @param inPersona 
    * @param inEstado 
    * @param inEstado1 
    * @param inDesde 
