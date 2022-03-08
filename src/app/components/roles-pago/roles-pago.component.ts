@@ -141,8 +141,10 @@ obtenerMeses(): void {
     this.imponibles=[''];
     this.noImponibles=[''];
     this.descuentos=[''];
+    let suma=0
     this.sisgerhService.obtenerRol('obtenerImponibles',this.resultadoNom,btoa(this.inPer)).subscribe(res=>{
       this.imponibles=res;
+      console.log(this.imponibles)
       for (const i in this.imponibles){
         this.ingIm+=parseFloat(this.imponibles[i].DNMNC_VALOR);
       }
@@ -156,7 +158,7 @@ obtenerMeses(): void {
       let total=this.ingIm+this.ingNo
       this.ingNo=Math.round(this.ingNo*100)/100
       this.ingIm=Math.round(this.ingIm*100)/100
-      this.totalIn=Math.round(total*100)/100
+      this.totalIn=this.ingIm+this.ingNo//Math.round((this.ingIm+this.ingNo)*100)/100
       })
     this.sisgerhService.obtenerRol('obtenerDescuentos',this.resultadoNom,btoa(this.inPer)).subscribe(res=>{
       this.descuentos=res;

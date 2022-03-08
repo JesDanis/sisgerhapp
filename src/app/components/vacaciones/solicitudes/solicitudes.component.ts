@@ -21,7 +21,7 @@ export class SolicitudesComponent implements OnInit {
       pageLength: 4,
       info: true,
       processing: true,
-      ordering: false,
+      ordering: true,
       order: [],
       language: {
         "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
