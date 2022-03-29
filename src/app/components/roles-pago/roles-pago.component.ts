@@ -144,7 +144,7 @@ obtenerMeses(): void {
     let suma=0
     this.sisgerhService.obtenerRol('obtenerImponibles',this.resultadoNom,btoa(this.inPer)).subscribe(res=>{
       this.imponibles=res;
-      console.log(this.imponibles)
+   //   console.log(this.imponibles)
       for (const i in this.imponibles){
         this.ingIm+=parseFloat(this.imponibles[i].DNMNC_VALOR);
       }

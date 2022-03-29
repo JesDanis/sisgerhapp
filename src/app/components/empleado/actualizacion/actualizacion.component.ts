@@ -575,7 +575,7 @@ close(){
     this.instruccion.push({ "DMNED_CODIGO": this.nivel, "DSLPT_ADJUNTO": this.archivotituloAct, "DSLPT_CODIGO": "", "DSLTT_CODIGO": this.codTitulo, "ESPECIALIDAD": this.especialidad, "FECHA": fechaT, "NIVEL": this.nombreNivel, "NOMBRE": this.nombreTituloAct, "TITULO": this.titulo })
   }
   actualizarTitulo(event: any) {
-    console.log(this.adjunto)
+   // console.log(this.adjunto)
     let data = event.target.files[0]
     let reader = new FileReader()
     reader.readAsDataURL(data)

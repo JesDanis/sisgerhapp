@@ -1,11 +1,8 @@
 <div style="height: 100%; width: 100%; background-color:#F4F5F6;">
     <div style="height: 10px">
     </div>
+    <p style="text-align: center; color: #192A67; font-size: 24px;"><strong>Solicitudes</strong> de vacaciones</p>
     <div class="card text-center" id="cardEncabezado">
-        <div style="background-color: #E5E7E9; padding-top: 5px; ">
-            <h5 style="color: #192A67;font-size: 24px;"><strong>Solicitudes</strong> de vacaciones
-            </h5>
-        </div>
         <div class="card-body">
             <div class="table-responsive div-T" id="divTable">
                 <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" title="Detalle solicitudes">
@@ -33,7 +30,7 @@
                             <td>{{sol.DCAVC_FECHA_INICIO}}</td>
                             <td>{{sol.DCAVC_FECHA_FIN}}</td>
                             <td>
-                                <button class="btn btn-primary" (click)="descargar(sol.CODIGO)" title="Descargar adjunto">Descarga</button>
+                                <button type="button " style="float: right;" class="btn btn-outline-info" (click)="descargar(sol.CODIGO)" title="Descargar adjunto"><i class="fa fa-download" style="margin-right: 5px;"></i></button>
                             </td>
                         </tr>
                     </tbody>

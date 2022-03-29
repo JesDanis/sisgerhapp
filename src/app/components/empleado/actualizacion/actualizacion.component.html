@@ -1,12 +1,16 @@
 <div style="background-color: #f7f7f9; width: 100%; height:100%;">
     <div style="height: 10px">
     </div>
-    <div class="card text-center" id="cardEncabezado" style="height:100%;">
-        <div style="background-color: #E5E7E9; padding-top: 1px; ">
-            <h5 style="color: #192A67;font-size: 24px;"><strong>Actualización</strong> de información
-                <button type="submit" class="btn btn-primary btn-round" (click)="actualizar()" style="float: right;" title="Actualizar información"><i class="bi bi-pencil-square"></i>Actualizar</button>
-            </h5>
+    <div class="row justify-content-center">
+        <div class="col-sm-11">
+            <button type="submit" class="btn btn-success btn-round" (click)="actualizar()" style="float: right;" title="Actualizar información"><i class="bi bi-pencil-square"></i>Actualizar</button>
+
+            <p style="text-align: center; color: #192A67; font-size: 24px;"> <strong>Actualización</strong> de información</p>
+
         </div>
+    </div>
+    <div class="card text-center" id="cardEncabezado" style="height:100%;">
+
         <div class="container-fluid" style="padding-top: 10px">
             <div class="row justify-content-center">
                 <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-sm-12">
@@ -152,7 +156,7 @@
                         <div class="tab-pane fade div-T" id="step5">
                             <div class="card text-center" id="cardEncabezado">
                                 <div>
-                                    <a class="btn btn-primary" role="button" style="float: center;" title="Añadir contactos" target="_blank" data-toggle="modal" data-target="#modalTelefono" (click)="limpiarDatos()"><i class="bi bi-plus-circle"></i> Añadir</a>
+                                    <a class="btn btn-primary" role="button" style="float: left;" title="Añadir contactos" target="_blank" data-toggle="modal" data-target="#modalTelefono" (click)="limpiarDatos()"><i class="fas fa-plus-circle" style="margin-right: 5px;"></i> Nuevo Contacto</a>
                                 </div>
                                 <div class="card-body">
                                     <div class="row mb-3">
@@ -169,13 +173,14 @@
 
                                                     </tr>
                                                 </thead>
-                                                <tbody style="font-size: 12px;">
+                                                <tbody style="font-size: 13px;">
                                                     <tr *ngFor="let con of contactos">
                                                         <td>{{con.DTCON_DESCRIPCION}}</td>
                                                         <td>{{con.DPCNT_DESCRIPCION}}</td>
                                                         <td>{{con.DPCNT_OPERADORA_DET}}</td>
                                                         <td><input type="checkbox" class="form-check-input" id="chkPrincipal" [checked]="con.DPCNT_PRINCIPAL==1" disabled></td>
-                                                        <td><a title="Eliminar contacto" (click)="confirmarBorrar(con.DPCNT_CODIGO)"><i class="bi bi-trash"></i></a></td>
+                                                        <td>
+                                                            <button type="button " style="float: right;" class="btn btn-outline-danger" id="btnNuevo" title="Eliminar contacto" (click)="confirmarBorrar(con.DPCNT_CODIGO)"><i class="fa fa-trash" style="margin-right: 2px;"></i></button></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -256,7 +261,7 @@
                         <div class="tab-pane fade div-T" id="step3">
                             <div class="card text-center" id="cardEncabezado">
                                 <div>
-                                    <a class="btn btn-primary" role="button" style="float: center;" title="Añadir instrucción" target="_blank" data-toggle="modal" data-target="#modalNuevaInformacion" (click)="limpiarCamposTit()"><i class="bi bi-plus-circle"></i> Añadir</a>
+                                    <a class="btn btn-primary" role="button" style="float: left;" title="Añadir instrucción" target="_blank" data-toggle="modal" data-target="#modalNuevaInformacion" (click)="limpiarCamposTit()"><i class="fas fa-plus-circle" style="margin-right: 5px;"></i>Nueva Instrucción</a>
                                 </div>
                                 <div class="card-body">
                                     <div class="row mb-3">
@@ -281,9 +286,11 @@
                                                         <td>{{ins.FECHA}}</td>
                                                         <td>{{ins.NOMBRE}}</td>
                                                         <td>
-                                                            <a title="Editar información" data-toggle="modal" data-target="#modalInformacion" (click)="informacionIntruccion(ins.NIVEL,ins.DMNED_CODIGO,ins.TITULO,ins.DSLTT_CODIGO,ins.ESPECIALIDAD,ins.FECHA,ins.NOMBRE)"><i class="bi bi-pencil-square"></i></a>
+                                                            <a class="btn btn-outline-warning" role="button" title="Editar información" data-toggle="modal" data-target="#modalInformacion" (click)="informacionIntruccion(ins.NIVEL,ins.DMNED_CODIGO,ins.TITULO,ins.DSLTT_CODIGO,ins.ESPECIALIDAD,ins.FECHA,ins.NOMBRE)"><i class="fa fa-edit" style="margin-right: 2px;"></i></a>
                                                         </td>
-                                                        <td><a title="Borrar información" (click)="confirmarBorrarInst(ins.DSLPT_CODIGO)"><i class="bi bi-trash"></i></a></td>
+                                                        <td>
+
+                                                            <a class="btn btn-outline-danger" role="button" title="Borrar información" (click)="confirmarBorrarInst(ins.DSLPT_CODIGO)"><i class="fa fa-trash" style="margin-right: 2px;"></i></a></td>
 
                                                     </tr>
                                                 </tbody>

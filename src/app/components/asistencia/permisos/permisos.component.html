@@ -58,26 +58,27 @@
                             <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Descripción</th>
                             <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Estado</th>
                             <th scope="col" id="colortext" colspan="3" style="font-size: small;">Fecha</th>
-                            <th scope="col" id="colortext" colspan="3" style="font-size: small;">Hora</th>
+                            <th scope="col" id="colortext" rowspan="2" style="font-size: small;"></th>
+                            <!-- <th scope="col" id="colortext" colspan="3" style="font-size: small;">Hora</th>
                             <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Días solicitados</th>
                             <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Días permiso</th>
                             <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Modalidad</th>
                             <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Reemplazo</th>
                             <th scope="col" id="colortext" colspan="2" style="font-size: small;">Días Ordinarios</th>
                             <th scope="col" id="colortext" colspan="2" style="font-size: small;">Días Adicionales</th>
-                            <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size:small">Adjunto</th>
+                            <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size:small">Adjunto</th> -->
                         </tr>
                         <tr style="background-color:#192A67;">
                             <th scope="col" id="colortext" style="font-size: small;">Solicitud</th>
                             <th scope="col" id="colortext" style="font-size: small;">Inicio</th>
                             <th scope="col" id="colortext" style="font-size: small;">Fin</th>
-                            <th scope="col" id="colortext" style="font-size: small;">Inicio</th>
+                            <!-- <th scope="col" id="colortext" style="font-size: small;">Inicio</th>
                             <th scope="col" id="colortext" style="font-size: small;">Fin</th>
                             <th scope="col" id="colortext" style="font-size: small;">Total</th>
                             <th scope="col" id="colortext" style="font-size: small;">Laborales</th>
                             <th scope="col" id="colortext" style="font-size: small;">No laborales</th>
                             <th scope="col" id="colortext" style="font-size: small;">Laborales</th>
-                            <th scope="col" id="colortext" style="font-size: small;">No laborales</th>
+                            <th scope="col" id="colortext" style="font-size: small;">No laborales</th> -->
                         </tr>
                     </thead>
                     <tbody style="font-size: small;">
@@ -88,7 +89,10 @@
                             <td>{{per.DCPRM_FECHA_SOLIC}}</td>
                             <td>{{per.DCPRM_FECHA_INICIO}}</td>
                             <td>{{per.DCPRM_FECHA_FIN}}</td>
-                            <td>{{per.DCPRM_HORA_INICIO}}</td>
+                            <td>
+                                <button type="button " style="float: right;" class="btn btn-outline-primary" title="Visualizar información"><i class="fa fa-eye" style="margin-right: 5px;"></i></button>
+                            </td>
+                            <!-- <td>{{per.DCPRM_HORA_INICIO}}</td>
                             <td>{{per.DCPRM_HORA_FIN}}</td>
                             <td>{{per.DCPRM_HORAS_TOTAL}}</td>
                             <td>{{per.DCPRM_TIEMPO_SOLIC}}</td>
@@ -99,7 +103,7 @@
                             <td>{{per.DCPRM_ORD_NLAB}}</td>
                             <td>{{per.DCPRM_ADS_LAB}}</td>
                             <td>{{per.DCPRM_ADS_NLAB}}</td>
-                            <td><button class="btn btn-primary" (click)="descargar(per.CODIGO)" title="Descargar adjunto">Descarga</button></td>
+                            <td><button class="btn btn-primary" (click)="descargar(per.CODIGO)" title="Descargar adjunto">Descarga</button></td> -->
                         </tr>
                     </tbody>
                 </table>

@@ -10,12 +10,11 @@
                         <label class="col-sm-4 col-form-label lblLeft">Tipo</label>
                         <div class="col-sm-8">
                             <select id="estado" class="form-control" title="Estado"> 
-                                <option value="9">Seleccione...</option>
+                                <option value="5">Todos</option>
                                 <option value="V">Vacaciones</option>
                                 <option value="F">Faltas</option>
                                 <option value="P">Permisos</option>
                                 <option value="N">Normal</option>
-                                <option value="5">Todos</option>
                                 </select>
                         </div>
                     </div>
@@ -40,12 +39,11 @@
                     <div class="row">
                         <div class="col-sm-7">
                             <button type="button" id="btnConsultar" class="btn btn-primary" (click)="obtenerConsolidado()" title="Consultar">
-                                <i class="bi bi-search"></i> Consultar
+                                <i class="fa fa-search"></i> Consultar
                                </button>
                         </div>
                         <div class="col-sm-5" id="btnImprimir">
-                            <button type="button" class="btn btn-secondary" (click)="reporteAsistencia()" title="Reporte asistencia">
-   Imprimir
+                            <button type="button" class="btn btn-success" (click)="reporteAsistencia()" title="Reporte asistencia"> <i class="fa fa-print"></i>
  </button>
                         </div>
                     </div>

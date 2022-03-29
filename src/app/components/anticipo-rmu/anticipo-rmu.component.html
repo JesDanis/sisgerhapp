@@ -1,11 +1,14 @@
 <div style="background-color: #f7f7f9; width: auto; height:100%;">
     <div style="height: 10px">
     </div>
-    <div class="card text-center" id="cardEncabezado" style=" padding-left: 0;padding-right: 0;width: 100%;">
-        <div style="background-color: #E5E7E9; padding-top: 1px; ">
-            <h5 style="color: #192A67;font-size: 24px;"><strong>Anticipo</strong> RMU <a id="btnImprimir" (click)="reportePagos()" class="btn btn-primary" role="button" style="float: right;" title="Editar"><i class="bi bi-printer"></i> Imprimir</a>
-            </h5>
+    <div class="row justify-content-center">
+        <div class="col-sm-11">
+            <a id="btnImprimir" (click)="reportePagos()" class="btn btn-primary" role="button" style="float: right;" title="Editar"><i class="bi bi-printer"></i> Imprimir</a>
+            <p style="text-align: center; color: #192A67; font-size: 24px;"> <strong>Anticipo</strong> RMU </p>
+
         </div>
+    </div>
+    <div class="card text-center" id="cardEncabezado" style=" padding-left: 0;padding-right: 0;width: 100%;">
         <div class="container" style="padding-top: 10px; " id="divDetalles">
             <div class="row justify-content-center">
                 <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-sm-12">
