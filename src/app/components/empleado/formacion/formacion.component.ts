@@ -19,7 +19,7 @@ export class FormacionComponent implements OnInit {
   ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 7,
+      pageLength: 10,
       info: true,
       processing: true,
       ordering: true,

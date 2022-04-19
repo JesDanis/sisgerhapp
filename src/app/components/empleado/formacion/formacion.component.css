@@ -37,7 +37,7 @@
 @media only screen and (min-width:600px) {
     /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
     .div-T {
-        overflow-x: hidden;
+        overflow-x: scroll;
         overflow-y: scroll;
         height: 400px
     }
@@ -46,7 +46,7 @@
 @media only screen and (min-width:750px) {
     /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
     .div-T {
-        overflow-x: hidden;
+        overflow-x: scroll;
         overflow-y: scroll;
         height: 700px
     }
@@ -55,7 +55,7 @@
 @media only screen and (min-width:801px) {
     /* tablet, landscape iPad, lo-res laptops ands desktops */
     .div-T {
-        overflow-x: hidden;
+        overflow-x: scroll;
         overflow-y: scroll;
         height: 710px
     }
@@ -64,7 +64,7 @@
 @media only screen and (min-width:1024px) {
     /* big landscape tablets, laptops, and desktops */
     .div-T {
-        overflow-x: hidden;
+        overflow-x: scroll;
         overflow-y: scroll;
         height: 400px
     }
@@ -73,7 +73,7 @@
 @media only screen and (min-width:1280px) {
     /* hi-res laptops and desktops */
     .div-T {
-        overflow-x: hidden;
+        overflow-x: scroll;
         overflow-y: scroll;
         height: 500px
     }
@@ -81,7 +81,7 @@
 
 @media only screen and (min-width:1366px) {
     .div-T {
-        overflow-x: hidden;
+        overflow-x: scroll;
         overflow-y: scroll;
         height: 470px
     }
@@ -89,8 +89,8 @@
 
 @media only screen and (min-width:1920px) {
     .div-T {
-        overflow-x: hidden;
+        overflow-x: scroll;
         overflow-y: scroll;
-        height: 600px
+        height: 900px
     }
 }

@@ -20,12 +20,25 @@ export class PermisosComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   actual:any
+  codigo:any
+  cod_adj:any
+  hora_inicio:any
+  hora_fin:any
+  horas_total:any
+  dias_soli:any
+  dias_perm:any
+  modalidad:any
+  remplazo:any
+  dias_ord_lab:any
+  dias_ord_no_lab:any
+  dias_adi_lab:any
+  dias_adi_no_lab:any
   constructor(private datePipe: DatePipe,private sisgerhService:SisgerhMovilService) { }
 
   ngOnInit(): void {
       this.dtOptions = {
         pagingType: 'full_numbers',
-        pageLength: 3,
+        pageLength: 10,
         info: true,
         processing: true,
         ordering: true,
@@ -104,7 +117,7 @@ export class PermisosComponent implements OnInit {
         Swal.fire({
           icon: 'info',
           title: 'Información',
-          text: 'No se encuentra un adjunto, actualizar el archivo'
+          text: 'No se encuentra un documento adjunto'
         })
       }else{
         var bstr = atob(response[0].ADJUNTO),
@@ -124,5 +137,31 @@ export class PermisosComponent implements OnInit {
       }
      
     })
+  }
+  obtenerInformacion(cod_adj:string,cod:string,h_in:string,h_fin:string,h_t:string,dias_sol:string,dias_per:string,mod:string,remp:string,dias_adi_lab:string,dias_adi_no_lab:string,dias_ord_lab:string,dias_ord_no_lab:string){
+  this.codigo=cod
+  this.cod_adj=cod_adj
+  this.hora_inicio=h_in
+  this.hora_fin=h_fin
+  this.horas_total=h_t
+  this.dias_soli=dias_sol
+  this.dias_perm=dias_per
+  this.modalidad=mod
+  this.remplazo=remp
+  this.dias_adi_lab=dias_adi_lab
+  this.dias_adi_no_lab=dias_adi_no_lab
+  this.dias_ord_lab=dias_ord_lab
+  this.dias_ord_no_lab=dias_ord_no_lab
+  console.log(this.remplazo)
+  if(h_in==null){
+    $("#horas").hide()
+  }else{
+    $("#horas").show()
+  }
+  if(remp==' '){
+    $("#remplazo").hide()
+  }else
+  $("#remplazo").show()
+
   }
 }

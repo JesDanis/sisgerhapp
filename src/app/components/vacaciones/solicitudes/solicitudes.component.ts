@@ -18,7 +18,7 @@ export class SolicitudesComponent implements OnInit {
   ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 4,
+      pageLength: 10,
       info: true,
       processing: true,
       ordering: true,

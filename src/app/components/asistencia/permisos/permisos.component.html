@@ -10,13 +10,13 @@
                         <label class="col-sm-4 col-form-label lblLeft">Estado</label>
                         <div class="col-sm-8">
                             <select id="estado" class="form-control" title="Estado"> 
-                                <option value="9">Seleccione...</option>
+                                <option value="5">Todos</option>
                                 <option value="0">Solicitado</option>
                                 <option value="1">Aprobado</option>
                                 <option value="2">Autorizado</option>
                                 <option value="3">Anulado</option>
                                 <option value="4">Negado</option>
-                                <option value="5">Todos</option>
+                                
                                 </select>
                         </div>
                     </div>
@@ -50,13 +50,13 @@
         </div>
 
         <div class="card-body">
-            <div class="table-responsive" id="divTable">
+            <div class="table-responsive div-T" id="divTable">
                 <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" title="Detalle permiso" id="tblPermisos">
                     <thead>
                         <tr style="background-color:#192A67;">
-                            <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size:small">Nº Solicitud</th>
-                            <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Descripción</th>
-                            <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Estado</th>
+                            <th scope="col" id="colortext" rowspan="2" style="vertical-align: middle;text-align:center;font-size: small;">Nº Solicitud</th>
+                            <th scope="col" id="colortext" rowspan="2" style="vertical-align: middle;text-align:center;font-size: small;">Descripción</th>
+                            <th scope="col" id="colortext" rowspan="2" style="vertical-align: middle;text-align:center;font-size: small;">Estado</th>
                             <th scope="col" id="colortext" colspan="3" style="font-size: small;">Fecha</th>
                             <th scope="col" id="colortext" rowspan="2" style="font-size: small;"></th>
                             <!-- <th scope="col" id="colortext" colspan="3" style="font-size: small;">Hora</th>
@@ -69,9 +69,9 @@
                             <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size:small">Adjunto</th> -->
                         </tr>
                         <tr style="background-color:#192A67;">
-                            <th scope="col" id="colortext" style="font-size: small;">Solicitud</th>
-                            <th scope="col" id="colortext" style="font-size: small;">Inicio</th>
-                            <th scope="col" id="colortext" style="font-size: small;">Fin</th>
+                            <th scope="col" id="colortext">Solicitud</th>
+                            <th scope="col" id="colortext">Inicio</th>
+                            <th scope="col" id="colortext">Fin</th>
                             <!-- <th scope="col" id="colortext" style="font-size: small;">Inicio</th>
                             <th scope="col" id="colortext" style="font-size: small;">Fin</th>
                             <th scope="col" id="colortext" style="font-size: small;">Total</th>
@@ -90,20 +90,10 @@
                             <td>{{per.DCPRM_FECHA_INICIO}}</td>
                             <td>{{per.DCPRM_FECHA_FIN}}</td>
                             <td>
-                                <button type="button " style="float: right;" class="btn btn-outline-primary" title="Visualizar información"><i class="fa fa-eye" style="margin-right: 5px;"></i></button>
+                                <button type="button " style="float: right;" class="btn btn-outline-primary" (click)="obtenerInformacion(per.CODIGO,per.DCPRM_NUM_SOLICITUD,per.DCPRM_HORA_INICIO,per.DCPRM_HORA_FIN,per.DCPRM_HORAS_TOTAL,per.DCPRM_TIEMPO_SOLIC,per.DCTPR_NUMERO_DIA,per.DCTPR_MODALIDAD,per.DCPRM_REEMPLAZO, per.DCPRM_ORD_LAB,per.DCPRM_ORD_NLAB,per.DCPRM_ADS_LAB,per.DCPRM_ADS_NLAB)"
+                                    title="Visualizar información" target="_blank" data-toggle="modal" data-target="#modalInformacion"><i class="fa fa-eye" style="margin-right: 5px;"></i></button>
                             </td>
-                            <!-- <td>{{per.DCPRM_HORA_INICIO}}</td>
-                            <td>{{per.DCPRM_HORA_FIN}}</td>
-                            <td>{{per.DCPRM_HORAS_TOTAL}}</td>
-                            <td>{{per.DCPRM_TIEMPO_SOLIC}}</td>
-                            <td>{{per.DCTPR_NUMERO_DIA}}</td>
-                            <td>{{per.DCTPR_MODALIDAD}}</td>
-                            <td>{{per.DCPRM_REEMPLAZO}}</td>
-                            <td>{{per.DCPRM_ORD_LAB}}</td>
-                            <td>{{per.DCPRM_ORD_NLAB}}</td>
-                            <td>{{per.DCPRM_ADS_LAB}}</td>
-                            <td>{{per.DCPRM_ADS_NLAB}}</td>
-                            <td><button class="btn btn-primary" (click)="descargar(per.CODIGO)" title="Descargar adjunto">Descarga</button></td> -->
+
                         </tr>
                     </tbody>
                 </table>
@@ -111,5 +101,113 @@
         </div>
     </div>
     <div style="height: 50px">
+    </div>
+</div>
+<!--MODAL INFORMACION-->
+<div class="modal fade" id="modalInformacion" tabindex="-1" aria-labelledby="modalTelefonoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #25356F;">
+                <h5 class="modal-title" id="modalTelefonoLabel" style="font-size: 20px; color: white;">Información: {{codigo}} </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="list-group">
+                        <div id="horas">
+                            <div class="row" style="padding-top: px;padding-bottom: 10px;">
+                                <div class="col-md-5 pr-1 col-5">
+                                    <label class="texto">Hora Inicio</label>
+                                    <input type="text" class="form-control" placeholder="Hora" disabled title="Hora Inicio" value="{{hora_inicio}}">
+                                </div>
+                                <div class="col-md-5 pr-1 col-5">
+                                    <label class="texto">Hora Fin</label>
+                                    <input type="text" class="form-control" placeholder="Hora" disabled title="Hora Fin" value="{{hora_fin}}">
+                                </div>
+                                <div class="col-md-2 pr-1 col-2">
+                                    <label class="texto">Total</label>
+                                    <input type="text" class="form-control" placeholder="Hora" disabled title="Hora" value="{{horas_total}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-bottom: 10px;">
+                            <div class="col-md-5 pr-1 col-5">
+                                <label class="texto">Días solicitados</label>
+                                <input type="text" class="form-control" placeholder="Días solicitados" disabled title="Días solicitados" value="{{dias_soli}}">
+
+                            </div>
+                            <div class="col-md-5 pr-1 col-5">
+                                <label class="texto">Días permiso</label>
+                                <input type="text" class="form-control" placeholder="Días permiso" disabled title="Días permiso" value="{{dias_perm}}">
+
+                            </div>
+                        </div>
+
+                        <div class="row" style="padding-bottom: 10px;">
+                            <div class="col-md-10 pr-1 col-10">
+                                <label class="texto">Modalidad</label>
+                                <input type="text" class="form-control" placeholder="Modalidad" disabled title="Modalidad" value="{{modalidad}}">
+                            </div>
+                        </div>
+                        <div id="remplazo">
+                            <div class="row" style="padding-bottom: 10px;">
+                                <div class="col-md-10 pr-1 col-10">
+                                    <label class="texto">Reemplazo</label>
+                                    <input type="text" class="form-control" placeholder="Reemplazo" disabled title="Reemplazo" value="{{remplazo}}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 pr-1 col-6">
+                                <label class="texto">Días Ordinarios</label>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-bottom: 5px;">
+                            <div class="col-md-5 pr-1 col-5">
+                                <label class="texto">Laborables</label>
+                                <input type="text" class="form-control" placeholder="Laborables" disabled title="Días Ordinarios Laborables" value="{{dias_ord_lab}}">
+
+                            </div>
+                            <div class="col-md-5 pr-1 col-5">
+                                <label class="texto">No Laborables</label>
+                                <input type="text" class="form-control" placeholder="No Laborables" disabled title="Días Ordinarios No Laborables" value="{{dias_ord_no_lab}}">
+                            </div>
+                        </div>
+                        <div class="row" style="padding-bottom: 3px;">
+                            <div class="col-md-4 pr-1 col-6">
+                                <label class="texto">Días Adicionales</label>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-bottom: 10px;">
+                            <div class="col-md-5 pr-1 col-5">
+                                <label class="texto">Laborables</label>
+                                <input type="text" class="form-control" placeholder="Laborables" disabled title="Días Adicionales Laborables" value="{{dias_adi_lab}}">
+                            </div>
+                            <div class="col-md-5 pr-1 col-5">
+                                <label class="texto">No Laborables</label>
+                                <input type="text" class="form-control" placeholder="No Laborables" disabled title="Días Adicionales No Laborables" value="{{dias_adi_no_lab}}">
+                            </div>
+                        </div>
+                        <!-- <div class="row" style="padding-bottom: 10px;">
+                            <div class="col-md-5 pr-1 col-5">
+                                <label class="texto">Adjunto</label>
+                            </div>
+                            <div class="col-md-2 pr-1 col-2">
+                                <button type="button " class="btn btn-outline-info" title="Descargar adjunto" (click)="descargar(cod_adj)"><i class="fa fa-download"></i></button>
+                            </div>
+
+                        </div> -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button " class="btn btn-primary" title="Descargar adjunto" (click)="descargar(cod_adj)"><i class="fa fa-download"></i></button>
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

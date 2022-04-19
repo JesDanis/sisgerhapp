@@ -1,273 +1,176 @@
-<div style="background-color: #f7f7f9; height: 100%; width: 100%; ">
+<div style="height: 100%; width: 100%; background-color:#F4F5F6;">
     <div style="height: 10px">
     </div>
     <p style="text-align: center; color: #192A67; font-size: 24px;"><strong>Roles</strong> de pago</p>
-
-    <div class="card text-center" id="cardEncabezado" style="height:100%;">
-        <div class="container-fluid" style="padding-top: 10px">
-            <div class="row justify-content-center">
-                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-sm-12">
-                    <div class="nav nav-pills nav-fill" id="nav-tab" role="tablist" style="background-color:#DFDFDF;">
-                        <a class="nav-link active" id="step1-tab" data-toggle="tab" href="#step1" title="Información"><i class="bi bi-info-circle"></i> Información</a>
-                        <a class="nav-link" id="step2-tab" data-toggle="tab" href="#step2" title="Detalle"><i class="bi bi-card-list"></i> Detalle</a>
+    <div class="card text-center" id="cardEncabezado">
+        <div class="card-header" style="background-color: #EAEBEF">
+            <div class="row mb-3">
+                <div class="col-sm-3">
+                    <div class="row">
+                        <label class="col-sm-4 col-form-label lblLeft">Año</label>
+                        <div class="col-sm-8">
+                            <input id="inAnio" class="form-control" type="number" value="2022" required min="2000" max="2050" style="text-align:center;" data-toggle="tooltip" title="Ingrese el año" />
+                        </div>
                     </div>
-                    <div class="tab-content" id="nav-tabContent">
-                        <!-- Step 1 INFORMACION -->
-                        <div class="tab-pane fade show active div-T" id="step1">
-                            <div class="card-body">
-                                <div class="row mb-3">
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <label class="col-sm-2 col-form-label lblLeft">Nombres</label>
-                                            <div class="col-sm-7">
-                                                <input type="text" class="form-control" disabled="" title="Nombres" placeholder="Nombres" value="{{informacion.ABREVIATURA}}{{informacion.NOMBRE_EMPLEADO}}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <label class="col-sm-2 col-form-label lblLeft">Departamento</label>
-                                            <div class="col-sm-7">
-                                                <input type="text" class="form-control" disabled="" placeholder="Departamento" title="Departamento" value="{{informacion.DEPARTAMENTO}}" id="departamento">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <label class="col-sm-2 col-form-label lblLeft">Titulo puesto</label>
-                                            <div class="col-sm-7">
-                                                <input type="text" class="form-control" disabled="" placeholder="Titulo puesto" title="Titulo puesto" value="{{informacion.CARGO}}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <label class="col-sm-2 col-form-label lblLeft">Banco</label>
-                                            <div class="col-sm-7">
-                                                <input type="text" class="form-control" disabled="" title="Banco" placeholder="Banco" value="{{informacion.BANCO}}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <label class="col-sm-2 col-form-label lblLeft">Cuenta</label>
-                                            <div class="col-sm-7">
-                                                <input type="text" class="form-control" disabled="" placeholder="Cta. Ahorros" title="Cuenta Ahorros" value="{{informacion.TIPO_CUENTA}} - Nº: {{informacion.NUM_CUENTA}}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <label class="col-sm-2 col-form-label lblLeft">RMU</label>
-                                            <div class="col-sm-2">
-                                                <input type="text" class="form-control" disabled="" placeholder="RMU" title="RMU" value="$ {{informacion.RMU}}">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="row">
+                        <label class="col-sm-4 col-form-label lblLeft">Mes</label>
+                        <div class="col-sm-8">
+                            <!-- <select id="estado" class="form-control" (change)="obtenerPeriodos()" title="Estado"> -->
+                            <select id="inMes" class="form-control" (change)="obtenerNomina();" style="vertical-align : middle;text-align:center; margin-right:10px;border-radius: 3px; border-color: #20315F; padding-top: 2px;" title="Ingrese el mes">
+                                    <option *ngFor="let mes of meses " [value]="mes.value" [selected]="mes.value==mesActual">{{mes.text}}</option>
+                                     </select>
                         </div>
-                        <!--STEP 2 DETALLE-->
-                        <div class="tab-pane fade div-T" id="step2">
-                            <div class="card text-center" id="parametros">
-                                <div class="card-body">
-                                    <div class="row mb-3">
-                                        <div class="col-sm-4">
-                                            <div class="row">
-                                                <label class="col-sm-4 col-form-label lblLeft">Año</label>
-                                                <div class="col-sm-8">
-                                                    <input id="inAnio" class="form-control" type="number" value="2022" required min="2000" max="2050" style="text-align:center;" data-toggle="tooltip" title="Ingrese el año" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="row">
-                                                <label class="col-sm-4 col-form-label lblLeft">Mes</label>
-                                                <div class="col-sm-8">
-                                                    <select id="inMes" class="form-control" style="vertical-align : middle;text-align:center; margin-right:10px;border-radius: 3px; border-color: #20315F; padding-top: 2px;" title="Ingrese el mes">
-                        <option *ngFor="let mes of meses " [value]="mes.value" [selected]="mes.value==mesActual">{{mes.text}}</option>
-                         </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="row">
-                                                <div class="col-sm-8">
-                                                    <button type="button" style="float: inherit;" id="btnConsultar" class="btn btn-primary" (click)="obtenerNomina();" title="Consultar Rol de pagos">
-                        <i class="bi bi-search"></i> Consultar
-                       </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card text-center" id="rolDetalle">
-                                <div class="card-body">
-                                    <div class="row mb-3">
-                                        <div class="col-sm-12">
-                                            <div class="row">
-                                                <label class="col-sm-3 col-form-label lblLeft">Nómina</label>
-                                                <div class="col-sm-6">
-                                                    <select id="sltNomina" [(ngModel)]="txtNomina" (change)="obtenerIngresos(txtNomina)" class="form-control" style="vertical-align : middle;text-align:center; margin-right:10px;border-radius: 3px; border-color: #20315F; padding-top: 2px;" title="Seleccione la Nómina"> 
-                      <option value="0" selected>Seleccionar....</option>
-                          <option *ngFor="let nm of nomina" [value]="nm.DNMPN_CODIGO">{{nm.DNMPN_NOMBRE_NOMINA}}</option>
-                           </select>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <button type="button" style="float: inherit;" id="btnConsultar" class="btn btn-primary" (click)="imprimir();">
-                      <i class="bi bi-arrow-90deg-left"></i>
-                     </button>
-                                                    <button type="button" style="float: inherit;" id="btnConsultar" class="btn btn-secondary" (click)="reporteRol()" title="Imprimir Rol de pagos">
-                        <i class="bi bi-printer"></i>
-                       </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                <label class="col-sm-12 col-form-label lblMiddle"><strong>Ingresos imponibles</strong></label>
-                                            </div>
-                                            <div class="table-responsive">
-                                                <table class="table" id="tblImp">
-                                                    <thead>
-                                                        <tr style="background-color:#192A67;  height: 5px;">
-                                                            <th scope="col" id="colortext" style="font-size: small;">Concepto</th>
-                                                            <th scope="col" id="colortext" style="font-size: small;">Valor</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr *ngFor="let imp of imponibles" style="font-size: small;">
-                                                            <td style="text-align: left;">{{imp.DNMRU_ABREVIATURA}}</td>
-                                                            <td style="text-align: right;">{{imp.DNMNC_VALOR}}</td>
-                                                        </tr>
-                                                    </tbody>
-                                                    <tfoot>
-                                                        <tr class="table-active" style="font-size: small;">
-                                                            <td><strong>Total</strong></td>
-                                                            <td style="text-align: right;">$ {{ingIm}}</td>
-                                                        </tr>
-                                                    </tfoot>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                <label class="col-sm-12 col-form-label lblMiddle"><strong>Ingresos no imponibles</strong></label>
-                                            </div>
-                                            <div class="table-responsive">
-                                                <table class="table" id="tblNoImp">
-                                                    <thead>
-                                                        <tr style="background-color:#192A67; height: 5px;">
-                                                            <th scope="col" id="colortext" style="font-size: small;">Concepto</th>
-                                                            <th scope="col" id="colortext" style="font-size: small;">Valor</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr *ngFor="let noImp of noImponibles" style="font-size: small;">
-                                                            <td style="text-align: left;">{{noImp.DNMRU_ABREVIATURA}}</td>
-                                                            <td style="text-align: right;">{{noImp.DNMNC_VALOR}}</td>
-                                                        </tr>
-                                                    </tbody>
-                                                    <tfoot>
-                                                        <tr class="table-active" style="font-size: small;">
-                                                            <td><strong>Total</strong></td>
-                                                            <td style="text-align: right;">$ {{ingNo}}</td>
-                                                        </tr>
-                                                    </tfoot>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                <label class="col-sm-12 col-form-label lblMiddle"><strong>Descuentos</strong></label>
-                                            </div>
-                                            <div class="table-responsive">
-                                                <table class="table" id="tblDes">
-                                                    <thead>
-                                                        <tr style="background-color:#192A67;">
-                                                            <th scope="col" id="colortext" style="font-size: small;">Concepto</th>
-                                                            <th scope="col" id="colortext" style="font-size: small;">Valor</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr *ngFor="let desc of descuentos" style="font-size: small;">
-                                                            <td style="text-align: left;">{{desc.DNMRU_ABREVIATURA}}</td>
-                                                            <td style="text-align: right;">{{desc.DNMNC_VALOR}}</td>
-                                                        </tr>
-                                                    </tbody>
-                                                    <tfoot>
-                                                        <tr class="table-active" style="font-size: small;">
-                                                            <td><strong>Total</strong></td>
-                                                            <td style="text-align: right;">$ {{desc}}</td>
-                                                        </tr>
-                                                    </tfoot>
-                                                </table>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--TOTALES-->
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="table-responsive">
-                                                <table class="table" id="tblTotal">
-                                                    <tbody>
-                                                        <tr style="font-size: small;">
-                                                            <td><strong>TOTAL INGRESOS</strong></td>
-                                                            <td style="text-align: right;">$ {{totalIn}}</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-
-                                            <div class="table-responsive">
-                                                <table class="table" id="tbltotalDes">
-                                                    <tbody>
-                                                        <tr style="font-size: small;">
-                                                            <td><strong>TOTAL DESCUENTOS</strong></td>
-                                                            <td style="text-align: right;">$ {{desc}}</td>
-                                                        </tr>
-                                                        <tr style="font-size: small;">
-                                                            <td><strong>LIQUIDO A PAGAR</strong></td>
-                                                            <td style="text-align: right;">$ {{totalPago}}</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12" style="padding-top: 10px;">
-                                        <div class="row">
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-4 col-form-label lblLeft">Nómina</label>
+                        <div class="col-sm-8">
+                            <select id="sltNomina" [(ngModel)]="txtNomina" (change)="obtenerIngresos(txtNomina)" class="form-control" style="vertical-align : middle;text-align:center; margin-right:10px;border-radius: 3px; border-color: #20315F; padding-top: 2px;" title="Seleccione la Nómina"> 
+                                <option value="0" selected>Seleccionar....</option>
+                                    <option *ngFor="let nm of nomina" [value]="nm.DNMPN_CODIGO">{{nm.DNMPN_NOMBRE_NOMINA}}</option>
+                                     </select>
                         </div>
+                    </div>
+                </div>
+                <div class="col-sm-2" id="btnImprimir">
+                    <div class="row">
+                        <button type="button" style="float: inherit;" id="btnConsultar" class="btn btn-success" (click)="reporteRol()" title="Imprimir Rol de pagos">
+                            <i class="bi bi-printer"></i>
+                           </button>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="card-body div-T" id="rolDetalle">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="row">
+                        <label class="col-sm-12 col-form-label lblMiddle"><strong>Ingresos imponibles</strong></label>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table" id="tblImp">
+                            <thead>
+                                <tr style="background-color:#192A67;  height: 5px;">
+                                    <th scope="col" id="colortext" style="font-size: small;">Concepto</th>
+                                    <th scope="col" id="colortext" style="font-size: small;">Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let imp of imponibles" style="font-size: small;">
+                                    <td style="text-align: left;">{{imp.DNMRU_ABREVIATURA}}</td>
+                                    <td style="text-align: right;">{{imp.DNMNC_VALOR}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr class="table-active" style="font-size: small;">
+                                    <td><strong>Total</strong></td>
+                                    <td style="text-align: right;">$ {{ingIm}}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <label class="col-sm-12 col-form-label lblMiddle"><strong>Ingresos no imponibles</strong></label>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table" id="tblNoImp">
+                            <thead>
+                                <tr style="background-color:#192A67; height: 5px;">
+                                    <th scope="col" id="colortext" style="font-size: small;">Concepto</th>
+                                    <th scope="col" id="colortext" style="font-size: small;">Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let noImp of noImponibles" style="font-size: small;">
+                                    <td style="text-align: left;">{{noImp.DNMRU_ABREVIATURA}}</td>
+                                    <td style="text-align: right;">{{noImp.DNMNC_VALOR}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr class="table-active" style="font-size: small;">
+                                    <td><strong>Total</strong></td>
+                                    <td style="text-align: right;">$ {{ingNo}}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <label class="col-sm-12 col-form-label lblMiddle"><strong>Descuentos</strong></label>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table" id="tblDes">
+                            <thead>
+                                <tr style="background-color:#192A67;">
+                                    <th scope="col" id="colortext" style="font-size: small;">Concepto</th>
+                                    <th scope="col" id="colortext" style="font-size: small;">Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let desc of descuentos" style="font-size: small;">
+                                    <td style="text-align: left;">{{desc.DNMRU_ABREVIATURA}}</td>
+                                    <td style="text-align: right;">{{desc.DNMNC_VALOR}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr class="table-active" style="font-size: small;">
+                                    <td><strong>Total</strong></td>
+                                    <td style="text-align: right;">$ {{desc}}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <!--TOTALES-->
+            <div class="row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
+                    <div class="table-responsive">
+                        <table class="table" id="tblTotal">
+                            <tbody>
+                                <tr style="font-size: small;">
+                                    <td><strong>TOTAL INGRESOS</strong></td>
+                                    <td style="text-align: right;">$ {{totalIn}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-4">
+
+                    <div class="table-responsive">
+                        <table class="table" id="tbltotalDes">
+                            <tbody>
+                                <tr style="font-size: small;">
+                                    <td><strong>TOTAL DESCUENTOS</strong></td>
+                                    <td style="text-align: right;">$ {{desc}}</td>
+                                </tr>
+                                <tr style="font-size: small;">
+                                    <td><strong>LIQUIDO A PAGAR</strong></td>
+                                    <td style="text-align: right;">$ {{totalPago}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12" style="padding-top: 10px;">
+                <div class="row">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height: 50px">
     </div>
 </div>

@@ -38,7 +38,7 @@ page:any=0
     $("#btnImprimir").hide()
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 4,
+      pageLength: 10,
       info: true,
       processing: true,
       ordering: true,

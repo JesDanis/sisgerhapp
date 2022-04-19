@@ -33,16 +33,19 @@ export class RolesPagoComponent implements OnInit {
    desc:number=0;
    totalIn:any;
    meses: any[] = [];
+   nombre_mes:any
    fecha!:Date;
   anio:any
   mes:any
+  zona:any
+  regimen:any
   mesActual:any
    totalPago:number=0;
    rect = {
     type: 'rect',
      x: 150,
-    y: -20, 
-    w: 600,
+    y: -15, 
+    w: 350,
     h: 0.5,
    color: 'black'
 };
@@ -51,6 +54,7 @@ txtNomina: string = '0';
 
   ngOnInit(): void {
     $("#rolDetalle").hide()
+    $("#btnImprimir").hide()
     this.obtenerInformacion();
     this.fecha = new Date();
   fecha : '' 
@@ -88,6 +92,8 @@ obtenerMeses(): void {
     this.sisgerhService.obternerInformacionPer(btoa(this.inPer)).subscribe(res=>{
       this.informacion=res;
       this.informacion=this.informacion[0];
+      this.regimen=this.informacion.REGIMEN_LABORAL
+      this.zona=this.informacion.ZONA
     });
   }
   obtenerNomina(){  
@@ -113,7 +119,6 @@ obtenerMeses(): void {
     this.sisgerhService.obtenerNomina(btoa(this.inPer),this.inAnio,this.inMes).subscribe((res:any)=>{
       if(res.length>0){
         $("#parametros").hide()
-        $("#rolDetalle").show()
         this.nomina=res;
       }else{
         Swal.fire({
@@ -127,10 +132,13 @@ obtenerMeses(): void {
   }
   }
   obtenerIngresos(val:any){
-    
+    $("#rolDetalle").show()
+    $("#btnImprimir").show()
       let valor: NominaInt = this.nomina.find((s:any) => s.DNMPN_CODIGO == val);
       if (valor)
         this.nombreNomina= valor.DNMPN_NOMBRE_NOMINA;
+      let n= $("#inMes").val()
+      this.nombre_mes=Meses[Number(n)]
 
     this.ingIm=0
     this.ingNo=0
@@ -186,49 +194,50 @@ obtenerMeses(): void {
       title: 'Rol de pago',
       author: 'EEASA'
   });
-    pdf.pageSize ('A4') ;
+    pdf.pageSize ('A5') ;
     pdf.pageOrientation('landscape');
     pdf.defaultStyle({
     bold: false,
     fontSize: 9
   });
-  pdf.pageMargins([60,200,60,60]);
+  pdf.pageMargins([10,200,60,10]);
    pdf.header(new Ul([
     '  ',
     '  ',
     new Columns([  await new Img('assets/Images/logoReporte.png').build(),
-    {width: 'auto',text:new Txt('EMPRESA ELÉCTRICA AMBATO REGIONAL CENTRO NORTE S.A                                                                                                                                                ROL DE PAGOS INDIVIDUAL').alignment('center').fontSize(12).bold().end,margin: [-20, 15, 0, 0]}]).end,
+    {width: 'auto',text:new Txt('ROL DE PAGOS INDIVIDUAL').alignment('center').fontSize(11).bold().end,margin: [0, 0, 200, 10]}
+  ]).end,
    {canvas: [this.rect]},
    new Columns([
-    {width: 'auto',text:new Txt('CÓDIGO DEL TRABAJO').alignment('center').fontSize(12).bold().end,margin: [400, 0, 0, 0]}
+    {width: 'auto',text:new Txt(this.regimen).alignment('center').fontSize(10).bold().end,margin: [240, 5, 0, 0]}
   ]).end,
   new Columns([
-    {width: 'auto',text:new Txt(this.nombreNomina).alignment('center').fontSize(12).bold().end,margin: [320, 5, 0, 0]}
+    {width: 'auto',text:new Txt(this.nombreNomina).alignment('center').fontSize(10).bold().end,margin: [160, 5, 0, 0]}
   ]).end,
   new Columns([
-    {width: 'auto',text:new Txt('TUNGURAHUA - MAYO/2021').alignment('center').fontSize(12).bold().end,margin: [395, 5, 0, 0]}
+    {width: 'auto',text:new Txt(this.zona+' - '+this.nombre_mes+'/'+$("#inAnio").val()).alignment('center').fontSize(10).bold().end,margin: [220, 5, 0, 0]}
   ]).end
   ]).type('none').end) 
   let tablaDatos: any[][] = []; 
   let rowD = [];
-  rowD.push(new Txt('DEPARTAMENTO: ').bold().fontSize(8).end)
-  rowD.push( this.informacion.DEPARTAMENTO)
+  rowD.push(new Txt('DEPARTAMENTO: ').bold().fontSize(7).end)
+  rowD.push( new Txt(this.informacion.DEPARTAMENTO).fontSize(7).end)
   rowD.push("")
   rowD.push("")
   rowD.push("")
   rowD.push("")
   let rowN=[]
-  rowN.push(new Txt('NOMBRES: ').bold().fontSize(8).end)
-  rowN.push(this.informacion.NOMBRE_EMPLEADO)
-  rowN.push(new Txt('CÓDIGO: ').bold().fontSize(8).end)
-  rowN.push(this.informacion.ROL)
+  rowN.push(new Txt('NOMBRES: ').bold().fontSize(7).end)
+  rowN.push(new Txt(this.informacion.NOMBRE_EMPLEADO).fontSize(7).end)
+  rowN.push(new Txt('CÓDIGO: ').bold().fontSize(7).end)
+  rowN.push(new Txt(this.informacion.ROL).fontSize(7).end)
   rowN.push("")
   rowN.push("")
   let rowC=[]
-  rowC.push(new Txt('CARGO: ').bold().fontSize(8).end)
-  rowC.push(this.informacion.CARGO)
-  rowC.push(new Txt('RMU: ').bold().fontSize(8).end)
-  rowC.push(this.informacion.RMU)
+  rowC.push(new Txt('CARGO: ').bold().fontSize(7).end)
+  rowC.push(new Txt(this.informacion.CARGO).fontSize(7).end)
+  rowC.push(new Txt('RMU: ').bold().fontSize(7).end)
+  rowC.push(new Txt(this.informacion.RMU).fontSize(7).end)
   rowC.push("")
   rowC.push("")
   tablaDatos.push(rowD)
@@ -241,58 +250,58 @@ obtenerMeses(): void {
 
   
     tablaRolC.push([
-      new Txt('INGRESOS IMPONIBLES').bold().fontSize(8).alignment('center').end,
-      new Txt('INGRESOS NO IMPONIBLES').bold().fontSize(8).alignment('center').end,
+      new Txt('INGRESOS IMPONIBLES').bold().fontSize(7).alignment('center').end,
+      new Txt('INGRESOS NO IMPONIBLES').bold().fontSize(7).alignment('center').end,
       new Txt('DESCUENTOS').bold().fontSize(8).alignment('center').end
     ]);  
  //IMPONIBLES
  tablaRolImp.push([
-  new Txt('CONCEPTO').bold().fontSize(8).alignment('center').end,
-   new Txt('VALOR').bold().fontSize(8).alignment('center').end
+  new Txt('CONCEPTO').bold().fontSize(7).alignment('center').end,
+   new Txt('VALOR').bold().fontSize(7).alignment('center').end
  ]);
 
  for (let i = 0; i < this.imponibles.length; i++) 
    {
     let rowImp = [];
-   rowImp.push(new Txt(this.imponibles[i].DNMRU_ABREVIATURA ).fontSize(8).alignment('left').end)
-   rowImp.push(new Txt(this.imponibles[i].DNMNC_VALOR ).fontSize(8).alignment('right').end)
+   rowImp.push(new Txt(this.imponibles[i].DNMRU_ABREVIATURA ).fontSize(6).alignment('left').end)
+   rowImp.push(new Txt(this.imponibles[i].DNMNC_VALOR ).fontSize(6).alignment('right').end)
    tablaRolImp.push(rowImp)
    }
    let rowTImp=[]
-   rowTImp.push(new Txt('TOTAL').bold().fontSize(8).alignment('center').end)
-   rowTImp.push(new Txt(this.ingIm.toString()).bold().fontSize(8).alignment('right').end)
+   rowTImp.push(new Txt('TOTAL').bold().fontSize(7).alignment('center').end)
+   rowTImp.push(new Txt(this.ingIm.toString()).bold().fontSize(7).alignment('right').end)
    tablaRolImp.push(rowTImp)
   //NO IMPONIBLES
  tablaRolNo.push([
-  new Txt('CONCEPTO').bold().fontSize(8).alignment('center').end,
-   new Txt('VALOR').bold().fontSize(8).alignment('right').end
+  new Txt('CONCEPTO').bold().fontSize(7).alignment('center').end,
+   new Txt('VALOR').bold().fontSize(7).alignment('right').end
  ]);
  
  for(let j=0;j<this.noImponibles.length;j++)
    {
     let rowNo = [];
-    rowNo.push(new Txt(this.noImponibles[j].DNMRU_ABREVIATURA ).fontSize(8).alignment('left').end)
-    rowNo.push(new Txt(this.noImponibles[j].DNMNC_VALOR ).fontSize(8).alignment('right').end)
+    rowNo.push(new Txt(this.noImponibles[j].DNMRU_ABREVIATURA ).fontSize(6).alignment('left').end)
+    rowNo.push(new Txt(this.noImponibles[j].DNMNC_VALOR ).fontSize(6).alignment('right').end)
     tablaRolNo.push(rowNo)
    }
    let rowTNoImp=[]
-   rowTNoImp.push(new Txt('TOTAL').bold().fontSize(8).alignment('center').end)
-   rowTNoImp.push(new Txt(this.ingNo.toString()).bold().fontSize(8).alignment('right').end)
+   rowTNoImp.push(new Txt('TOTAL').bold().fontSize(7).alignment('center').end)
+   rowTNoImp.push(new Txt(this.ingNo.toString()).bold().fontSize(7).alignment('right').end)
    tablaRolNo.push(rowTNoImp)
 //DESCUENTOS
  tablaRolDes.push([
-  new Txt('CONCEPTO').bold().fontSize(8).alignment('center').end,
-   new Txt('VALOR').bold().fontSize(8).alignment('right').end
+  new Txt('CONCEPTO').bold().fontSize(7).alignment('center').end,
+   new Txt('VALOR').bold().fontSize(7).alignment('right').end
  ]);
  for(let k =0;k<this.descuentos.length;k++){
   let rowDes = [];
-  rowDes.push(new Txt(this.descuentos[k].DNMRU_ABREVIATURA ).fontSize(8).alignment('left').end)
-  rowDes.push(new Txt(this.descuentos[k].DNMNC_VALOR ).fontSize(8).alignment('right').end)
+  rowDes.push(new Txt(this.descuentos[k].DNMRU_ABREVIATURA ).fontSize(6).alignment('left').end)
+  rowDes.push(new Txt(this.descuentos[k].DNMNC_VALOR ).fontSize(6).alignment('right').end)
   tablaRolDes.push(rowDes)
  }
  let rowTDes=[]
- rowTDes.push(new Txt('TOTAL').bold().fontSize(8).alignment('center').end)
- rowTDes.push(new Txt(this.desc.toString()).bold().fontSize(8).alignment('right').end)
+ rowTDes.push(new Txt('TOTAL').bold().fontSize(7).alignment('center').end)
+ rowTDes.push(new Txt(this.desc.toString()).bold().fontSize(7).alignment('right').end)
  tablaRolDes.push(rowTDes)
 let tablasTotales: any[][] = []
 tablasTotales.push([
@@ -304,16 +313,16 @@ tablasTotales.push([
   ''
 ])
 tablasTotales.push([
-  new Txt('TOTAL INGRESOS').bold().fontSize(8).alignment('left').end,
-  new Txt(this.totalIn.toString()).fontSize(8).alignment('right').end,
+  new Txt('TOTAL INGRESOS').bold().fontSize(7).alignment('left').end,
+  new Txt(this.totalIn.toString()).fontSize(7).alignment('right').end,
 ])
 tablasTotales.push([
-  new Txt('TOTAL DESCUENTOS').bold().fontSize(8).alignment('left').end,
-  new Txt(this.desc.toString()).fontSize(8).alignment('right').end,
+  new Txt('TOTAL DESCUENTOS').bold().fontSize(7).alignment('left').end,
+  new Txt(this.desc.toString()).fontSize(7).alignment('right').end,
 ])
 tablasTotales.push([
-  new Txt('LIQUIDO A PAGAR').bold().fontSize(8).alignment('left').end,
-  new Txt(this.totalPago.toString()).bold().fontSize(8).alignment('right').end,
+  new Txt('LIQUIDO A PAGAR').bold().fontSize(7).alignment('left').end,
+  new Txt(this.totalPago.toString()).bold().fontSize(7).alignment('right').end,
 ])
 
  let longNo=this.noImponibles.length
@@ -332,10 +341,10 @@ tablasTotales.push([
  }
  pdf.add(new Table(tablaDatos).margin([40, -30, 0, 0]).headerRows(0).layout('noBorders').widths([90,250,50,100,50,100]).end)
  pdf.add(new Table(tablaRolC).margin([0, 30, 0, 0]).headerRows(1).layout('headerLineOnly').widths([219,219,219]).end)
- pdf.add(new Table(tablaRolImp).margin([0, 0, 10, v1]).headerRows(1).layout('headerLineOnly').widths([120,90]).end)
- pdf.add(new Table(tablaRolNo).margin([240, 0, 0, v2]).headerRows(1).layout('headerLineOnly').widths([120,90]).end)
- pdf.add(new Table(tablaRolDes).margin([475, 0, 0, 0]).headerRows(1).layout('headerLineOnly').widths([120,90]).end)
- pdf.add(new Table(tablasTotales).margin([475, 0, 0, 0]).headerRows(0).layout('headerLineOnly').widths([120,90]).end)
+ pdf.add(new Table(tablaRolImp).margin([0, 0, 10, v1]).headerRows(1).layout('headerLineOnly').widths([100,80]).end)
+ pdf.add(new Table(tablaRolNo).margin([240, 0, 0, v2]).headerRows(1).layout('headerLineOnly').widths([100,80]).end)
+ pdf.add(new Table(tablaRolDes).margin([475, 0, 0, 0]).headerRows(1).layout('headerLineOnly').widths([100,80]).end)
+ pdf.add(new Table(tablasTotales).margin([475, 0, 0, 0]).headerRows(0).layout('headerLineOnly').widths([100,80]).end)
 pdf.add( pdf.ln(1));
  //pdf.create().open();
   pdf.create().download('rol_pagos');

@@ -160,3 +160,7 @@ input[type=text]:disabled {
     border: 0.3vw solid #D0D3D4;
     border-radius: 5vw;
 } */
+
+::-webkit-scrollbar {
+    display: none;
+}
