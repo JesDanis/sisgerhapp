@@ -35,20 +35,78 @@
                     <div class="row">
                         <label class="col-sm-4 col-form-label lblLeft">Periodo</label>
                         <div class="col-sm-8">
-                            <select id="periodo" class="form-control" title="Periodo"> 
-  <option value ="9">Seleccionar....</option>
-  <option *ngFor ="let per of periodos" [value]="per.DCPVC_CODIGO">{{per.DCPVC_DESCRIPCION}}</option>
-</select>
+                            <select id="periodo" class="form-control" title="Periodo" (change)="obtenerDatos()"> 
+                            <option value ="9">Seleccionar....</option>
+                            <option *ngFor ="let per of periodos" [value]="per.DCPVC_CODIGO">{{per.DCPVC_DESCRIPCION}}</option>
+                            </select>
                         </div>
                     </div>
                 </div>
             </div>
-            <button type="button" style="float:inherit;" id="btnBuscar" class="btn btn-primary" (click)="obtenerDatos()" title="Consultar Periodo">
+            <!-- <button type="button" style="float:inherit;" id="btnBuscar" class="btn btn-primary" (click)="obtenerDatos()" title="Consultar Periodo">
 <i class="bi bi-search"></i> Consultar
-</button>
+</button> -->
         </div>
 
         <div class="card-body">
+            <div class="row" *ngFor="let d of dias">
+                <div class="col-md">
+                    <div class="card mb-2 border-1 card-border-1" style="background-color: #6EADBE; color: #FFFFFF;">
+                        <div class="card-body text-center">
+                            Ordinarios
+                            <table>
+                                <tr>
+                                    <td>Laborables</td>
+                                    <td style="width:200px; text-align: center;">{{d.DCPVC_ORD_LAB}}</td>
+                                    <!-- <td style="width:200px; text-align: center;">{{d.DCPVC_ORD_LAB_DISP}}</td> -->
+                                    <td style="width:200px; text-align: center;">
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" id="ordinarios_lab" role="progressbar" style="width: {{porcentaje_ordinario_lab}}%;" aria-valuemin="0">{{d.DCPVC_ORD_LAB_DISP}}</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:200px; text-align: center;">No laborables</td>
+                                    <td style="width:200px; text-align: center;">{{d.DCPVC_ORD_NLAB}}</td>
+                                    <!-- <td style="width:200px; text-align: center;">{{d.DCPVC_ORD_NLAB_DISP}}</td> -->
+                                    <td style="width:200px; text-align: center;">
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" id="ordinarios_nolab" style="width: {{porcentaje_ordinario_nolab}}%;" aria-valuemin="0">{{d.DCPVC_ORD_NLAB_DISP}}</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="card mb-2 border-1 card-border-1" style="background-color: #6EADBE; color: #FFFFFF;">
+                        <div class="card-body text-center">
+                            Adicionales
+                            <table>
+                                <tr>
+                                    <td>Laborables</td>
+                                    <td style="width:200px; text-align: center;">{{d.DCPVC_ADS_LAB}}</td>
+                                    <td style="width:200px; text-align: center;">
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" id="adicionales_lab" role="progressbar" style="width: {{porcentaje_adicional_lab}}%;" aria-valuemin="0">{{d.DCPVC_ADS_LAB_DISP}}</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:200px; text-align: center;">No laborables</td>
+                                    <td style="width:200px; text-align: center;">{{d.DCPVC_ADS_NLAB}}</td>
+                                    <td style="width:200px; text-align: center;">
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" id="adicionales_nolab" style="width: {{porcentaje_adicional_nolab}}%;" aria-valuemin="0">{{d.DCPVC_ADS_NLAB_DISP}}</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
 
                 <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-sm-12">

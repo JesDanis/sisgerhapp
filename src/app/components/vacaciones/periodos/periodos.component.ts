@@ -21,11 +21,14 @@ export class PeriodosComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject<any>();
   tiempo:any
   dinero: any
+  porcentaje_ordinario_lab:number=0
+  porcentaje_ordinario_nolab:number=0
+  porcentaje_adicional_lab:number=0
+  porcentaje_adicional_nolab:number=0
   constructor(private sisgerhService:SisgerhMovilService) { }
   
   ngOnInit(): void {
     this.obtener_periodos()
-
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 4,
@@ -53,6 +56,7 @@ export class PeriodosComponent implements OnInit {
     this.sisgerhService.obtenerPeriodos(btoa(this.inPer),3,3).subscribe(res=>{
       this.periodos=res
     })
+   
   }
   obtenerPeriodos(){
     this.txtEstado=$("#estado").val()
@@ -87,13 +91,43 @@ export class PeriodosComponent implements OnInit {
         text: 'Seleccionar un Periodo'
       })
     }else{
+      
+
     //DIAS
     this.dias=['']
     this.sisgerhService.obtenerTotalDias(this.txtPeriodo).subscribe(res=>{
       // let dtInstance = $('#tblDias').DataTable();
       // dtInstance.destroy();
       this.dias=res
+      console.log(this.dias)
+       //PROGRESS BAR
+     document.getElementById('ordinarios_lab')?.setAttribute('aria-valuemax', this.dias[0].DCPVC_ORD_LAB);
+    // if(this.dias[0].DCPVC_ORD_LAB_DISP=="0"){
+    //   document.getElementById('ordinarios_lab')?.setAttribute('aria-valuenow', "5");
+    //  this.porcentaje_ordinario_lab=10
+    // }else{
+      document.getElementById('ordinarios_lab')?.setAttribute('aria-valuenow', this.dias[0].DCPVC_ORD_LAB_DISP);
+     this.porcentaje_ordinario_lab=(Number(this.dias[0].DCPVC_ORD_LAB_DISP)*100)/(Number( this.dias[0].DCPVC_ORD_LAB))
+    // }
+
+     document.getElementById('ordinarios_nolab')?.setAttribute('aria-valuemax', this.dias[0].DCPVC_ORD_NLAB);
+    //  if(this.dias[0].DCPVC_ORD_NLAB_DISP=="0"){
+    //   document.getElementById('ordinarios_nolab')?.setAttribute('aria-valuenow', "5");
+    //  this.porcentaje_ordinario_nolab=10
+    // }else{
+      document.getElementById('ordinarios_nolab')?.setAttribute('aria-valuenow', this.dias[0].DCPVC_ORD_NLAB_DISP);
+      this.porcentaje_ordinario_nolab=(Number(this.dias[0].DCPVC_ORD_NLAB_DISP)*100)/(Number( this.dias[0].DCPVC_ORD_NLAB))
+    // }
+
+    document.getElementById('adicionales_lab')?.setAttribute('aria-valuemax', this.dias[0].DCPVC_ADS_LAB);
+      document.getElementById('adicionales_lab')?.setAttribute('aria-valuenow', this.dias[0].DCPVC_ADS_LAB_DISP);
+      this.porcentaje_adicional_lab=(Number(this.dias[0].DCPVC_ADS_LAB_DISP)*100)/(Number( this.dias[0].DCPVC_ADS_LAB))
+
+      document.getElementById('adicionales_nolab')?.setAttribute('aria-valuemax', this.dias[0].DCPVC_ADS_NLAB);
+      document.getElementById('adicionales_nolab')?.setAttribute('aria-valuenow', this.dias[0].DCPVC_ADS_NLAB_DISP);
+      this.porcentaje_adicional_nolab=(Number(this.dias[0].DCPVC_ADS_NLAB_DISP)*100)/(Number( this.dias[0].DCPVC_ADS_NLAB))
     })
+    
     //TIEMPO
     this.tiempo=['']
     this.sisgerhService.obtenerLiquidacionTiempo(this.txtPeriodo).subscribe(din=>{
