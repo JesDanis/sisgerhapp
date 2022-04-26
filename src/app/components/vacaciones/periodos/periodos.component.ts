@@ -24,6 +24,8 @@ export class PeriodosComponent implements OnInit {
   constructor(private sisgerhService:SisgerhMovilService) { }
   
   ngOnInit(): void {
+    this.obtener_periodos()
+
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 4,
@@ -43,7 +45,14 @@ export class PeriodosComponent implements OnInit {
         }
       ]
     };
-   
+  }
+  obtener_periodos(){
+    this.inPer=localStorage.getItem('codPer');
+    this.inPer=CryptoJS.AES.decrypt(this.inPer.toString(),'eeasaPer').toString(CryptoJS.enc.Utf8);
+    this.periodos=['']
+    this.sisgerhService.obtenerPeriodos(btoa(this.inPer),3,3).subscribe(res=>{
+      this.periodos=res
+    })
   }
   obtenerPeriodos(){
     this.txtEstado=$("#estado").val()

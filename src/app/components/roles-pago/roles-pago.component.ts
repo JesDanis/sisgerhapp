@@ -61,6 +61,7 @@ txtNomina: string = '0';
   this.anio=this.datePipe.transform(this.fecha,"yyyy");
   this.mes=this.datePipe.transform(this.fecha,"MM");
     this.obtenerMeses();
+    this.obtenerDatoNomina()
   }
 imprimir(){
   this.nomina=[''];
@@ -95,6 +96,18 @@ obtenerMeses(): void {
       this.regimen=this.informacion.REGIMEN_LABORAL
       this.zona=this.informacion.ZONA
     });
+  }
+  obtenerDatoNomina(){
+    let Anio=Number($("#inAnio").val());
+    let Mes=this.mesActual
+    this.nomina=[''];
+    this.sisgerhService.obtenerNomina(btoa(this.inPer),Anio,Mes).subscribe((res:any)=>{
+      if(res.length>0){
+        $("#parametros").hide()
+        this.nomina=res;
+      }
+      })
+
   }
   obtenerNomina(){  
     
@@ -179,8 +192,18 @@ obtenerMeses(): void {
       this.totalPago= Math.round(liq*100)/100
       })
   }
+
   async reporteRol(){
     this.resultadoNom=$("#sltNomina").val()
+    let regimen=this.regimen
+    let longitud = regimen.length
+    //CODIGO DEL TRABAJO
+    let h =0
+    if(longitud <= 18){
+      h =240
+    }else{
+      h=200
+    }
     if(this.resultadoNom==0){
       Swal.fire({
         icon: 'error',
@@ -209,10 +232,10 @@ obtenerMeses(): void {
   ]).end,
    {canvas: [this.rect]},
    new Columns([
-    {width: 'auto',text:new Txt(this.regimen).alignment('center').fontSize(10).bold().end,margin: [240, 5, 0, 0]}
+    {width: 'auto',text:new Txt(regimen).alignment('center').fontSize(10).bold().end,margin: [h, 5, 0, 0]}
   ]).end,
   new Columns([
-    {width: 'auto',text:new Txt(this.nombreNomina).alignment('center').fontSize(10).bold().end,margin: [160, 5, 0, 0]}
+    {width: 'auto',text:new Txt(this.nombreNomina).alignment('center').fontSize(10).bold().end,margin: [180, 5, 0, 0]}
   ]).end,
   new Columns([
     {width: 'auto',text:new Txt(this.zona+' - '+this.nombre_mes+'/'+$("#inAnio").val()).alignment('center').fontSize(10).bold().end,margin: [220, 5, 0, 0]}
@@ -252,7 +275,7 @@ obtenerMeses(): void {
     tablaRolC.push([
       new Txt('INGRESOS IMPONIBLES').bold().fontSize(7).alignment('center').end,
       new Txt('INGRESOS NO IMPONIBLES').bold().fontSize(7).alignment('center').end,
-      new Txt('DESCUENTOS').bold().fontSize(8).alignment('center').end
+      new Txt('DESCUENTOS').bold().fontSize(7).alignment('center').end
     ]);  
  //IMPONIBLES
  tablaRolImp.push([
@@ -327,24 +350,24 @@ tablasTotales.push([
 
  let longNo=this.noImponibles.length
  let longImp=this.imponibles.length;
- let v1=-30
+ let v1=-26
  let aux=1
  if (longImp!=0){
-   aux=longImp*12.5
+   aux=longImp*10
    v1=-30-aux
  }
- let v2=-30
+ let v2=-26
  let aux2=1
  if (longNo!=0){
-   aux2=longNo*12.5
+   aux2=longNo*10
    v2=-30-aux2
  }
- pdf.add(new Table(tablaDatos).margin([40, -30, 0, 0]).headerRows(0).layout('noBorders').widths([90,250,50,100,50,100]).end)
- pdf.add(new Table(tablaRolC).margin([0, 30, 0, 0]).headerRows(1).layout('headerLineOnly').widths([219,219,219]).end)
- pdf.add(new Table(tablaRolImp).margin([0, 0, 10, v1]).headerRows(1).layout('headerLineOnly').widths([100,80]).end)
- pdf.add(new Table(tablaRolNo).margin([240, 0, 0, v2]).headerRows(1).layout('headerLineOnly').widths([100,80]).end)
- pdf.add(new Table(tablaRolDes).margin([475, 0, 0, 0]).headerRows(1).layout('headerLineOnly').widths([100,80]).end)
- pdf.add(new Table(tablasTotales).margin([475, 0, 0, 0]).headerRows(0).layout('headerLineOnly').widths([100,80]).end)
+ pdf.add(new Table(tablaDatos).margin([40, -60, 0, 0]).headerRows(0).layout('noBorders').widths([90,250,50,100,50,100]).end)
+ pdf.add(new Table(tablaRolC).margin([20, 30, 0, 0]).headerRows(1).layout('headerLineOnly').widths([145,180,180]).end)
+ pdf.add(new Table(tablaRolImp).margin([20, 0, 10, v1]).headerRows(1).layout('headerLineOnly').widths([80,50]).end)
+ pdf.add(new Table(tablaRolNo).margin([200, 0, 0, v2]).headerRows(1).layout('headerLineOnly').widths([80,50]).end)
+ pdf.add(new Table(tablaRolDes).margin([400, 0, 0, 0]).headerRows(1).layout('headerLineOnly').widths([60,50]).end)
+ pdf.add(new Table(tablasTotales).margin([400, 0, 0, 0]).headerRows(0).layout('headerLineOnly').widths([80,30]).end)
 pdf.add( pdf.ln(1));
  //pdf.create().open();
   pdf.create().download('rol_pagos');

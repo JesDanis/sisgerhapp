@@ -3,143 +3,67 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-sm-11">
-            <a id="btnImprimir" (click)="reportePagos()" class="btn btn-success" role="button" style="float: right;" title="Editar"><i class="bi bi-printer"></i></a>
             <p style="text-align: center; color: #192A67; font-size: 24px;"> <strong>Anticipo</strong> RMU </p>
 
         </div>
     </div>
-    <div class="card text-center" id="cardEncabezado" style=" padding-left: 0;padding-right: 0;width: 100%;">
-        <div class="container" style="padding-top: 10px; " id="divDetalles">
-            <div class="row justify-content-center">
-                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-sm-12">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-2 col-md-6 col-sm-6 col-xl-2 col-xxl-2">
-                                <div class="card card-stats bordes">
-                                    <div class=" card-body ">
-                                        <div class="row ">
-                                            <div class="col-5 col-md-3 col-xl-2 col-xxl-2">
-                                                <div class="icon-big text-center icon-warning ">
-                                                    <img src="../../../assets/Images/monto.png ">
-                                                </div>
-                                            </div>
-                                            <div class="col-7 col-md-9 ">
-                                                <div class="numbers ">
-                                                    <p class="card-category ">Monto</p>
-                                                    <p class="card-title ">
-                                                        <h6>{{monto}}</h6>
-                                                        <p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 col-md-6 col-sm-6 col-xl-2 col-xxl-2">
-                                <div class="card card-stats bordes">
-                                    <div class="card-body ">
-                                        <div class="row ">
-                                            <div class="col-5 col-md-3 ">
-                                                <div class="icon-big text-center icon-warning ">
-                                                    <img src="../../../assets/Images/saldo.png ">
-                                                </div>
-                                            </div>
-                                            <div class="col-7 col-md-9 ">
-                                                <div class="numbers ">
-                                                    <p class="card-category ">Saldo</p>
-                                                    <p class="card-title ">
-                                                        <h6>{{saldo}}</h6>
-                                                        <p>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-2 col-md-6 col-sm-6 col-xl-2 col-xxl-2 ">
-                                <div class="card card-stats bordes">
-                                    <div class="card-body ">
-                                        <div class="row ">
-                                            <div class="col-12 col-md-12 ">
-                                                <div class="numbers ">
-                                                    <p class="card-category ">Total Cuotas</p>
-                                                    <p class="card-title ">
-                                                        <h6>{{total_cuotas}}</h6>
-                                                        <p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 col-md-5 col-sm-5 col-xl-2 col-xxl-2 ">
-                                <div class="card card-stats bordes">
-                                    <div class="card-body ">
-                                        <div class="row ">
-                                            <div class="col-5 col-md-3 ">
-                                                <div class="icon-big text-center icon-warning ">
-                                                    <img src="../../../assets/Images/cuotasN.png ">
-                                                </div>
-                                            </div>
-                                            <div class="col-7 col-md-9 ">
-                                                <div class="numbers ">
-                                                    <p class="card-category ">Cuotas</p>
-                                                    <p class="card-title ">
-                                                        <h6>{{cuotas_pend}}</h6>
-                                                        <p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 col-md-5 col-sm-5 col-xl-2 col-xxl-2 ">
-                                <div class="card card-stats bordes">
-                                    <div class="card-body ">
-                                        <div class="row ">
-                                            <div class="col-5 col-md-3 ">
-                                                <div class="icon-big text-center icon-warning ">
-                                                    <img src="../../../assets/Images/cuotas2.png ">
-                                                </div>
-                                            </div>
-                                            <div class="col-7 col-md-9 ">
-                                                <div class="numbers ">
-                                                    <p class="card-category ">Cuota</p>
-                                                    <p class="card-title ">
-                                                        <h6>{{valor_cuota}}</h6>
-                                                        <p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 col-md-6 col-sm-6 col-xl-2 col-xxl-2 ">
-                                <div class="card card-stats bordes">
-                                    <div class="card-body ">
-                                        <div class="row ">
-                                            <div class="col-12 col-md-12 ">
-                                                <div class="numbers ">
-                                                    <p class="card-category ">Tipo Pago</p>
-                                                    <p class="card-title ">
-                                                        <h6>{{tipo_pago}}</h6>
-                                                        <p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
+    <div class="row">
+        <div class="col-md">
+            <div class="card mb-2 border-1 card-border-1" style="background-color: #55BD9C; color: #FFFFFF;">
+                <div class="card-body text-center">
+                    <i class="fas fa-money-bill-wave mb-3 fs-3"></i>
+                    <div class="fs-5">Monto</div>
+                    <div class="fs-3"> {{monto}}</div>
                 </div>
             </div>
         </div>
+        <div class="col-md">
+            <div class="card mb-2 border-1 card-border-2" style="background-color: #6EADBE; color: #FFFFFF;">
+                <div class="card-body text-center">
+                    <i class="fas fa-coins mb-3 fs-3"></i>
+                    <div class="fs-5">Saldo</div>
+                    <div class="fs-3">{{saldo}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="card mb-2 border-1 card-border-3" style="background-color: #348FE2; color: #FFFFFF;">
+                <div class="card-body text-center">
+                    <i class="fas fa-money-check-alt mb-3 fs-3"></i>
+                    <div class="fs-5">Total cuotas</div>
+                    <div class="fs-3">{{total_cuotas}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="card mb-2 border-1 card-border-4" style="background-color: #857097; color: #FFFFFF;">
+                <div class="card-body text-center">
+                    <i class="fas fa-list-ol mb-3 fs-3"></i>
+                    <div class="fs-5">Cuotas</div>
+                    <div class="fs-3"> {{cuotas_pend}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="card mb-2 border-1 card-border-5" style="background-color: #4B6987; color: #FFFFFF;">
+                <div class="card-body text-center">
+                    <i class="fas fa-hand-holding-usd mb-3 fs-3"></i>
+                    <div class="fs-5">Cuota</div>
+                    <div class="fs-3"> {{valor_cuota}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="card mb-2 border-1 card-border-5" style="background-color: #DD9CAB; color: #FFFFFF;">
+                <div class="card-body text-center">
+                    <i class="fas fa-calendar-day mb-3 fs-3"></i>
+                    <div class="fs-5">Tipo de pago</div>
+                    <div class="fs-3"> {{tipo_pago}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card text-center" id="cardEncabezado" style=" padding-left: 0;padding-right: 0;width: 100%;">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-sm-12">
@@ -193,6 +117,17 @@
                                             <label for="estado " class="col-sm-4 col-form-label lblLeft ">Tipo</label>
                                             <div class="col-sm-8 ">
                                                 <input type="text " class="form-control " id="Tipo " disabled=" " placeholder="Tipo Préstamo " value="{{tipo_prestamo}} ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3 ">
+                                    <div class="col-sm-5 ">
+                                        <div class="row ">
+                                            <label for="estado " class="col-sm-4 col-form-label lblLeft ">Imprimir pagos</label>
+                                            <div class="col-sm-2 ">
+                                                <a id="btnImprimir" (click)="reportePagos()" class="btn btn-success" role="button" style="float: right;" title="Editar"><i class="bi bi-printer"></i></a>
+
                                             </div>
                                         </div>
                                     </div>
