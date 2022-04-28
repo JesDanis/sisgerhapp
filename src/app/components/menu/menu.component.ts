@@ -27,7 +27,7 @@ export class MenuComponent implements OnInit {
   }
  obtenerSesion(){
    //OBTENCION DE COOKIE
-  let inUser = 'ypoveda'
+  let inUser = 'dcadme'
     //'sceli' //'wmedina' //'dcadme'//'mchavez'//'jabad'//'//'wachachi'//'jsantamaria';
     
    //let inUser = this.cookieService.get('user_eeasa');
@@ -37,7 +37,6 @@ export class MenuComponent implements OnInit {
     this.sesion=this.sesion[0];
     //Obtener DMPER_CODIGO
     this.inPerson=this.sesion.DMPER_CODIGO;
-    console.log(this.inPerson)
     this.inPerson=CryptoJS.AES.encrypt(this.inPerson.toString(),'eeasaPer');
     this.user=CryptoJS.AES.encrypt(inUser,'eeasaPer');
     localStorage.setItem('codPer',this.inPerson);

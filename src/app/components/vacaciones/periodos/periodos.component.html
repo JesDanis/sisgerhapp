@@ -51,9 +51,10 @@
         <div class="card-body">
             <div class="row" *ngFor="let d of dias">
                 <div class="col-md">
-                    <div class="card mb-2 border-1 card-border-1" style="background-color: #6EADBE; color: #FFFFFF;">
+                    <!-- style="background-color: #6EADBE; color: #FFFFFF;" -->
+                    <div class="card mb-2 border-1 card-border-1">
                         <div class="card-body text-center">
-                            Ordinarios
+                            <b style=" color: #192A67; ">Ordinarios</b>
                             <table>
                                 <tr>
                                     <td>Laborables</td>
@@ -80,9 +81,9 @@
                     </div>
                 </div>
                 <div class="col-md">
-                    <div class="card mb-2 border-1 card-border-1" style="background-color: #6EADBE; color: #FFFFFF;">
+                    <div class="card mb-2 border-1 card-border-1">
                         <div class="card-body text-center">
-                            Adicionales
+                            <b style=" color: #192A67; ">Adicionales</b>
                             <table>
                                 <tr>
                                     <td>Laborables</td>
@@ -112,13 +113,14 @@
                 <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-sm-12">
 
                     <div class="nav nav-pills nav-fill" id="nav-tab" role="tablist" style="background-color:#DFDFDF;">
-                        <a class="nav-link active" id="step1-tab" data-toggle="tab" href="#step1" title="Total días"><i class="bi bi-calendar"></i> Total días</a>
-                        <a class="nav-link " id="step2-tab" data-toggle="tab" href="#step2" title="Liquidación de tiempo"><i class="bi bi-alarm"></i> Liquidación de tiempo</a>
+                        <a class="nav-link active" id="step2-tab" data-toggle="tab" href="#step2" title="Liquidación de tiempo"><i class="bi bi-alarm"></i> Liquidación de tiempo</a>
+                        <a class="nav-link " id="step1-tab" data-toggle="tab" href="#step1" title="Permisos"><i class="bi bi-calendar"></i> Permisos</a>
+
                         <a class="nav-link" id="step4-tab" data-toggle="tab" href="#step4" title="Liquidación de dinero"><i class="bi bi-cash-coin"></i> Liquidación de dinero</a>
                     </div>
                     <div class="tab-content py-4" id="nav-tabContent">
                         <!--STEP 1-->
-                        <div class="card card-user tab-pane fade show active" id="step1">
+                        <div class="card card-user tab-pane fade " id="step1">
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table " style="border-color: #20315F;font-size: 80%;" title="Detalle total días" id="tblDias">
@@ -163,7 +165,7 @@
                             </div>
                         </div>
                         <!--STEP 2 LIQUIDACION TIEMPO-->
-                        <div class="card card-user tab-pane fade " id="step2">
+                        <div class="card card-user tab-pane fade show active" id="step2">
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" title="Detalle liquidación tiempo" id="tblTiempo">

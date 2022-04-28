@@ -12,9 +12,9 @@
                 <i class="bi bi-caret-down-fill rotate" style="margin-right: 15px;" id="iconEmpleado" name="iconEmpleado"></i>Empleado
             </a>
             <div class="list-group collapse" id="empleado" data-parent="#menu">
-                <a routerLink='empleado' routerLinkActive='active' class="list-group-item list-mio-item" title="Información"><i class="bi bi-info-circle"></i> Información personal</a>
-                <a routerLink='empleado' routerLinkActive='active' class="list-group-item list-mio-item" title="Información"><i class="bi bi-info-circle"></i> Información laboral</a>
-                <a routerLink='empleado' routerLinkActive='active' class="list-group-item list-mio-item" title="Información"><i class="bi bi-pencil-square"></i> Actualización</a>
+                <a routerLink='laboral' routerLinkActive='active' class="list-group-item list-mio-item" title="Información laboral"><i class="bi bi-info-circle"></i> Información laboral</a>
+                <a routerLink='empleado' routerLinkActive='active' class="list-group-item list-mio-item" title="Información personal"><i class="bi bi-info-circle"></i> Información personal</a>
+                <a routerLink='actualizacion' routerLinkActive='active' class="list-group-item list-mio-item" title="Actualización"><i class="bi bi-pencil-square"></i> Actualización</a>
                 <a routerLink='instruccion' routerLinkActive='active' class="list-group-item list-mio-item" title="Instrucción"><i class="bi bi-book"></i> Instrucción</a>
                 <a routerLink='experiencia' routerLinkActive='active' class="list-group-item list-mio-item" title="Experiencia"><i class="bi bi-award"></i> Experiencia</a>
                 <a routerLink='formacion' routerLinkActive='active' class="list-group-item list-mio-item" title="Formación"><i class="bi bi-layers"></i> Formación</a>
@@ -43,9 +43,7 @@
             <!-- <a href="https://app.eeasa.com.ec/intranet" class="list-group-item list-mio" title="Salir">
                 <i class="bi bi-box-arrow-right" style="margin-right: 15px;"></i>Salir
             </a> -->
-            <a href="{{salir()}}" class="list-group-item list-mio" title="Salir">
-                <i class="bi bi-box-arrow-right" style="margin-right: 15px;"></i>Salir
-            </a>
+
         </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -67,6 +65,11 @@
                     </li>
                     <li class="nav-item " title="Usuario">
                         <a class=" nav-link disabled " href="# " style="color: #20315F; "><i class="bi bi-person-fill" style="margin-right:5px; "></i><strong>USUARIO: </strong > <a> {{sesion.DSGUS_CUENTA}}</a></a>
+                    </li>
+                    <li class="nav-item " title="Salir">
+                        <a href="{{salir()}}" title="Salir" class="btn btn-outline-danger border-0 w-100">
+                            <i class="fas fa-sign-out-alt" style="margin-right: 5px;"></i>Salir
+                        </a>
                     </li>
                 </ul>
             </div>

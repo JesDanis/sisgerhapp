@@ -27,13 +27,16 @@ import { AdministracionGuard } from './guards/administracion.guard';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { LaboralComponent } from './components/empleado/laboral/laboral.component';
+import { AutosizeModule } from 'ngx-autosize';
 
 const routes: Routes=[
   
-  // {path:'',redirectTo:'empleado',pathMatch:'full'},
-  {path:'',component:InformacionComponent,pathMatch:'full'},
+   {path:'',redirectTo:'laboral',pathMatch:'full'},
+  //{path:'',component:InformacionComponent,pathMatch:'full'},
   {path:'empleado',component:InformacionComponent},
   {path:'instruccion', component:InstruccionComponent},
+  {path:'laboral', component:LaboralComponent},
   {path:'experiencia', component:ExperienciaComponent},
   {path:'formacion', component:FormacionComponent},
   {path:'consolidado',component:ConsolidadoComponent},
@@ -63,7 +66,8 @@ const routes: Routes=[
     AnticipoRmuComponent,
     PeriodosComponent,
     ActualizacionComponent,
-    PrincipalComponent
+    PrincipalComponent,
+    LaboralComponent
   ],
   imports: [
     BrowserModule,
@@ -73,6 +77,7 @@ const routes: Routes=[
     NgxPaginationModule,
     Ng2SearchPipeModule,
     DataTablesModule,
+    AutosizeModule,
      ReactiveFormsModule,
       NgSelectModule,
       ServiceWorkerModule.register('ngsw-worker.js', {
