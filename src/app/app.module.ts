@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID,NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {DatePipe, HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {DatePipe, HashLocationStrategy, LocationStrategy,registerLocaleData} from '@angular/common';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AppComponent } from './app.component';
@@ -29,12 +29,14 @@ import { environment } from '../environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { LaboralComponent } from './components/empleado/laboral/laboral.component';
 import { AutosizeModule } from 'ngx-autosize';
-
+import { PersonalComponent } from './components/empleado/personal/personal.component';
+import localeEs from '@angular/common/locales/es';
+registerLocaleData(localeEs, 'es');
 const routes: Routes=[
   
    {path:'',redirectTo:'laboral',pathMatch:'full'},
   //{path:'',component:InformacionComponent,pathMatch:'full'},
-  {path:'empleado',component:InformacionComponent},
+  {path:'personal',component:PersonalComponent},
   {path:'instruccion', component:InstruccionComponent},
   {path:'laboral', component:LaboralComponent},
   {path:'experiencia', component:ExperienciaComponent},
@@ -67,7 +69,8 @@ const routes: Routes=[
     PeriodosComponent,
     ActualizacionComponent,
     PrincipalComponent,
-    LaboralComponent
+    LaboralComponent,
+    PersonalComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +91,8 @@ const routes: Routes=[
       })
   ],
   providers: [DatePipe,CookieService,
-  {provide:LocationStrategy,useClass:HashLocationStrategy}],
+  {provide:LocationStrategy,useClass:HashLocationStrategy},
+  { provide: LOCALE_ID, useValue: 'es' } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

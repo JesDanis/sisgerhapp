@@ -1,0 +1,181 @@
+<div style="background-color: #f7f7f9; height: 100%; width: 100%; ">
+    <div style="height: 10px">
+    </div>
+    <div class="card text-center" id="cardEncabezado">
+        <div style="background-color: #eaebef">
+            <p style="text-align: center; color: #192A67; font-size: 26px;">Información <strong>personal</strong></p>
+        </div>
+        <div class="card-body div-T">
+            <div class="row mb-3">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label lblLeft">Lugar y fecha de nacimiento</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" disabled="" placeholder="Lugar Nacimiento" title="Lugar Nacimiento" value="{{informacion.LUGAR_NACIMIENTO}} - {{fecha}}">
+                        </div>
+
+                        <!-- <label class="col-sm-2 col-form-label lblRight">Fecha</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" disabled="" placeholder="Fecha Nacimiento" title="Fecha Nacimiento" value="{{informacion.FECHA_NACIMIENTO}}">
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label lblLeft">Dirección domiciliaria</label>
+                        <div class="col-sm-6">
+                            <textarea autosize class="form-control textarea" disabled="" placeholder="Dirección domicilio" title="Dirección domicilio" style="resize: none;">{{direccion}}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label lblLeft">Teléfono fijo</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" disabled="" placeholder="Teléfono" title="Teléfono" value="{{informacion.TELEFONO_FIJO}}">
+                        </div>
+                        <div class="col-sm-1">
+                        </div>
+                        <label class="col-sm-2 col-form-label lblLeft">Celular</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" disabled="" placeholder="Celular" title="Celular" value="{{informacion.TELEFONO_MOVIL}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label lblLeft">Cédula militar</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" disabled="" placeholder="Cédula militar" title="Cédula militar" value="{{informacion.CEDULA_MILITAR}}">
+                        </div>
+                        <div class="col-sm-1">
+                        </div>
+                        <label class="col-sm-2 col-form-label lblLeft">Cont. emergencia</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" disabled="" placeholder="Cont. emergencia" title="Contacto emergencia" value="{{informacion.EMERGENCIA}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label lblLeft">Afiliación IESS Nº</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" disabled="" placeholder="Afiliación IESS Nº" title="Afiliación IESS Nº" value="{{informacion.NUM_AFIL_IESS}}">
+                        </div>
+                        <div class="col-sm-1">
+                        </div>
+                        <label class="col-sm-2 col-form-label lblLeft">Historia clínica</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" disabled="" placeholder="Historia clínica" title="Historia clínica" value="{{informacion.NUM_HSTR_CLINIC}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label lblLeft">Tipo sanguineo</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" disabled="" placeholder="Tipo sanguineo" title="Tipo sanguineo" value="{{informacion.TIPO_SANGRE}}">
+                        </div>
+                        <div class="col-sm-1">
+                        </div>
+                        <label class="col-sm-2 col-form-label lblLeft">Género</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" disabled="" placeholder="Género" title="Género" value="{{informacion.GENERO}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label lblLeft">Aut. étnica</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" disabled="" placeholder="Aut. étnica" title="Autoidentificación étnica" value="{{informacion.ETNIA}}">
+                        </div>
+                        <div class="col-sm-1">
+                        </div>
+                        <label class="col-sm-2 col-form-label lblLeft">Discapacidad</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" disabled="" placeholder="Discapacidad" title="Discapacidad" value="{{discapacidad}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label lblLeft">Estado civil</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" disabled="" placeholder="Estado civil" title="Estado civil" value="{{informacion.ESTADO_CIVIL}}">
+                        </div>
+                        <div class="col-sm-1">
+                        </div>
+                        <label class="col-sm-2 col-form-label lblLeft"></label>
+                        <div class="col-sm-3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label lblLeft">Banco</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" disabled="" placeholder="Banco" title="Banco" value="{{informacion.BANCO}}">
+                        </div>
+                        <div class="col-sm-1">
+                        </div>
+                        <label class="col-sm-2 col-form-label lblLeft">{{informacion.TIPO_CUENTA}}</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" disabled="" placeholder="Cuenta" title="Cuenta" value="{{informacion.NUM_CUENTA}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label lblLeft">Nombre Cónyuge</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" disabled="" placeholder="Cónyuge" title="Cónyuge" value="{{informacion.NOMBRE_CONYUGUE}}">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label lblLeft">Nombre  del padre</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" disabled="" placeholder="Nombre padre" title="Nombre padre" value="{{informacion.NOMBRE_PADRE}}">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label lblLeft">Nombre de la madre</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" disabled="" placeholder="Nombre madre" title="Nombre madre" value="{{informacion.NOMBRE_MADRE}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height: 50px ">
+    </div>
+</div>

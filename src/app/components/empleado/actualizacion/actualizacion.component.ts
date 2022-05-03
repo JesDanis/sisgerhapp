@@ -389,6 +389,7 @@ export class ActualizacionComponent implements OnInit {
     this.sisgerhService.obtenerParroquias().subscribe(res => {
       this.parroquias = res
       this.dtTrigger.next();
+
     })
   }
 
@@ -767,10 +768,11 @@ close(){
     }
   }
 
-  seleccionarParroquia(value: any, div: any) {
+  seleccionarParroquia(prov:any,ciud:any,value: any, div: any) {
    // this.direccion.PARROQUIA = value
     this.parroquia=value
     this.DMDIV_CODIGO = div
+    this.divPol='ECUADOR-'+prov+'-'+ciud
   }
   obtenerDato(value: any) {
 

@@ -187,6 +187,15 @@ constructor(private httpClient: HttpClient) { }
     this.req=this.url+'obtenerTotalDias?inPeriodo=' + inPeriodo
     return this.httpClient.get<String>(this.req)
   }
+   /**
+   * 
+   * @param inPeriodo 
+   * @returns 
+   */
+    obtenerPermisosVacaciones(inPeriodo:string):Observable<TiempoInt>{
+      this.req=this.url+'obtenerPermisosVacaciones?inPeriodo=' + inPeriodo
+      return this.httpClient.get<TiempoInt>(this.req)
+    }
   /**
    * 
    * @param inPeriodo 

@@ -5,7 +5,7 @@
         <div class="col-sm-11">
             <button type="submit" class="btn btn-success btn-round" (click)="actualizar()" style="float: right;" title="Actualizar información"><i class="bi bi-pencil-square"></i>Actualizar</button>
 
-            <p style="text-align: center; color: #192A67; font-size: 24px;"> <strong>Actualización</strong> de información</p>
+            <p style="text-align: center; color: #192A67; font-size: 24px;"> <strong>Actualización</strong></p>
 
         </div>
     </div>
@@ -638,10 +638,10 @@
                                     </thead>
                                     <tbody style="font-size: 12px;">
                                         <tr *ngFor="let pr of parroquias">
-                                            <td>{{pr.PROVINCIA}}</td>
+                                            <td>{{pr.CIUDAD}}</td>
                                             <td>{{pr.PARROQUIA}}</td>
                                             <td>
-                                                <a (click)="seleccionarParroquia(pr.PARROQUIA,pr.DMDIV_CODIGO)" href data-dismiss="modal">Seleccionar</a>
+                                                <a (click)="seleccionarParroquia(pr.PROVINCIA,pr.CIUDAD,pr.PARROQUIA,pr.DMDIV_CODIGO)" href data-dismiss="modal">Seleccionar</a>
                                             </td>
                                         </tr>
                                     </tbody>

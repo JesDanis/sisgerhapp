@@ -1,7 +1,7 @@
 <div style="height: 100%; width: 100%; background-color:#F4F5F6;">
     <div style="height: 10px">
     </div>
-    <p style="text-align: center; color: #192A67; font-size: 24px;"><strong>Periodo</strong> de vacaciones</p>
+    <p style="text-align: center; color: #192A67; font-size: 24px;">Periodo<strong> de vacaciones</strong> </p>
     <div class="card text-center" id="cardEncabezado">
         <div class="card-header" style="background-color: #EAEBEF">
             <div class="row mb-3">
@@ -43,12 +43,8 @@
                     </div>
                 </div>
             </div>
-            <!-- <button type="button" style="float:inherit;" id="btnBuscar" class="btn btn-primary" (click)="obtenerDatos()" title="Consultar Periodo">
-<i class="bi bi-search"></i> Consultar
-</button> -->
         </div>
-
-        <div class="card-body">
+        <div class="card-body div-T">
             <div class="row" *ngFor="let d of dias">
                 <div class="col-md">
                     <!-- style="background-color: #6EADBE; color: #FFFFFF;" -->
@@ -115,69 +111,60 @@
                     <div class="nav nav-pills nav-fill" id="nav-tab" role="tablist" style="background-color:#DFDFDF;">
                         <a class="nav-link active" id="step2-tab" data-toggle="tab" href="#step2" title="Liquidación de tiempo"><i class="bi bi-alarm"></i> Liquidación de tiempo</a>
                         <a class="nav-link " id="step1-tab" data-toggle="tab" href="#step1" title="Permisos"><i class="bi bi-calendar"></i> Permisos</a>
-
                         <a class="nav-link" id="step4-tab" data-toggle="tab" href="#step4" title="Liquidación de dinero"><i class="bi bi-cash-coin"></i> Liquidación de dinero</a>
                     </div>
                     <div class="tab-content py-4" id="nav-tabContent">
                         <!--STEP 1-->
-                        <div class="card card-user tab-pane fade " id="step1">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table " style="border-color: #20315F;font-size: 80%;" title="Detalle total días" id="tblDias">
-                                        <thead>
-                                            <tr>
-                                                <th> </th>
-                                                <th colspan="2" style="text-align: center;color: #20315F;">Ordinarios</th>
-                                                <th colspan="2" style="text-align: center;color: #20315F;">Adicionales</th>
-                                            </tr>
-                                            <tr>
-                                                <th></th>
-                                                <th style="text-align: center;color: #20315F;">Total</th>
-                                                <th style="text-align: center;color: #20315F;">Disponible</th>
-                                                <th style="text-align: center;color: #20315F;">Total</th>
-                                                <th style="text-align: center;color: #20315F;">Disponible</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody *ngFor="let d of dias">
-                                            <tr>
-                                                <td style="text-align: center;color: #20315F;"><b>Laborables</b></td>
-                                                <td style="text-align: center;">{{d.DCPVC_ORD_LAB}}</td>
-                                                <td style="text-align: center;">{{d.DCPVC_ORD_LAB_DISP}}</td>
-                                                <td style="text-align: center;">{{d.DCPVC_ADS_LAB}}</td>
-                                                <td style="text-align: center;">{{d.DCPVC_ADS_LAB_DISP}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td style="text-align: center;color: #20315F;"><b>No Laborables</b></td>
-                                                <td style="text-align: center;">{{d.DCPVC_ORD_NLAB}}</td>
-                                                <td style="text-align: center;">{{d.DCPVC_ORD_NLAB_DISP}}</td>
-                                                <td style="text-align: center;">{{d.DCPVC_ADS_NLAB}}</td>
-                                                <td style="text-align: center;">{{d.DCPVC_ADS_NLAB_DISP}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td style="text-align: center;color: #20315F;"><b>Total</b></td>
-                                                <td style="text-align: center;" colspan="2">{{d.TOTAL_ORDINARIOS}}</td>
-                                                <td style="text-align: center;" colspan="2">{{d.TOTAL_ADICONALES}}</td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <!--STEP 2 LIQUIDACION TIEMPO-->
-                        <div class="card card-user tab-pane fade show active" id="step2">
+                        <div class="card card-user tab-pane fade div-T" id="step1">
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" title="Detalle liquidación tiempo" id="tblTiempo">
                                         <thead>
                                             <tr style="background-color:#192A67;">
                                                 <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Documento</th>
-                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Estado</th>
+
                                                 <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">F. Solicitud</th>
-                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">F. Aprobación</th>
                                                 <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">F. Inicio</th>
                                                 <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">F. Fin</th>
-                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Descripción</th>
+                                                <th scope="col" id="colortext" colspan="2" style="font-size: small;">Ordinarios</th>
+                                                <th scope="col" id="colortext" colspan="2" style="font-size: small;">Adicionales</th>
+                                            </tr>
+                                            <tr style="background-color:#192A67;">
+                                                <th scope="col" id="colortext" style="font-size: small;">Laborales</th>
+                                                <th scope="col" id="colortext" style="font-size: small;">No aborales</th>
+                                                <th scope="col" id="colortext" style="font-size: small;">Laborales</th>
+                                                <th scope="col" id="colortext" style="font-size: small;">No aborales</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="font-size: small;">
+                                            <tr *ngFor="let t of permisos">
+                                                <td>{{t.DCPRM_NUM_SOLICITUD}}</td>
+                                                <td>{{t.DCPRM_FECHA_SOLIC}}</td>
+                                                <td>{{t.DCPRM_FECHA_INICIO}}</td>
+                                                <td>{{t.DCPRM_FECHA_FIN}}</td>
+                                                <td>{{t.DCPRM_ORD_LAB}}</td>
+                                                <td>{{t.DCPRM_ORD_NLAB}}</td>
+                                                <td>{{t.DCPRM_ADS_LAB}}</td>
+                                                <td>{{t.DCPRM_ADS_NLAB}}</td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!--STEP 2 LIQUIDACION TIEMPO-->
+                        <div class="card card-user tab-pane fade show active div-T" id="step2">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" title="Detalle liquidación tiempo" id="tblTiempo">
+                                        <thead>
+                                            <tr style="background-color:#192A67;">
+                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Documento</th>
+
+                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">F. Solicitud</th>
+                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">F. Inicio</th>
+                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">F. Fin</th>
                                                 <th scope="col" id="colortext" colspan="2" style="font-size: small;">Ordinarios</th>
                                                 <th scope="col" id="colortext" colspan="2" style="font-size: small;">Adicionales</th>
                                                 <th scope="col" id="colortext" colspan="2" style="font-size: small;">Adicionales dinero</th>
@@ -196,12 +183,9 @@
                                         <tbody style="font-size: small;">
                                             <tr *ngFor="let t of tiempo">
                                                 <td>{{t.DCAVC_NUM_DOCUMENTO}}</td>
-                                                <td>{{t.ESTADO}}</td>
                                                 <td>{{t.FECHA_SOL}}</td>
-                                                <td>{{t.FECHA_APR}}</td>
                                                 <td>{{t.FECHA_INI}}</td>
                                                 <td>{{t.FECHA_FIN}}</td>
-                                                <td>{{t.DCPVC_DESCRIPCION}}</td>
                                                 <td>{{t.DCAVP_ORDINARIO_LAB}}</td>
                                                 <td>{{t.DCAVP_ORDINARIO_NLAB}}</td>
                                                 <td>{{t.DCAVP_ADICIONAL_LAB}}</td>
@@ -217,17 +201,14 @@
                             </div>
                         </div>
                         <!--STEP 4 LIQUIDACION DINERO-->
-                        <div class="card card-user tab-pane fade" id="step4">
+                        <div class="card card-user tab-pane fade div-T" id="step4">
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-hover" id="tblDinero" title="Detalle liquidación dinero">
                                         <thead>
                                             <tr style="background-color:#192A67;">
                                                 <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Documento</th>
-                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Estado</th>
                                                 <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">F. Solicitud</th>
-                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">F. Aprobación</th>
-                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Descripción</th>
                                                 <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Nº días</th>
                                                 <th scope="col" id="colortext" colspan="2" style="font-size: small">Adicionales dinero</th>
                                                 <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Total días</th>
@@ -241,10 +222,7 @@
                                         <tbody style="text-align: left;font-size: small;">
                                             <tr *ngFor="let d of dinero">
                                                 <td>{{d.DCAVC_NUM_DOCUMENTO}}</td>
-                                                <td>{{d.ESTADO}}</td>
                                                 <td>{{d.FECHA_SOL}}</td>
-                                                <td>{{d.FECHA_APR}}</td>
-                                                <td>{{d.DCPVC_DESCRIPCION}}</td>
                                                 <td>{{d.DCAVC_NUM_DIAS}}</td>
                                                 <td>{{d.DCAVP_ADICIONAL_DNR}}</td>
                                                 <td>{{d.DCAVP_ADS_DNR_NLAB}}</td>

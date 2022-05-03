@@ -25,6 +25,7 @@ export class PeriodosComponent implements OnInit {
   porcentaje_ordinario_nolab:number=0
   porcentaje_adicional_lab:number=0
   porcentaje_adicional_nolab:number=0
+  permisos:any
   constructor(private sisgerhService:SisgerhMovilService) { }
   
   ngOnInit(): void {
@@ -141,6 +142,12 @@ export class PeriodosComponent implements OnInit {
       // let dtInstance = $('#tblDinero').DataTable();
       // dtInstance.destroy();
       this.dinero=tmp
+    })
+    //PERMISOS
+    this.permisos=['']
+    this.sisgerhService.obtenerPermisosVacaciones(this.txtPeriodo).subscribe(prm=>{
+      this.permisos=prm
+      console.log(this.permisos)
     })
   }
   }

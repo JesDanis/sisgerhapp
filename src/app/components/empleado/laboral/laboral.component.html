@@ -10,7 +10,6 @@
             <div class="row mb-3">
                 <div class="col-sm-12">
                     <div class="row">
-
                         <label class="col-sm-2 col-form-label lblLeft">Apellidos y nombres</label>
                         <div class="col-sm-5">
                             <input type="text" class="form-control" id="datosEmp" disabled="" placeholder="Apellidos y nombres" title="Apellidos y nombres" value="{{informacion.ABREVIATURA}} {{informacion.NOMBRE_EMPLEADO}}">
@@ -43,6 +42,10 @@
                         <div class="col-sm-5">
                             <input type="text" class="form-control" disabled="" placeholder="Régimen" value="{{informacion.REGIMEN_LABORAL}}" id="regimen" title="Régimen laboral">
                         </div>
+                        <label class="col-sm-2 col-form-label lblRight">Escala</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="escala" disabled="" placeholder="Escala" title="Escala" value="{{informacion.NUM_ESCALA}}">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -53,6 +56,11 @@
                         <label class="col-sm-2 col-form-label lblLeft">Tipo contrato</label>
                         <div class="col-sm-5">
                             <input type="text" class="form-control" id="contrato" disabled="" placeholder="Tipo contrato" value="{{informacion.CONTRATO}}" title="Tipo contrato">
+                        </div>
+                        <label class="col-sm-2 col-form-label lblRight">RMU</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" disabled="" placeholder="RMU" title="RMU" value="$ {{informacion.RMU}}">
+
                         </div>
                     </div>
                 </div>
@@ -115,6 +123,25 @@
             <div class="row mb-3">
                 <div class="col-sm-12">
                     <div class="row">
+                        <label class="col-sm-2 col-form-label lblLeft">Antigüedad</label>
+
+                        <div class="col-sm-2">
+                            <input type="text " class="form-control " disabled=" " id="fIngreso " placeholder="F.S. Antigüedad " title="F.S. Antiguedad " value="{{informacion.FECHA_PAGO_ANT}} ">
+                        </div>
+                        <label class="col-sm-1 col-form-label lblLeft">Ingreso</label>
+                        <div class="col-sm-2">
+                            <input type="text " class="form-control " disabled=" " id="fIngreso " placeholder="Fecha Ingreso " title="Fecha Ingreso " value="{{informacion.FECHA_INGRESO}} ">
+                        </div>
+                        <label class="col-sm-1 col-form-label lblLeft">Salida</label>
+                        <div class="col-sm-3">
+                            <input type="text " class="form-control " disabled=" " id="fSalida " placeholder="Fecha Salida " title="Fecha Salida " value="{{informacion.FECHA_SALIDA}} ">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-12">
+                    <div class="row">
                         <label class="col-sm-2 col-form-label lblLeft">Teléfono</label>
                         <div class="col-sm-2">
                             <input type="text " class="form-control " disabled=" " placeholder="Teléfono " title="Teléfono " value="{{informacion.TELF_TRABAJO}} ">
@@ -134,83 +161,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row mb-3">
-                <div class="col-sm-12">
-                    <div class="row">
-                        <label class="col-sm-2 col-form-label lblRight">Escala</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" id="escala" disabled="" placeholder="Escala" title="Escala" value="{{informacion.NUM_ESCALA}}">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-sm-12">
-                    <div class="row">
 
-                        <label class="col-sm-2 col-form-label lblRight">RMU</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" disabled="" placeholder="RMU" title="RMU" value="$ {{informacion.RMU}}">
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mb-3 ">
-                <div class="col-sm-4 ">
-                    <div class="row ">
-                        <label class="col-sm-6 col-form-label lblLeft ">Fecha Ingreso</label>
-                        <div class="col-sm-6 ">
-                            <input type="text " class="form-control " disabled=" " id="fIngreso " placeholder="Fecha Ingreso " title="Fecha Ingreso " value="{{informacion.FECHA_INGRESO}} ">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4 ">
-                    <div class="row ">
-                        <label class="col-sm-5 col-form-label lblLeft ">Fecha Salida</label>
-                        <div class="col-sm-6 ">
-                            <input type="text " class="form-control " disabled=" " id="fSalida " placeholder="Fecha Salida " title="Fecha Salida " value="{{informacion.FECHA_SALIDA}} ">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4 ">
-                    <div class="row ">
-                        <label class="col-sm-5 col-form-label lblLeft ">F.S. Antiguedad</label>
-                        <div class="col-sm-6 ">
-                            <input type="text " class="form-control " disabled=" " id="fIngreso " placeholder="F.S. Antiguedad " title="F.S. Antiguedad " value="{{informacion.FECHA_PAGO_ANT}} ">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mb-3 ">
-                <div class="col-sm-4 ">
-                    <div class="row ">
-                        <label class="col-sm-6 col-form-label lblLeft ">Teléfono</label>
-                        <div class="col-sm-6 ">
-                            <input type="text " class="form-control " disabled=" " placeholder="Teléfono " title="Teléfono " value="{{informacion.TELF_TRABAJO}} ">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4 ">
-                    <div class="row ">
-                        <label class="col-sm-5 col-form-label lblLeft ">Extensión</label>
-                        <div class="col-sm-6 ">
-                            <input type="text " class="form-control " disabled=" " placeholder="Ext. " title="Extensión " value="{{informacion.EXT_TRABAJO}} ">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mb-3 ">
-                <div class="col-sm-12 ">
-                    <div class="row ">
-                        <label class="col-sm-2 col-form-label lblLeft ">Correo electrónico</label>
-                        <div class="col-sm-3 ">
-                            <input type="text " class="form-control " disabled=" " placeholder="Correo Electrónico " title="Correo Electrónico " value="{{informacion.EMAIL}} ">
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <div style="height: 50px ">
