@@ -142,24 +142,33 @@ input[type=text]:disabled {
     transition: transform 300ms cubic-bezier(0.34, 2, 0.6, 1), box-shadow 200ms ease;
 }
 
-
-/* STYLING SCROLLBAR */
-
-
-/* 
-::-webkit-scrollbar {
-    width: 1vw;
+.table th {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: lighter;
+    vertical-align: text-top;
+    background-color: #192A67;
 }
 
- ::-webkit-scrollbar-track {
-    background-color: #D0D3D4;
+.table td {
+    font-size: 14px;
 }
 
- ::-webkit-scrollbar-thumb {
-    background-color: #212F3C;
-    border: 0.3vw solid #D0D3D4;
-    border-radius: 5vw;
-} */
+.table.dataTable {
+    padding-top: 1%;
+}
+
+.table.dataTable th {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: lighter;
+    vertical-align: text-top;
+    background-color: #192A67;
+}
+
+.table.dataTable td {
+    font-size: 14px;
+}
 
 ::-webkit-scrollbar {
     display: none;

@@ -1,25 +1,27 @@
 <div style="height: 100%; width: 100%; background-color:#F4F5F6;">
     <div style="height: 10px">
     </div>
-    <p style="text-align: center; color: #192A67; font-size: 24px;">Solicitudes de<strong> vacaciones</strong> </p>
     <div class="card text-center" id="cardEncabezado">
+        <div style="background-color: #eaebef">
+            <p style="text-align: center; color: #192A67; font-size: 24px;">Solicitudes de<strong> vacaciones</strong> </p>
+        </div>
         <div class="card-body">
             <div class="table-responsive div-T" id="divTable">
                 <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" title="Detalle solicitudes">
                     <thead>
                         <tr style="background-color:#192A67;">
-                            <th scope="col" id="colortext">Estado</th>
-                            <th scope="col" id="colortext">Tipo</th>
-                            <th scope="col" id="colortext">Documento</th>
-                            <th scope="col" id="colortext">Nº días</th>
-                            <th scope="col" id="colortext">Fecha solicitud</th>
-                            <th scope="col" id="colortext">Fecha aprobación</th>
-                            <th scope="col" id="colortext">Fecha inicio</th>
-                            <th scope="col" id="colortext">Fecha fin</th>
-                            <th scope="col" id="colortext">Adjunto</th>
+                            <th>Estado</th>
+                            <th>Tipo</th>
+                            <th>Documento</th>
+                            <th>Nº días</th>
+                            <th>Fecha solicitud</th>
+                            <th>Fecha aprobación</th>
+                            <th>Fecha inicio</th>
+                            <th>Fecha fin</th>
+                            <th>Adjunto</th>
                         </tr>
                     </thead>
-                    <tbody style="font-size: small;">
+                    <tbody>
                         <tr *ngFor="let sol of solicitud">
                             <td>{{sol.DCAVC_ESTADO_SOLICITUD}}</td>
                             <td>{{sol.DCAVC_TIPO_SOLICITUD}}</td>

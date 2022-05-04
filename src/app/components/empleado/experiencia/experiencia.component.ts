@@ -33,8 +33,15 @@ export class ExperienciaComponent implements OnInit {
       retrieve: true,
       "columnDefs": [
         {
-          "targets": [0],
+          "targets": [8],
           "orderable": false
+        },{
+          targets: [0, 1, 4,6,7],
+          className: 'dt-body-left',
+        }
+        ,{
+          targets: [5],
+          className: 'dt-body-right',
         }
       ]
     };

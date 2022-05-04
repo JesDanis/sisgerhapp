@@ -31,8 +31,16 @@ export class FormacionComponent implements OnInit {
       retrieve: true,
       "columnDefs": [
         {
-          "targets": [0],
+          "targets": [0,3],
           "orderable": false
+        },
+        {
+          targets: [0, 1, 3,4,5],
+          className: 'dt-body-left',
+        },
+        {
+          targets: [2],
+          className: 'dt-body-right',
         }
       ]
     };

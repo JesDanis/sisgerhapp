@@ -30,8 +30,16 @@ export class SolicitudesComponent implements OnInit {
       retrieve: true,
       "columnDefs": [
         {
-          "targets": [0],
+          "targets": [8],
           "orderable": false
+        },
+        {
+          targets: [0, 1, 2],
+          className: 'dt-body-left',
+        },
+        {
+          targets: [3],
+          className: 'dt-body-right',
         }
       ]
     };

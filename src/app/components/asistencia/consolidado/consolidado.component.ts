@@ -52,6 +52,10 @@ page:any=0
         {
           "targets": [0],
           "orderable": false
+        },
+        {
+          targets: [2, 3, 4],
+          className: 'dt-body-left',
         }
       ]
     };

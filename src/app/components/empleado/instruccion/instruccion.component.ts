@@ -36,8 +36,12 @@ export class InstruccionComponent implements OnInit {
       retrieve: true,
       "columnDefs": [
         {
-          "targets": [0],
+          "targets": [1,2,4],
           "orderable": false
+        },
+        {
+          targets: [0, 1, 2],
+          className: 'dt-body-left',
         }
       ]
     };

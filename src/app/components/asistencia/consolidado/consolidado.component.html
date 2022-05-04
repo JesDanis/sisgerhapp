@@ -3,6 +3,7 @@
     </div>
     <p style="text-align: center; color: #192A67; font-size: 24px;">Asistencia <strong>consolidada</strong></p>
     <div class="card text-center" id="cardEncabezado">
+
         <div class="card-header" style="background-color: #EAEBEF">
             <div class="row mb-3">
                 <div class="col-sm-3 col-md-6 col-xl-3 col-lg-3">
@@ -56,18 +57,18 @@
                 <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" id="tblConsolidado" title="Detalle consolidado">
                     <thead>
                         <tr style="background-color:#192A67;">
-                            <th scope="col" id="colortext">Nº</th>
-                            <th scope="col" id="colortext">Fecha</th>
-                            <th scope="col" id="colortext">Abrev.</th>
-                            <th scope="col" id="colortext">Transacciones</th>
-                            <th scope="col" id="colortext">Descripción</th>
+                            <th>Nº</th>
+                            <th>Fecha</th>
+                            <th>Abrev.</th>
+                            <th>Transacciones</th>
+                            <th>Descripción</th>
                         </tr>
                     </thead>
-                    <tbody style="text-align: left;font-size: small;">
+                    <tbody>
                         <tr *ngFor="let con of consolidado; let i = index">
                             <td>{{i+1}}</td>
-                            <td style="text-align: center;">{{con.FECHA_ASI}}</td>
-                            <td style="text-align: center;">{{con.ABREVIATURA}}</td>
+                            <td>{{con.FECHA_ASI}}</td>
+                            <td>{{con.ABREVIATURA}}</td>
                             <td>{{con.PICADAS}}</td>
                             <td>{{con.DESCRIPCION}}</td>
                         </tr>

@@ -10,6 +10,7 @@ import * as $ from "jquery";
 import { TituloInt } from 'src/app/models/actualizar/titulo-int';
 import { NivelInt } from 'src/app/models/actualizar/nivel-int';
 import { SisgerhAdminService } from 'src/app/services/sisgerh-admin.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-actualizacion',
@@ -106,7 +107,7 @@ export class ActualizacionComponent implements OnInit {
   discAdj: any
   nombreDiscAdj: any
   getIp:any
-  constructor(private datePipe: DatePipe, private sisgerhService: SisgerhMovilService, private adminService: SisgerhAdminService, private domSanitizer: DomSanitizer) { }
+  constructor(private datePipe: DatePipe, private sisgerhService: SisgerhMovilService, private adminService: SisgerhAdminService, private domSanitizer: DomSanitizer,private router: Router,) { }
 
   ngOnInit(): void {
     
@@ -120,6 +121,7 @@ export class ActualizacionComponent implements OnInit {
     $("#cerrarModal").hide()
     $("#noCerrarInst").show()
     $("#cerrarModalInst").hide()
+    $("#procesandoBtn").hide()
     this.fecha = new Date();
     fecha: ''
     this.actual = this.datePipe.transform(this.fecha, "yyyy-MM-dd");
@@ -212,8 +214,12 @@ export class ActualizacionComponent implements OnInit {
 
     if (this.codDiscapacidad != ' ') {
       $("#divDiscapacidad").show()
+      $("#divDiscapacidadS").show()
+      $("#divDiscapacidadA").show()
     } else {
       $("#divDiscapacidad").hide()
+      $("#divDiscapacidadS").hide()
+      $("#divDiscapacidadA").hide()
     }
     this.obtenerAdjuntos()
   }
@@ -255,8 +261,12 @@ export class ActualizacionComponent implements OnInit {
   
       if (this.codDiscapacidad != ' ') {
         $("#divDiscapacidad").show()
+        $("#divDiscapacidadS").show()
+        $("#divDiscapacidadA").show()
       } else {
         $("#divDiscapacidad").hide()
+        $("#divDiscapacidadS").hide()
+        $("#divDiscapacidadA").hide()
       }
     });
     this.contactos = ['']
@@ -611,7 +621,7 @@ close(){
     };
     this.cedula = data
     this.nombreCedula = this.cedula.name
-    this.nombreCedulaAdj = " "
+    this.nombreCedulaAdj = this.nombreCedula
   }
   obtenerPapeleta(event: any) {
     let data = event.target.files[0]
@@ -623,7 +633,7 @@ close(){
     }
     this.papeleta = data
     this.nombrePapeleta = this.papeleta.name
-    this.nombrePapeletaAdj = " "
+    this.nombrePapeletaAdj = this.nombrePapeleta
 
   }
   obtenerCertificadoDis(event: any) {
@@ -636,7 +646,7 @@ close(){
     }
     this.certificadoDis = data
     this.nombrecertificadoDis = this.certificadoDis.name
-    this.nombreDiscAdj = " "
+    this.nombreDiscAdj =this.nombrecertificadoDis
 
   }
   obtenerTitulos(dato: any) {
@@ -746,9 +756,13 @@ close(){
   }
   discapacidadSi() {
     $("#divDiscapacidad").show()
+    $("#divDiscapacidadS").show()
+    $("#divDiscapacidadA").show()
   }
   discapacidadNo() {
     $("#divDiscapacidad").hide()
+    $("#divDiscapacidadS").hide()
+    $("#divDiscapacidadA").hide()
   }
   trabajaSi() {
     $("#divInstitucion").show()
@@ -879,6 +893,8 @@ close(){
   }
 
   actualizar(){
+    $("#procesandoBtn").show()
+
     let discapacidad = $('input[name="disc"]:checked').val();
     if(discapacidad=="discSi" ||this.codDiscapacidad!=' '){
       let val=$("#txtPorcentaje").val()
@@ -919,6 +935,8 @@ close(){
             })
           }else{
             this.actualizarInformacion()
+    
+
           }
         }
       }
@@ -1113,6 +1131,8 @@ close(){
         //   title: 'Información',
         //   text: res.MENSAJE
         // })
+    $("#procesandoBtn").hide()
+
         Swal.fire({
           title: 'Información',
           text: res.MENSAJE,
@@ -1135,5 +1155,7 @@ close(){
       }
     })
   }
- 
+  cancelar() {
+    this.router.navigate(['personal']);
+  }
 }

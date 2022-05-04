@@ -44,34 +44,34 @@
                     </div>
                     <div class="tab-content py-4" id="nav-tabContent">
                         <!-- Step 1 ADICIONAL -->
-                        <div class="card card-user tab-pane fade show active " id="step1" style="overflow-x: hidden;overflow -y: scroll; height: 300px;">
+                        <div class="card card-user tab-pane fade show active div-T" id="step1">
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" title="Deetalle Adicional" id="tblAdicional">
                                         <thead>
                                             <tr style="background-color:#192A67;">
-                                                <th scope="col" id="colortext">Nº</th>
-                                                <th scope="col" id="colortext">F.Inicio</th>
-                                                <th scope="col" id="colortext">F. Fin</th>
-                                                <th scope="col" id="colortext">H. Inicio</th>
-                                                <th scope="col" id="colortext">H. Fin</th>
-                                                <th scope="col" id="colortext">Horas</th>
-                                                <th scope="col" id="colortext">Equivalencia</th>
-                                                <th scope="col" id="colortext">Porcentaje</th>
-                                                <th scope="col" id="colortext">Nómina</th>
-                                                <!-- <th scope="col" id="colortext">Periodo</th> -->
+                                                <th>Nº</th>
+                                                <th>F.Inicio</th>
+                                                <th>F. Fin</th>
+                                                <th>H. Inicio</th>
+                                                <th>H. Fin</th>
+                                                <th>Horas</th>
+                                                <th>Equivalencia</th>
+                                                <th>Porcentaje</th>
+                                                <th>Nómina</th>
+                                                <!-- <th >Periodo</th> -->
                                             </tr>
                                         </thead>
-                                        <tbody style="text-align: left;font-size: small;">
+                                        <tbody style="text-align: center;">
                                             <tr *ngFor="let ad of adicional">
                                                 <td>{{ad.DCSJA_NUMERO}}</td>
                                                 <td>{{ad.FECHA_INICIO}}</td>
                                                 <td>{{ad.FECHA_FIN}}</td>
-                                                <td style="text-align: center;">{{ad.HORA_INICIO}}</td>
-                                                <td style="text-align: center;">{{ad.HORA_FIN}}</td>
-                                                <td style="text-align: center;">{{ad.NUM_HORAS}}</td>
-                                                <td style="text-align: center;">{{ad.EQUIVALENCIA}}</td>
-                                                <td style="text-align: center;">{{ad.PORCENTAJE}}</td>
+                                                <td>{{ad.HORA_INICIO}}</td>
+                                                <td>{{ad.HORA_FIN}}</td>
+                                                <td>{{ad.NUM_HORAS}}</td>
+                                                <td>{{ad.EQUIVALENCIA}}</td>
+                                                <td>{{ad.PORCENTAJE}}</td>
                                                 <td>{{ad.NOMINA}}</td>
                                                 <!-- <td>{{ad.PERIODO}}</td> -->
                                             </tr>
@@ -81,22 +81,22 @@
                             </div>
                         </div>
                         <!--STEP 2 NOCTURNA-->
-                        <div class="card card-user tab-pane fade" id="step2" style="overflow-x: hidden;overflow -y: scroll; height: 300px;">
+                        <div class="card card-user tab-pane fade div-T" id="step2">
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" title="Detalle Nocturna" id="tblNocturna">
                                         <thead>
                                             <tr style="background-color:#192A67;">
-                                                <th scope="col" id="colortext">Fecha</th>
-                                                <th scope="col" id="colortext">Hora Inicio</th>
-                                                <th scope="col" id="colortext">Hora Fin</th>
-                                                <th scope="col" id="colortext">Total horas</th>
-                                                <th scope="col" id="colortext">%</th>
-                                                <th scope="col" id="colortext">Nómina</th>
-                                                <th scope="col" id="colortext">Periodo</th>
+                                                <th>Fecha</th>
+                                                <th>Hora Inicio</th>
+                                                <th>Hora Fin</th>
+                                                <th>Total horas</th>
+                                                <th>%</th>
+                                                <th>Nómina</th>
+                                                <th>Periodo</th>
                                             </tr>
                                         </thead>
-                                        <tbody style="text-align: left;font-size: small;" style="overflow-x: hidden;overflow -y: scroll; height: 300px;">
+                                        <tbody style="text-align: center;">
                                             <tr *ngFor="let noc of nocturna">
                                                 <td>{{noc.FECHA}}</td>
                                                 <td style="text-align: center;">{{noc.HORA_INICIO}}</td>
@@ -112,24 +112,24 @@
                             </div>
                         </div>
                         <!--STEP 3 EXTRAORDINARIAS-->
-                        <div class="card card-user tab-pane fade" id="step3">
+                        <div class="card card-user tab-pane fade div-T" id="step3">
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" title="Detalle Extraordinarias" id="tblExtras">
                                         <thead>
                                             <tr style="background-color:#192A67;">
-                                                <th scope="col" id="colortext" colspan="3">Jornadas</th>
-                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;">Nº Horas</th>
-                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;">Nómina</th>
-                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;">Periodo</th>
+                                                <th colspan="3">Jornadas</th>
+                                                <th rowspan="2" style="vertical-align : middle;text-align:center;">Nº Horas</th>
+                                                <th rowspan="2" style="vertical-align : middle;text-align:center;">Nómina</th>
+                                                <th rowspan="2" style="vertical-align : middle;text-align:center;">Periodo</th>
                                             </tr>
                                             <tr style="background-color:#192A67;">
-                                                <th scope="col" id="colortext">Administrativas</th>
-                                                <th scope="col" id="colortext">Laborales</th>
-                                                <th scope="col" id="colortext">Adicionales</th>
+                                                <th>Administrativas</th>
+                                                <th>Laborales</th>
+                                                <th>Adicionales</th>
                                             </tr>
                                         </thead>
-                                        <tbody style="font-size: small;">
+                                        <tbody style="text-align: center;">
                                             <tr *ngFor="let ex of extraordinaria">
                                                 <td>{{ex.JORNADAS_ADMIN}}</td>
                                                 <td>{{ex.JORNDAS_LABORADAS}}</td>

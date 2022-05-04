@@ -1,22 +1,24 @@
 <div style="height: 100%; width: 100%; background-color:#f7f7f9;">
     <div style="height: 10px">
     </div>
-    <p style="text-align: center; color: #192A67; font-size: 24px;">Instrucción del<strong> empleado</strong> </p>
 
     <div class="card text-center" id="cardEncabezado">
+        <div style="background-color: #eaebef">
+            <p style="text-align: center; color: #192A67; font-size: 24px;">Instrucción del<strong> empleado</strong> </p>
+        </div>
         <div class="card-body">
             <div class="table-responsive div-T" id="divTable">
                 <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" title="Detalle instrucción">
                     <thead>
                         <tr style="background-color:#192A67;">
-                            <th scope="col" id="colortext">Nivel</th>
-                            <th scope="col" id="colortext">Titulo</th>
-                            <th scope="col" id="colortext">Especialidad</th>
-                            <th scope="col" id="colortext">Fecha</th>
-                            <th scope="col" id="colortext">Adjunto</th>
+                            <th>Nivel</th>
+                            <th>Titulo</th>
+                            <th>Especialidad</th>
+                            <th>Fecha</th>
+                            <th>Adjunto</th>
                         </tr>
                     </thead>
-                    <tbody style="text-align: justify;font-size: small;">
+                    <tbody>
                         <tr *ngFor="let ins of instruccion">
                             <td> {{ins.NIVEL}} </td>
                             <td>{{ins.TITULO}} </td>

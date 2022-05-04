@@ -50,8 +50,12 @@ export class PermisosComponent implements OnInit {
         retrieve: true,
         "columnDefs": [
           {
-            "targets": [0,6],
+            "targets": [1,6],
             "orderable": false
+          },
+          {
+            targets: [0, 1, 2],
+            className: 'dt-body-left',
           }
         ]
       };

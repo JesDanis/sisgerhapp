@@ -121,22 +121,22 @@
                                     <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" title="Detalle liquidación tiempo" id="tblTiempo">
                                         <thead>
                                             <tr style="background-color:#192A67;">
-                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Documento</th>
+                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;">Documento</th>
 
-                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">F. Solicitud</th>
-                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">F. Inicio</th>
-                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">F. Fin</th>
-                                                <th scope="col" id="colortext" colspan="2" style="font-size: small;">Ordinarios</th>
-                                                <th scope="col" id="colortext" colspan="2" style="font-size: small;">Adicionales</th>
+                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;">F. Solicitud</th>
+                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;">F. Inicio</th>
+                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;">F. Fin</th>
+                                                <th scope="col" id="colortext" colspan="2">Ordinarios</th>
+                                                <th scope="col" id="colortext" colspan="2">Adicionales</th>
                                             </tr>
                                             <tr style="background-color:#192A67;">
-                                                <th scope="col" id="colortext" style="font-size: small;">Laborales</th>
-                                                <th scope="col" id="colortext" style="font-size: small;">No aborales</th>
-                                                <th scope="col" id="colortext" style="font-size: small;">Laborales</th>
-                                                <th scope="col" id="colortext" style="font-size: small;">No aborales</th>
+                                                <th>Laborales</th>
+                                                <th>No aborales</th>
+                                                <th>Laborales</th>
+                                                <th>No aborales</th>
                                             </tr>
                                         </thead>
-                                        <tbody style="font-size: small;">
+                                        <tbody>
                                             <tr *ngFor="let t of permisos">
                                                 <td>{{t.DCPRM_NUM_SOLICITUD}}</td>
                                                 <td>{{t.DCPRM_FECHA_SOLIC}}</td>
@@ -160,27 +160,27 @@
                                     <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" title="Detalle liquidación tiempo" id="tblTiempo">
                                         <thead>
                                             <tr style="background-color:#192A67;">
-                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Documento</th>
+                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;">Documento</th>
 
-                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">F. Solicitud</th>
-                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">F. Inicio</th>
-                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">F. Fin</th>
-                                                <th scope="col" id="colortext" colspan="2" style="font-size: small;">Ordinarios</th>
-                                                <th scope="col" id="colortext" colspan="2" style="font-size: small;">Adicionales</th>
-                                                <th scope="col" id="colortext" colspan="2" style="font-size: small;">Adicionales dinero</th>
-                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Nº días</th>
-                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Valor día</th>
+                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;">F. Solicitud</th>
+                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;">F. Inicio</th>
+                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;">F. Fin</th>
+                                                <th scope="col" id="colortext" colspan="2">Ordinarios</th>
+                                                <th scope="col" id="colortext" colspan="2">Adicionales</th>
+                                                <th scope="col" id="colortext" colspan="2">Adicionales dinero</th>
+                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;">Nº días</th>
+                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;">Valor día</th>
                                             </tr>
                                             <tr style="background-color:#192A67;">
-                                                <th scope="col" id="colortext" style="font-size: small;">Laborales</th>
-                                                <th scope="col" id="colortext" style="font-size: small;">No aborales</th>
-                                                <th scope="col" id="colortext" style="font-size: small;">Laborales</th>
-                                                <th scope="col" id="colortext" style="font-size: small;">No aborales</th>
-                                                <th scope="col" id="colortext" style="font-size: small;">Laborales</th>
-                                                <th scope="col" id="colortext" style="font-size: small;">No aborales</th>
+                                                <th>Laborales</th>
+                                                <th>No aborales</th>
+                                                <th>Laborales</th>
+                                                <th>No aborales</th>
+                                                <th>Laborales</th>
+                                                <th>No aborales</th>
                                             </tr>
                                         </thead>
-                                        <tbody style="font-size: small;">
+                                        <tbody>
                                             <tr *ngFor="let t of tiempo">
                                                 <td>{{t.DCAVC_NUM_DOCUMENTO}}</td>
                                                 <td>{{t.FECHA_SOL}}</td>
@@ -207,19 +207,19 @@
                                     <table class="table table-hover" id="tblDinero" title="Detalle liquidación dinero">
                                         <thead>
                                             <tr style="background-color:#192A67;">
-                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Documento</th>
-                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">F. Solicitud</th>
-                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Nº días</th>
-                                                <th scope="col" id="colortext" colspan="2" style="font-size: small">Adicionales dinero</th>
-                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Total días</th>
-                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Valor día</th>
+                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;">Documento</th>
+                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;">F. Solicitud</th>
+                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;">Nº días</th>
+                                                <th scope="col" id="colortext" colspan="2" style="">Adicionales dinero</th>
+                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;">Total días</th>
+                                                <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;">Valor día</th>
                                             </tr>
                                             <tr style="background-color:#192A67;">
-                                                <th scope="col" id="colortext" style="font-size: small">Laborales</th>
-                                                <th scope="col" id="colortext" style="font-size: small">No aborales</th>
+                                                <th scope="col" id="colortext" style="">Laborales</th>
+                                                <th scope="col" id="colortext" style="">No aborales</th>
                                             </tr>
                                         </thead>
-                                        <tbody style="text-align: left;font-size: small;">
+                                        <tbody>
                                             <tr *ngFor="let d of dinero">
                                                 <td>{{d.DCAVC_NUM_DOCUMENTO}}</td>
                                                 <td>{{d.FECHA_SOL}}</td>

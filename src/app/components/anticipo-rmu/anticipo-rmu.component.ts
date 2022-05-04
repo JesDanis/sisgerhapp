@@ -37,7 +37,7 @@ export class AnticipoRmuComponent implements OnInit {
   ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 3,
+      pageLength: 10,
       info: true,
       processing: true,
       ordering: false,
@@ -51,6 +51,12 @@ export class AnticipoRmuComponent implements OnInit {
         {
           "targets": [0],
           "orderable": false
+        },  {
+          targets: [1, 2,7,9,10 ],
+          className: 'dt-body-left',
+        },  {
+          targets: [4,5,6 ],
+          className: 'dt-body-right',
         }
       ]
     };
@@ -164,9 +170,9 @@ for (let index = 0; index < this.anticipoDet.length; index++)
  row.push(this.anticipoDet[index].QUINCENA)
  row.push(this.anticipoDet[index].MES)
  row.push(this.anticipoDet[index].ANIO)
- row.push(this.anticipoDet[index].VALOR)
- row.push(this.anticipoDet[index].VALOR_DESC)
- row.push(this.anticipoDet[index].SALDO)
+ row.push(new Txt(this.anticipoDet[index].VALOR).alignment('right').end)
+ row.push(new Txt(this.anticipoDet[index].VALOR_DESC).alignment('right').end)
+ row.push(new Txt(this.anticipoDet[index].SALDO).alignment('right').end)
  row.push(this.anticipoDet[index].ESTADO_CUOTA)
  row.push(this.anticipoDet[index].FECHA_DESCUENTO)
  row.push(this.anticipoDet[index].NOMINA)

@@ -1,36 +1,38 @@
 <div style="height: 100%; width: 100%; background-color:#F4F5F6;">
     <div style="height: 10px">
     </div>
-    <p style="text-align: center; color: #192A67; font-size: 24px;">Experiencia del<strong> empleado</strong> </p>
 
     <div class="card text-center" id="cardEncabezado">
+        <div style="background-color: #eaebef">
+            <p style="text-align: center; color: #192A67; font-size: 24px;">Experiencia del<strong> empleado</strong> </p>
+        </div>
         <div class="card-body">
             <div class="table-responsive div-T" id="divTable">
                 <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" title="Detalle experiencia">
                     <thead>
                         <tr style="background-color:#192A67;">
-                            <th scope="col" id="colortext">Empresa</th>
-                            <th scope="col" id="colortext">Cargo</th>
-                            <th scope="col" id="colortext">Inicio</th>
-                            <th scope="col" id="colortext">Fin</th>
-                            <th scope="col" id="colortext">Función</th>
-                            <th scope="col" id="colortext">Tiempo</th>
-                            <th scope="col" id="colortext">Clasificación</th>
-                            <th scope="col" id="colortext">Tipo</th>
-                            <th scope="col" id="colortext">Adjunto</th>
+                            <th>Empresa</th>
+                            <th>Cargo</th>
+                            <th>Inicio</th>
+                            <th>Fin</th>
+                            <th>Función</th>
+                            <th>Tiempo</th>
+                            <th>Clasificación</th>
+                            <th>Tipo</th>
+                            <th>Adjunto</th>
                         </tr>
                     </thead>
-                    <tbody style="text-align: left;font-size: small;">
+                    <tbody>
                         <tr *ngFor="let exp of experiencia">
-                            <td width="300px" style="text-align: justify;font-size: 12px;">{{exp.EMPRESA}}</td>
-                            <td width="350px" style="text-align: justify;">{{exp.CARGO}}</td>
-                            <td width="50px">{{exp.FEC_INICIO}}</td>
-                            <td width="50px">{{exp.FEC_FIN}}</td>
-                            <td width="300px" style="text-align: justify;">{{exp.FUNCION}}</td>
-                            <td width="50px" style="text-align: center;">{{exp.TIEMPO}}</td>
+                            <td>{{exp.EMPRESA}}</td>
+                            <td>{{exp.CARGO}}</td>
+                            <td>{{exp.FEC_INICIO}}</td>
+                            <td>{{exp.FEC_FIN}}</td>
+                            <td>{{exp.FUNCION}}</td>
+                            <td>{{exp.TIEMPO}}</td>
                             <td>{{exp.CLASIFICACION}}</td>
                             <td>{{exp.TIPO}}</td>
-                            <td style="text-align: center;">
+                            <td>
 
                                 <button type="button " style="float: right;" class="btn btn-outline-info" (click)="descargar(exp.CODIGO)" title="Descargar adjunto"><i class="fa fa-download"></i></button>
                             </td>

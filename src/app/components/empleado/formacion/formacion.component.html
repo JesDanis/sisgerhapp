@@ -1,32 +1,33 @@
 <div style="height: 100%; width: 100%; background-color:#F4F5F6;">
     <div style="height: 10px">
     </div>
-    <p style="text-align: center; color: #192A67; font-size: 24px;">Formación del<strong> empleado</strong> </p>
     <div class="card text-center" id="cardEncabezado">
-
+        <div style="background-color: #eaebef">
+            <p style="text-align: center; color: #192A67; font-size: 24px;">Formación del<strong> empleado</strong> </p>
+        </div>
         <div class="card-body">
             <div class="table-responsive div-T" id="divTable">
                 <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" title="Detalle experiencia">
                     <thead>
                         <tr style="background-color:#192A67;">
-                            <!-- <th scope="col" id="colortext">Número</th> -->
-                            <th scope="col" id="colortext">Entrenamiento</th>
-                            <th scope="col" id="colortext">Fecha</th>
-                            <th scope="col" id="colortext">Horas</th>
-                            <th scope="col" id="colortext">Clasificación</th>
-                            <th scope="col" id="colortext">Tipo</th>
-                            <th scope="col" id="colortext">Competencia</th>
+                            <!-- <th >Número</th> -->
+                            <th>Entrenamiento</th>
+                            <th>Fecha</th>
+                            <th>Horas</th>
+                            <th>Clasificación</th>
+                            <th>Tipo</th>
+                            <th>Competencia</th>
                         </tr>
                     </thead>
                     <tbody style="text-align: left;font-size: small;">
                         <tr *ngFor="let for of formacion">
                             <!-- <td>{{for.DEEVN_NUMERO}}</td> -->
-                            <td width="400px">{{for.DSLPA_DESCRIPCION}}</td>
+                            <td>{{for.DSLPA_DESCRIPCION}}</td>
                             <td>{{for.DSLPA_FECHA_REALIZO}}</td>
-                            <td style="text-align: center;">{{for.DSLPA_HORAS}}</td>
+                            <td>{{for.DSLPA_HORAS}}</td>
                             <td>{{for.DSLPA_CLASIFICACION}}</td>
                             <td>{{for.DSLPA_TIPO}}</td>
-                            <td style="text-align: center;">{{for.DSLPA_COMPETENCIA}}</td>
+                            <td>{{for.DSLPA_COMPETENCIA}}</td>
                         </tr>
                     </tbody>
                 </table>

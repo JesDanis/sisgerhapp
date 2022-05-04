@@ -54,34 +54,19 @@
                 <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" title="Detalle permiso" id="tblPermisos">
                     <thead>
                         <tr style="background-color:#192A67;">
-                            <th scope="col" id="colortext" rowspan="2" style="vertical-align: middle;text-align:center;font-size: small;">Nº Solicitud</th>
-                            <th scope="col" id="colortext" rowspan="2" style="vertical-align: middle;text-align:center;font-size: small;">Descripción</th>
-                            <th scope="col" id="colortext" rowspan="2" style="vertical-align: middle;text-align:center;font-size: small;">Estado</th>
-                            <th scope="col" id="colortext" colspan="3" style="font-size: small;">Fecha</th>
-                            <th scope="col" id="colortext" rowspan="2" style="font-size: small;"></th>
-                            <!-- <th scope="col" id="colortext" colspan="3" style="font-size: small;">Hora</th>
-                            <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Días solicitados</th>
-                            <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Días permiso</th>
-                            <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Modalidad</th>
-                            <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size: small">Reemplazo</th>
-                            <th scope="col" id="colortext" colspan="2" style="font-size: small;">Días Ordinarios</th>
-                            <th scope="col" id="colortext" colspan="2" style="font-size: small;">Días Adicionales</th>
-                            <th scope="col" id="colortext" rowspan="2" style="vertical-align : middle;text-align:center;font-size:small">Adjunto</th> -->
+                            <th rowspan="2" style="vertical-align: middle;">Nº Solicitud</th>
+                            <th rowspan="2" style="vertical-align: middle;">Descripción</th>
+                            <th rowspan="2" style="vertical-align: middle;">Estado</th>
+                            <th colspan="3" style="font-size: small;">Fecha</th>
+                            <th rowspan="2" style="font-size: small;"></th>
                         </tr>
                         <tr style="background-color:#192A67;">
-                            <th scope="col" id="colortext">Solicitud</th>
-                            <th scope="col" id="colortext">Inicio</th>
-                            <th scope="col" id="colortext">Fin</th>
-                            <!-- <th scope="col" id="colortext" style="font-size: small;">Inicio</th>
-                            <th scope="col" id="colortext" style="font-size: small;">Fin</th>
-                            <th scope="col" id="colortext" style="font-size: small;">Total</th>
-                            <th scope="col" id="colortext" style="font-size: small;">Laborales</th>
-                            <th scope="col" id="colortext" style="font-size: small;">No laborales</th>
-                            <th scope="col" id="colortext" style="font-size: small;">Laborales</th>
-                            <th scope="col" id="colortext" style="font-size: small;">No laborales</th> -->
+                            <th>Solicitud</th>
+                            <th>Inicio</th>
+                            <th>Fin</th>
                         </tr>
                     </thead>
-                    <tbody style="font-size: small;">
+                    <tbody>
                         <tr *ngFor="let per of permisos">
                             <td>{{per.DCPRM_NUM_SOLICITUD}}</td>
                             <td>{{per.DCTPR_DESCRIPCION}}</td>
