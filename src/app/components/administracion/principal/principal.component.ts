@@ -51,6 +51,7 @@ export class PrincipalComponent implements OnInit {
   getIp:any
   codigo:any
   inPer:any
+  DMPER_correo:any
   txtObservacion:any
   constructor(private sisgerhService: SisgerhAdminService) { }
 
@@ -88,7 +89,7 @@ export class PrincipalComponent implements OnInit {
       this.dtTrigger.next();
     });
   }
-  visualizarInformacion(dato: any, nombre: any) {
+  visualizarInformacion(dato: any, nombre: any,dmper:any) {
     this.nomnbresEmpleado = nombre
     this.codigo=dato
     this.lstGeneraral = ['']
@@ -103,14 +104,17 @@ export class PrincipalComponent implements OnInit {
       this.lstInstruccion = this.datos["ACADEMICA"]
       this.lstAdicional = this.datos["ADICIONAL"]
       this.lstAdjuntos = this.datos["ADJUNTOS"]
-    
-
       this.obtenerContacto()
       this.obtenerDomicilio()
       this.obtenerInstruccion()
       this.obtenerAdicional()
       this.obtenerAdjuntos()
-
+    })
+    console.log(btoa(dmper))
+    console.log((dmper))
+    this.sisgerhService.obtenerEmail(btoa(dmper)).subscribe((res:any)=>{
+      this.DMPER_correo=res
+      console.log(res)
     })
   }
   obtenerGeneral() {
@@ -276,14 +280,21 @@ export class PrincipalComponent implements OnInit {
     "				\"OPERACION\":\"UPDATE\"\r\n" + 
     "				}\r\n" + 
     "}"
-    this.sisgerhService.updateDatos(json).subscribe((res:any)=>{
-      if (res.MENSAJE = "El registro fue actualizado correctamente") {
-        Swal.fire({
-          icon: 'info',
-          title: 'Información',
-          text: res.MENSAJE
-        })
-      }
-    })
+    if(estado=='A') {
+      this.sisgerhService.updateDatos(json).subscribe((res:any)=>{
+        if (res.MENSAJE = "El registro fue actualizado correctamente") {
+          Swal.fire({
+            icon: 'info',
+            title: 'Información',
+            text: res.MENSAJE
+          })
+        }
+      })
+    }else{
+      // this.sisgerhService.obtenerEmail().subscribe(res=>{
+      //   console.log(res)
+      // })
+    }
+    
   }
 }

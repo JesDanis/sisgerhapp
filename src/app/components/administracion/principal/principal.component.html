@@ -26,7 +26,7 @@
 
                             <td width="200px"><span class="badge badge-light">{{lst.DMAPP_ESTADO_SUBIDA}}</span></td>
                             <td width="100px">
-                                <button data-toggle="modal" data-target="#modalInformacion" class="btn btn-outline-primary" title="Ver Información" (click)="visualizarInformacion(lst.DMAPP_CODIGO,lst.DMPER_NOMBRE_EMPLEADO)">
+                                <button data-toggle="modal" data-target="#modalInformacion" class="btn btn-outline-primary" title="Ver Información" (click)="visualizarInformacion(lst.DMAPP_CODIGO,lst.DMPER_NOMBRE_EMPLEADO,lst.DMPER_CODIGO)">
                                             <i class="fa fa-eye"></i>
                                         </button>
 
@@ -386,7 +386,7 @@
             </div>
             <div class="modal-footer ">
                 <input type="text " placeholder="Observación " class="form-control " [(ngModel)]="txtObservacion">
-                <button type="button " class="btn btn-primary " data-dismiss="modal" (click)="aprobarInformacion('P','INFORMACION MODIFICADA DESDE SISGERH APP')"><i class="bi bi-hand-thumbs-up"></i> Aprobar</button>
+                <button type="button " class="btn btn-primary " data-dismiss="modal" (click)="aprobarInformacion('A','INFORMACION MODIFICADA DESDE SISGERH APP')"><i class="bi bi-hand-thumbs-up"></i> Aprobar</button>
                 <button type="button " class="btn btn-danger " data-dismiss="modal" (click)="aprobarInformacion('R',txtObservacion) "><i class="bi bi-hand-thumbs-down"></i> Rechazar</button>
             </div>
         </div>

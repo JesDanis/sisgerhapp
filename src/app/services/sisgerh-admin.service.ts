@@ -62,5 +62,9 @@ export class SisgerhAdminService {
     const body = JSON.parse(json);
     this.req = this.url + 'updateEstado';
     return this.httpClient.post<String>(this.req, body, { 'headers': headers });
-  }    
+  }   
+  obtenerEmail(codPer:any):Observable<String>{
+    this.req=this.url+'selectEmail?inperson='+codPer;
+    return this.httpClient.get<string>(this.req);
+  }   
 }

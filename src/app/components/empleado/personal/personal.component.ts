@@ -16,6 +16,7 @@ export class PersonalComponent implements OnInit {
   fecha:any
   direccion:any
   discapacidad:any
+  edad:any
 
   constructor(private sisgerhService:SisgerhMovilService,private datePipe: DatePipe) { }
 
@@ -25,6 +26,7 @@ export class PersonalComponent implements OnInit {
     
   }
   obtenerInformacion(){
+    console.log(Date.now())
     //date:'longDate'
     this.inPer=localStorage.getItem('codPer');
     this.inPer=CryptoJS.AES.decrypt(this.inPer.toString(),'eeasaPer').toString(CryptoJS.enc.Utf8);
@@ -38,6 +40,10 @@ export class PersonalComponent implements OnInit {
       this.fecha=splitted[1]+'-'+splitted[0]+'-'+splitted[2]
       //this.datePipe = new DatePipe('en-US');
       this.fecha =this.datePipe.transform(this.fecha,"MMMM d, y");
+      let fecha_nac:any =this.datePipe.transform(this.fecha,"M/d/yy");
+      const convertAge = new Date(fecha_nac);
+      const timeDiff = Math.abs(Date.now() - convertAge.getTime());
+      this.edad = Math.floor((timeDiff / (1000 * 3600 * 24))/365);
       this.fecha=this.fecha.toUpperCase()
       this.direccion=this.informacion.LUGAR_DOMICILIO+'\n'+this.informacion.DIR_DOMICILIO
       if(this.informacion.DISCAPACIDAD==" "){
@@ -51,5 +57,13 @@ export class PersonalComponent implements OnInit {
       this.tiempo = res
     })
   }
+  // CalculateAge(): number {
+  //   if (this.datosDTO.datosPersonales.fechaNacimiento) {
+  //       var timeDiff = Math.abs(Date.now() - this.datosDTO.datosPersonales.fechaNacimiento);
+  //       return Math.ceil((timeDiff / (1000 * 3600 * 24)) / 365);
+  //   } else {
+  //       return null;
+  //   }
+//}
 
 }
