@@ -222,8 +222,7 @@ export class PrincipalComponent implements OnInit {
     }
   }
   verAdjunto(adjunto: any, nombre: any) {
-
-    if (adjunto == null || adjunto=="undefined") {
+    if (adjunto == null || adjunto=="undefined" || adjunto=="null") {
       Swal.fire({
         icon: 'info',
         title: 'Información',

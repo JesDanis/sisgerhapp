@@ -190,7 +190,7 @@
                                                                     </div>
                                                                     <div class="row mt-3">
                                                                         <div class="col-sm-12">
-                                                                            <button id="informeBtn" (click)="visualizarPapeleta()" class="btn btn-primary text-white w-100"><i class="fas fa-download"></i> Descargar</button>
+                                                                            <button id="informeBtn2" (click)="visualizarPapeleta()" class="btn btn-primary text-white w-100"><i class="fas fa-download"></i> Descargar</button>
                                                                         </div>
 
                                                                     </div>
@@ -542,11 +542,12 @@
                         </div>
                         <div class="modal-footer">
                             <div id="cerrarModal">
-                                <button type="button" class="btn btn-primary" (click)="addContacto();" title="Guardar contacto" data-dismiss="modal"> Añadir</button>
+                                <button type="button" class="btn btn-primary" (click)="addContacto();" title="Guardar contacto" data-dismiss="modal">Añadir</button>
                             </div>
                             <div id="noCerrar">
-                                <button type="button" class="btn btn-primary" (click)="addContacto();" title="Guardar contacto" data-dismiss=""> Añadir</button>
+                                <button type="button" class="btn btn-primary" (click)="addContacto();" title="Guardar contacto" data-dismiss="">Añadir</button>
                             </div>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="bi bi-x-circle"></i> Cerrar</button>
                         </div>
                     </div>
                 </div>
@@ -622,6 +623,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="actualizarInst();" title="Actualizar instrucción"><i class="bi bi-save"  ></i> Actualizar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="bi bi-x-circle"></i> Cerrar</button>
+
                 </div>
             </div>
         </div>
@@ -702,9 +705,10 @@
                     <div id="noCerrarInst">
                         <button type="button" class="btn btn-primary" data-dismiss="" (click)="addTitulo()" title="Guardar Instrucción">Añadir</button>
                     </div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="bi bi-x-circle"></i> Cerrar</button>
+
                 </div>
-                <div class="modal-footer">
-                </div>
+
             </div>
         </div>
     </div>
@@ -747,6 +751,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="bi bi-x-circle"></i> Cerrar</button>
+
             </div>
 
         </div>

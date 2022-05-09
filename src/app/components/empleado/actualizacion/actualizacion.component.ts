@@ -18,8 +18,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./actualizacion.component.css']
 })
 export class ActualizacionComponent implements OnInit {
-  inUser:any
-  txtAlerta:any
+  inUser: any
+  txtAlerta: any
   actual: any
   informacion: any;
   inPer: any
@@ -109,16 +109,16 @@ export class ActualizacionComponent implements OnInit {
   discAdj: any
   nombreDiscAdj: any
   nombreDiscAdj_: any
-  getIp:any
-  constructor(private datePipe: DatePipe, private sisgerhService: SisgerhMovilService, private adminService: SisgerhAdminService, private domSanitizer: DomSanitizer,private router: Router,) { }
+  getIp: any
+  constructor(private datePipe: DatePipe, private sisgerhService: SisgerhMovilService, private adminService: SisgerhAdminService, private domSanitizer: DomSanitizer, private router: Router,) { }
 
   ngOnInit(): void {
-    
-    this.adminService.getIPAddress().subscribe((res:any)=>{
-      this.getIp=res.ip
+
+    this.adminService.getIPAddress().subscribe((res: any) => {
+      this.getIp = res.ip
     })
-   
-  $("#divAlert").hide()
+
+    $("#divAlert").hide()
     $("#divAlertInst").hide()
     $("#noCerrar").show()
     $("#cerrarModal").hide()
@@ -229,7 +229,7 @@ export class ActualizacionComponent implements OnInit {
   obtenerInformacion() {
     this.informacion = [''];
     this.sisgerhService.obternerInformacionPer(btoa(this.inPer)).subscribe(res => {
-  
+
       this.informacion = res;
       this.informacion = this.informacion[0];
       this.codEstadoCivil = this.informacion.DMPER_ESTADO_CIVIL
@@ -261,7 +261,7 @@ export class ActualizacionComponent implements OnInit {
         $("#divEstadoCivil").hide()
         $("#divInstitucion").hide()
       }
-  
+
       if (this.codDiscapacidad != ' ') {
         $("#divDiscapacidad").show()
         $("#divDiscapacidadS").show()
@@ -293,7 +293,7 @@ export class ActualizacionComponent implements OnInit {
     this.sisgerhService.obternerInstruccion(btoa(this.inPer)).subscribe(res => {
       this.instruccion = res
     });
-    
+
   }
 
   obtenerContacto() {
@@ -315,7 +315,7 @@ export class ActualizacionComponent implements OnInit {
         } else if (v[index].DPCNT_OPERADORA == 0) {
           op = ""
         }
-        this.contactos.push({ "DTCON_CODIGO": v[index].DTCON_CODIGO, "DTCON_DESCRIPCION": res[0].DTCON_DESCRIPCION, "DPCNT_DESCRIPCION": v[index].DPCNT_DESCRIPCION, "DPCNT_OPERADORA_DET": op, "DPCNT_OPERADORA":v[index].DPCNT_OPERADORA,"DPCNT_PRINCIPAL": v[index].DPCNT_PRINCIPAL })
+        this.contactos.push({ "DTCON_CODIGO": v[index].DTCON_CODIGO, "DTCON_DESCRIPCION": res[0].DTCON_DESCRIPCION, "DPCNT_DESCRIPCION": v[index].DPCNT_DESCRIPCION, "DPCNT_OPERADORA_DET": op, "DPCNT_OPERADORA": v[index].DPCNT_OPERADORA, "DPCNT_PRINCIPAL": v[index].DPCNT_PRINCIPAL })
       })
     }
 
@@ -328,7 +328,7 @@ export class ActualizacionComponent implements OnInit {
     for (let index = 0; index < v.length; index++) {
       this.adminService.obtenerInstruccion(v[index].DMNED_CODIGO, v[index].DSLTT_CODIGO).subscribe((res: any) => {
 
-        if (v[index].DSLPT_NOMBRE_ADJ == "undefined" ||v[index].DSLPT_NOMBRE_ADJ == "null" ) {
+        if (v[index].DSLPT_NOMBRE_ADJ == "undefined" || v[index].DSLPT_NOMBRE_ADJ == "null") {
           nombre = " "
         } else {
           nombre = v[index].DSLPT_NOMBRE_ADJ
@@ -415,13 +415,13 @@ export class ActualizacionComponent implements OnInit {
     let op = "9"
     let con = "9"
     this.tipo = $("#contacto").val();
-    if(this.tipo==9){
-    $("#divAlert").show()
-    this.txtAlerta="Debe seleccionar un tipo de contacto"
-    $("#divAlert").fadeTo(2000, 500).slideUp(400, function(){
-      $("divAlert").slideUp(500);
-  });
-    }else{
+    if (this.tipo == 9) {
+      $("#divAlert").show()
+      this.txtAlerta = "Debe seleccionar un tipo de contacto"
+      $("#divAlert").fadeTo(2000, 500).slideUp(400, function () {
+        $("divAlert").slideUp(500);
+      });
+    } else {
       if (this.tipo == 'DTCON2') {
         con = "CELULAR"
       } else if (this.tipo == 'DTCON1') {
@@ -430,55 +430,55 @@ export class ActualizacionComponent implements OnInit {
         con = "EMAIL PERSONAL"
       }
       this.descripcion = String($("#mdlDescripcion").val())
-    this.operadora = Number($("#slcOperadora").val());
-    if(this.operadora==9){
-      $("#divAlert").show()
-      this.txtAlerta="Debe seleccionar un tipo de operadora"
-      $("#divAlert").fadeTo(2000, 500).slideUp(400, function(){
-        $("divAlert").slideUp(500);
-    });
-    }else{
-      if(this.descripcion==""){
+      this.operadora = Number($("#slcOperadora").val());
+      if (this.operadora == 9) {
         $("#divAlert").show()
-        this.txtAlerta="Debe ingresar una descripción"
-        $("#divAlert").fadeTo(2000, 500).slideUp(400, function(){
+        this.txtAlerta = "Debe seleccionar un tipo de operadora"
+        $("#divAlert").fadeTo(2000, 500).slideUp(400, function () {
           $("divAlert").slideUp(500);
-      });
-      }else{
-        if (this.operadora == 1) {
-          op = "CNT"
-        } else if (this.operadora == 2) {
-          op = "MOVISTAR"
-        } else if (this.operadora == 3) {
-          op = "CLARO"
-        } else if (this.operadora == 4) {
-          op = "OTROS"
-        } else if (this.operadora == 5) {
-          op = "FIJO"
-        } else if (this.operadora == 0) {
-          op = ""
-        }
-        if (this.check == true) {
-          this.principal = 1
+        });
+      } else {
+        if (this.descripcion == "") {
+          $("#divAlert").show()
+          this.txtAlerta = "Debe ingresar una descripción"
+          $("#divAlert").fadeTo(2000, 500).slideUp(400, function () {
+            $("divAlert").slideUp(500);
+          });
         } else {
-          this.principal = 0
+          if (this.operadora == 1) {
+            op = "CNT"
+          } else if (this.operadora == 2) {
+            op = "MOVISTAR"
+          } else if (this.operadora == 3) {
+            op = "CLARO"
+          } else if (this.operadora == 4) {
+            op = "OTROS"
+          } else if (this.operadora == 5) {
+            op = "FIJO"
+          } else if (this.operadora == 0) {
+            op = ""
+          }
+          if (this.check == true) {
+            this.principal = 1
+          } else {
+            this.principal = 0
+          }
+          this.contactos.push({ "DPCNT_CODIGO": "", "DPCNT_DESCRIPCION": this.descripcion, "DPCNT_OPERADORA": this.operadora, "DPCNT_OPERADORA_DET": op, "DPCNT_PRINCIPAL": this.principal, "DTCON_CODIGO": this.tipo, "DTCON_DESCRIPCION": con })
         }
-        this.contactos.push({ "DPCNT_CODIGO": "", "DPCNT_DESCRIPCION": this.descripcion, "DPCNT_OPERADORA": this.operadora, "DPCNT_OPERADORA_DET": op, "DPCNT_PRINCIPAL": this.principal, "DTCON_CODIGO": this.tipo, "DTCON_DESCRIPCION": con })
       }
     }
-    }    
-     }
-close(){
-  if(this.operadora==9){
-    $("#noCerrar").hide()
-    $("#cerrarModal").show()
-
-  }else{
-    $("#cerrarModal").show()
-    $("#noCerrar").hide()
-
   }
-}
+  close() {
+    if (this.operadora == 9) {
+      $("#noCerrar").hide()
+      $("#cerrarModal").show()
+
+    } else {
+      $("#cerrarModal").show()
+      $("#noCerrar").hide()
+
+    }
+  }
 
   limpiarDatos() {
     this.contactoLst = ['']
@@ -567,16 +567,16 @@ close(){
   //     this.especialidad = response[0].ESPECIALIDAD
   //   })
   // }
-  informacionIntruccion(nivel:string,codNivel:string, titulo:string,codTitulo:any,especialidad:string,fechaT:string, adjunto:string) {
-     this.nombreNivel = nivel
-      this.nivel = codNivel
-      this.titulo = titulo
-      this.codTitulo = codTitulo
-      var fecha = moment(fechaT, 'DD-MM-YYYY');
-      this.fecha = fecha.format('YYYY-MM-DD');
-      this.adjunto = adjunto
-      this.especialidad = especialidad
-    
+  informacionIntruccion(nivel: string, codNivel: string, titulo: string, codTitulo: any, especialidad: string, fechaT: string, adjunto: string) {
+    this.nombreNivel = nivel
+    this.nivel = codNivel
+    this.titulo = titulo
+    this.codTitulo = codTitulo
+    var fecha = moment(fechaT, 'DD-MM-YYYY');
+    this.fecha = fecha.format('YYYY-MM-DD');
+    this.adjunto = adjunto
+    this.especialidad = especialidad
+
   }
   actualizarInst() {
     let cod = this.codTitulo
@@ -589,7 +589,6 @@ close(){
     this.instruccion.push({ "DMNED_CODIGO": this.nivel, "DSLPT_ADJUNTO": this.archivotituloAct, "DSLPT_CODIGO": "", "DSLTT_CODIGO": this.codTitulo, "ESPECIALIDAD": this.especialidad, "FECHA": fechaT, "NIVEL": this.nombreNivel, "NOMBRE": this.nombreTituloAct, "TITULO": this.titulo })
   }
   actualizarTitulo(event: any) {
-   // console.log(this.adjunto)
     let data = event.target.files[0]
     let reader = new FileReader()
     reader.readAsDataURL(data)
@@ -624,8 +623,7 @@ close(){
     };
     this.cedula = data
     this.nombreCedula = this.cedula.name
-    this.nombreCedulaAdj = this.nombreCedula
-    this.nombreCedulaAdj_ = " "
+    this.nombreCedulaAdj = " "
   }
   obtenerPapeleta(event: any) {
     let data = event.target.files[0]
@@ -637,8 +635,7 @@ close(){
     }
     this.papeleta = data
     this.nombrePapeleta = this.papeleta.name
-    this.nombrePapeletaAdj = this.nombrePapeleta
-    this.nombrePapeletaAdj_ = " "
+    this.nombrePapeletaAdj = " "
 
   }
   obtenerCertificadoDis(event: any) {
@@ -651,8 +648,7 @@ close(){
     }
     this.certificadoDis = data
     this.nombrecertificadoDis = this.certificadoDis.name
-    this.nombreDiscAdj =this.nombrecertificadoDis
-    this.nombreDiscAdj_ =" "
+    this.nombreDiscAdj = " "
 
   }
   obtenerTitulos(dato: any) {
@@ -663,101 +659,94 @@ close(){
     })
   }
   visualizarCedula() {
-    if ((this.nombreCedulaAdj == "undefined" || this.cedulaAdj == "undefined") && this.cedula=="") {
+    if ((this.nombreCedulaAdj == "undefined" || this.cedulaAdj == "undefined") && this.cedula == "") {
       Swal.fire({
         icon: 'error',
         title: 'Error',
         text: 'No se ha cargado el archivo'
       })
     } else {
-      this.adminService.obtenerActualizacion(btoa(this.inPer)).subscribe((res: any) => {
-        if (res.length == 1 && this.nombreCedulaAdj != " ") {
-          this.verAdjunto(this.cedulaAdj, this.nombreCedulaAdj)
-        } else {
-          if (this.cedula == undefined) {
-            Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: 'No se ha cargado el archivo'
-            })
-          } else {
-            var url = window.URL.createObjectURL(this.cedula)
-            var anchor = document.createElement("a");
-            anchor.download = this.nombreCedula;
-            anchor.href = url;
-            anchor.click();
-          }
+      // this.adminService.obtenerActualizacion(btoa(this.inPer)).subscribe((res: any) => {
+      //   if (res.length == 1 && this.nombreCedulaAdj != " ") {
+      this.verAdjunto(this.cedulaAdj, this.nombreCedulaAdj)
+      // } else {
+      //   if (this.cedula == undefined) {
+      //     Swal.fire({
+      //       icon: 'error',
+      //       title: 'Error',
+      //       text: 'No se ha cargado el archivo'
+      //     })
+      //   } else {
+      //     var url = window.URL.createObjectURL(this.cedula)
+      //     var anchor = document.createElement("a");
+      //     anchor.download = this.nombreCedula;
+      //     anchor.href = url;
+      //     anchor.click();
+      //   }
+      // }
 
-        }
 
-
-      })
+      // })
 
     }
   }
   visualizarPapeleta() {
-    if ((this.nombrePapeletaAdj == "undefined" || this.papeletaAdj == "undefined" ) && this.papeleta =="") {
+    if ((this.nombrePapeletaAdj == "undefined" || this.papeletaAdj == "undefined") && this.papeleta == "") {
       Swal.fire({
         icon: 'error',
         title: 'Error',
         text: 'No se ha cargado el archivo'
       })
     } else {
-      this.adminService.obtenerActualizacion(this.inPer).subscribe((res: any) => {
-        if (res.length == 1 && this.nombrePapeletaAdj != " ") {
-          this.verAdjunto(this.papeletaAdj, this.nombrePapeletaAdj)
-        } else {
-          if (this.papeleta == undefined) {
-            Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: 'No se ha cargado el archivo'
-            })
-          } else {
-            var url = window.URL.createObjectURL(this.papeleta)
-            var anchor = document.createElement("a");
-            anchor.download = this.nombrePapeleta;
-            anchor.href = url;
-            anchor.click();
-          }
-
-        }
-
-
-      })
+      // this.adminService.obtenerActualizacion(this.inPer).subscribe((res: any) => {
+      //   if (res.length == 1 && this.nombrePapeletaAdj != " ") {
+      this.verAdjunto(this.papeletaAdj, this.nombrePapeletaAdj)
+      // } else {
+      //   if (this.papeleta == undefined) {
+      //     Swal.fire({
+      //       icon: 'error',
+      //       title: 'Error',
+      //       text: 'No se ha cargado el archivo'
+      //     })
+      //   } else {
+      //     var url = window.URL.createObjectURL(this.papeleta)
+      //     var anchor = document.createElement("a");
+      //     anchor.download = this.nombrePapeleta;
+      //     anchor.href = url;
+      //     anchor.click();
+      //   }
+      // }
+      // })
 
     }
-
-
   }
   visualizarCertificado() {
-
-    if ((this.nombreDiscAdj == "undefined" || this.discAdj == "undefined") && this.certificadoDis=="") {
+    if ((this.nombreDiscAdj == "undefined" || this.discAdj == "undefined") && this.certificadoDis == "") {
       Swal.fire({
         icon: 'error',
         title: 'Error',
         text: 'No se ha cargado el archivo'
       })
     } else {
-      this.adminService.obtenerActualizacion(btoa(this.inPer)).subscribe((res: any) => {
-        if (res.length == 1 && this.nombreDiscAdj != " ") {
-          this.verAdjunto(this.discAdj, this.nombreDiscAdj)
-        } else {
-          if (this.certificadoDis == undefined) {
-            Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: 'No se ha cargado el archivo'
-            })
-          } else {
-            var url = window.URL.createObjectURL(this.certificadoDis)
-            var anchor = document.createElement("a");
-            anchor.download = this.nombrecertificadoDis;
-            anchor.href = url;
-            anchor.click();
-          }
-        }
-      })
+      // this.adminService.obtenerActualizacion(btoa(this.inPer)).subscribe((res: any) => {
+      //   if (res.length == 1 && this.nombreDiscAdj != " ") {
+      this.verAdjunto(this.discAdj, this.nombreDiscAdj)
+      //     } else {
+      //       if (this.certificadoDis == undefined) {
+      //         Swal.fire({
+      //           icon: 'error',
+      //           title: 'Error',
+      //           text: 'No se ha cargado el archivo'
+      //         })
+      //       } else {
+      //         var url = window.URL.createObjectURL(this.certificadoDis)
+      //         var anchor = document.createElement("a");
+      //         anchor.download = this.nombrecertificadoDis;
+      //         anchor.href = url;
+      //         anchor.click();
+      //       }
+      //     }
+      //   })
     }
   }
   discapacidadSi() {
@@ -788,11 +777,11 @@ close(){
     }
   }
 
-  seleccionarParroquia(prov:any,ciud:any,value: any, div: any) {
-   // this.direccion.PARROQUIA = value
-    this.parroquia=value
+  seleccionarParroquia(prov: any, ciud: any, value: any, div: any) {
+    // this.direccion.PARROQUIA = value
+    this.parroquia = value
     this.DMDIV_CODIGO = div
-    this.divPol='ECUADOR-'+prov+'-'+ciud
+    this.divPol = 'ECUADOR-' + prov + '-' + ciud
   }
   obtenerDato(value: any) {
 
@@ -806,73 +795,71 @@ close(){
   }
   limpiarCamposTit() {
     this.lstTitulo = ['']
-    this.txtTitulo=""
-    this.txtNivel=""
-    this.valueTitulo=""
-    this.especialidad=""
+    this.txtTitulo = ""
+    this.txtNivel = ""
+    this.valueTitulo = ""
+    this.especialidad = ""
     //$("#fechaTitulo2").val()
   }
   addTitulo() {
     let DMNED_CODIGO = $("#nvlEdu2").val()
-    if(DMNED_CODIGO==null){
+    if (DMNED_CODIGO == null) {
       $("#divAlertInst").show()
-      this.txtAlerta="Debe seleccionar un nivel de instrucción"
-      $("#divAlertInst").fadeTo(2000, 500).slideUp(400, function(){
+      this.txtAlerta = "Debe seleccionar un nivel de instrucción"
+      $("#divAlertInst").fadeTo(2000, 500).slideUp(400, function () {
         $("divAlertInst").slideUp(500);
-    });
-    }else{
-    if(this.txtTitulo==undefined){
-      $("#divAlertInst").show()
-      this.txtAlerta="Debe seleccionar un titulo"
-      $("#divAlertInst").fadeTo(2000, 500).slideUp(400, function(){
-        $("divAlertInst").slideUp(500);
-    });
-    }else{
-      let fecha=$("#fechaTitulo2").val()
-      if(fecha==""){
-        $("#divAlertInst").show()
-        this.txtAlerta="Debe seleccionar una fecha válida"
-        $("#divAlertInst").fadeTo(2000, 500).slideUp(400, function(){
-          $("divAlertInst").slideUp(500);
       });
-        
-      }else{
-        $("#cerrarModalInst").show()
-       
+    } else {
+      if (this.txtTitulo == undefined) {
+        $("#divAlertInst").show()
+        this.txtAlerta = "Debe seleccionar un titulo"
+        $("#divAlertInst").fadeTo(2000, 500).slideUp(400, function () {
+          $("divAlertInst").slideUp(500);
+        });
+      } else {
+        let fecha = $("#fechaTitulo2").val()
+        if (fecha == "") {
+          $("#divAlertInst").show()
+          this.txtAlerta = "Debe seleccionar una fecha válida"
+          $("#divAlertInst").fadeTo(2000, 500).slideUp(400, function () {
+            $("divAlertInst").slideUp(500);
+          });
+
+        } else {
+          $("#cerrarModalInst").show()
+
           $("#noCerrarInst").hide()
-    let valor: NivelInt = this.nivelEdu.find((s: any) => s.DMNED_CODIGO == DMNED_CODIGO)
-    let nivel
-    if (valor)
-      nivel = valor.DMNED_DESCRIPCION
-    let especialidad = $("#txtEspecialidad2").val()
-    let fecha: string | any = $("#fechaTitulo2").val();
-    let fechaT = this.datePipe.transform(fecha, "dd/MM/yyyy");
-   this.instruccion.push({ "DMNED_CODIGO": DMNED_CODIGO, "DSLPT_ADJUNTO": this.archivotitulo, "DSLPT_CODIGO": "", "DSLTT_CODIGO": this.codigoTitulo, "ESPECIALIDAD": especialidad, "FECHA": fechaT, "NIVEL": nivel, "NOMBRE": this.nombreTitulo, "TITULO": this.titulo })
- 
+          let valor: NivelInt = this.nivelEdu.find((s: any) => s.DMNED_CODIGO == DMNED_CODIGO)
+          let nivel
+          if (valor)
+            nivel = valor.DMNED_DESCRIPCION
+          let especialidad = $("#txtEspecialidad2").val()
+          let fecha: string | any = $("#fechaTitulo2").val();
+          let fechaT = this.datePipe.transform(fecha, "dd/MM/yyyy");
+          this.instruccion.push({ "DMNED_CODIGO": DMNED_CODIGO, "DSLPT_ADJUNTO": this.archivotitulo, "DSLPT_CODIGO": "", "DSLTT_CODIGO": this.codigoTitulo, "ESPECIALIDAD": especialidad, "FECHA": fechaT, "NIVEL": nivel, "NOMBRE": this.nombreTitulo, "TITULO": this.titulo })
+
+        }
       }
     }
-    
 
-    }
-    
-     }
-     
-  cambioFecha(){
-    let fecha=$("#fechaTitulo2").val()
-    if(fecha!=""){
+  }
+
+  cambioFecha() {
+    let fecha = $("#fechaTitulo2").val()
+    if (fecha != "") {
       $("#cerrarModalInst").show()
-       
+
       $("#noCerrarInst").hide()
-    }else{
+    } else {
       $("#cerrarModalInst").hide()
-       
+
       $("#noCerrarInst").show()
     }
   }
-     
+
   verAdjunto(adjunto: any, nombre: any) {
 
-    if (adjunto == null || adjunto == "undefined") {
+    if (adjunto == null || adjunto == "undefined" || adjunto == "null") {
       Swal.fire({
         icon: 'info',
         title: 'Información',
@@ -898,59 +885,18 @@ close(){
 
   }
 
-  actualizar(){
+  actualizar() {
     $("#procesandoBtn").show()
 
-    let discapacidad = $('input[name="disc"]:checked').val();
-    if(discapacidad=="discSi" ||this.codDiscapacidad!=' '){
-      let val=$("#txtPorcentaje").val()
-       if(val=="0" || val=="" || val==" " ){
-         $("#txtPorcentaje").focus();
-         Swal.fire({
-           icon: 'error',
-           title: 'Error',
-           text: 'No se ha ingresado un porcentaje de discapacidad'
-         })
-       }
-    }else{
-      let referencia=$("#referencia").val()
-      if(referencia=="" || referencia== " "){
-        $("#referencia").focus();
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'No se ha ingresado una referencia domiciliaria'
-        })
-      }else{
-        let calleP=$("#callePrincipal").val()
-        if(calleP=="" || calleP== " "){
-          $("#callePrincipal").focus();
-          Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'No se ha ingresado una calle principal'
-          })
-        }else{
-          let calleS=$("#calleSegunda").val()
-          if(calleS=="" || calleS== " "){
-            $("#callePrincipal").focus();
-            Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: 'No se ha ingresado una calle secundaria'
-            })
-          }else{
-            this.actualizarInformacion()
-    
-
-          }
-        }
-      }
+    if (this.validaciones() == "true") {
+      this.actualizarInformacion()
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: this.validaciones()
+      })
     }
-    
-    
-    
-    
   }
   actualizarInformacion() {
     //GENERAL
@@ -960,6 +906,7 @@ close(){
     let DMDSC_CODIGO
     let DMGDS_PORCENTAJE
     let jsonDis
+    console.log(discapacidad)
     if (discapacidad == 'discNo') {
       DMDSC_CODIGO = ' '
       DMGDS_PORCENTAJE = 0
@@ -968,12 +915,12 @@ close(){
       DMGDS_PORCENTAJE = $("#txtPorcentaje").val()
       let nombreDis
       let adjuntoDis
-      if(this.nombreDiscAdj_==" "){
-        nombreDis=this.nombrecertificadoDis
-      adjuntoDis=this.archivocertificadoDis
-      }else{
-        nombreDis=this.nombreDiscAdj
-        adjuntoDis=this.discAdj
+      if (this.nombreDiscAdj == " ") {
+        nombreDis = this.nombrecertificadoDis
+        adjuntoDis = this.archivocertificadoDis
+      } else {
+        nombreDis = this.nombreDiscAdj
+        adjuntoDis = this.discAdj
       }
       jsonDis = ",{\r\n" +
         "	  	\"DMDAJ_CODIGO\":\"\",\r\n" +
@@ -1000,25 +947,25 @@ close(){
     let nombreCedula
     let adjuntoPapeleta
     let nombrePapeleta
-    if(this.nombreCedulaAdj_==" "){
-      adjuntoCedula= this.archivoCedula
-      nombreCedula=this.nombreCedula
-    }else{
-      adjuntoCedula=this.cedulaAdj
-      nombreCedula=this.nombreCedulaAdj
+    if (this.nombreCedulaAdj == " ") {
+      adjuntoCedula = this.archivoCedula
+      nombreCedula = this.nombreCedula
+    } else {
+      adjuntoCedula = this.cedulaAdj
+      nombreCedula = this.nombreCedulaAdj
     }
-    if(this.nombrePapeletaAdj_==" "){
-      adjuntoPapeleta=this.archivoPapeleta
-      nombrePapeleta=this.nombrePapeleta
-    }else{
-      adjuntoPapeleta=this.papeletaAdj
-      nombrePapeleta=this.nombrePapeletaAdj
+    if (this.nombrePapeletaAdj == " ") {
+      adjuntoPapeleta = this.archivoPapeleta
+      nombrePapeleta = this.nombrePapeleta
+    } else {
+      adjuntoPapeleta = this.papeletaAdj
+      nombrePapeleta = this.nombrePapeletaAdj
     }
     let jsonAdjuntos1 =
       "    \"ADJUNTOS\":[{\r\n" +
       "	  	\"DMDAJ_CODIGO\":\"\",\r\n" +
       "	  	\"DCFTD_CODIGO\":\"DCFTD3\",\r\n" +
-      "	  	\"DMDAJ_DOCUMENTO\":\"" +adjuntoCedula + "\",\r\n" +
+      "	  	\"DMDAJ_DOCUMENTO\":\"" + adjuntoCedula + "\",\r\n" +
       "	  	\"DMDAJ_NOMBRE\":\"" + nombreCedula + "\",\r\n" +
       "	  	\"DMDAJ_TIPO_CONT_ADJ\": \"application/pdf\"\r\n" +
       "	  	}," +
@@ -1116,52 +1063,73 @@ close(){
       "\"DMAPP_ESTADO_SUBIDA\":\"P\",\r\n" +
       "\"DMAPP_OBSERVACION\":\"INFORMACION MODIFICADA DESDE SISGERH APP\",\r\n" +
       "\"CONTENIDO\":\""
-      this.inUser = localStorage.getItem('user');
-      this.inUser = CryptoJS.AES.decrypt(this.inUser.toString(), 'eeasaPer').toString(CryptoJS.enc.Utf8);
+    this.inUser = localStorage.getItem('user');
+    this.inUser = CryptoJS.AES.decrypt(this.inUser.toString(), 'eeasaPer').toString(CryptoJS.enc.Utf8);
     let jsonContenido = btoa(jsonGeneral + jsonAdjuntos + jsonContacto + jsonDomicilio + jsonAcademica + jsonAdicional) + "\"\r\n" +
       "}, \r\n" +
       "\"AUDITORIA\": {\"PROYECTO\":\"SISGERH_APP\",\r\n" +
-      "\"HOST\":\""+ this.getIp+"\", \r\n" +
-      "\"USUARIO\":\""+this.inUser+"\",\r\n" +
+      "\"HOST\":\"" + this.getIp + "\", \r\n" +
+      "\"USUARIO\":\"" + this.inUser + "\",\r\n" +
       "\"OPERACION\":\"INSERT\"}\r\n" +
       "}"
 
 
 
     let json = jsonDri_ma_app + jsonContenido
-    this.sisgerhService.insertDatos(json).subscribe((res: any) => {
-      //MENSAJE: ''
-      if (res.MENSAJE = "El registro fue guardado correctamente") {
-        // Swal.fire({
-        //   icon: 'info',
-        //   title: 'Información',
-        //   text: res.MENSAJE
-        // })
-    $("#procesandoBtn").hide()
+     this.sisgerhService.insertDatos(json).subscribe((res: any) => {
+       //MENSAJE: ''
+       if (res.MENSAJE = "El registro fue guardado correctamente") {
+     $("#procesandoBtn").hide()
 
         Swal.fire({
-          title: 'Información',
-          text: res.MENSAJE,
-          icon: 'info',
-          showCancelButton: false,
-          confirmButtonColor: '#7066e0',
-          confirmButtonText: 'OK'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            window.location.reload();
-          }
-        })
-      }
-      else{
-        Swal.fire({
-          icon: 'warning',
-          title: 'No se ha podido actualizar la información, contáctese con el Administrador',
-          text: res.MENSAJE
-        })
-      }
-    })
+           title: 'Información',
+           text: res.MENSAJE,
+           icon: 'info',
+           showCancelButton: false,
+           confirmButtonColor: '#7066e0',
+           confirmButtonText: 'OK'
+         }).then((result) => {
+           if (result.isConfirmed) {
+             window.location.reload();
+           }
+         })
+       }
+       else{
+         Swal.fire({
+           icon: 'warning',
+           title: 'No se ha podido actualizar la información, contáctese con el Administrador',
+           text: res.MENSAJE
+         })
+       }
+     })
   }
   cancelar() {
     this.router.navigate(['personal']);
+  }
+  validaciones() {
+    let discapacidad = $('input[name="disc"]:checked').val();
+    if (discapacidad == "discSi") {
+      let val = $("#txtPorcentaje").val()
+      if (val == "0" || val == "" || val == " ") {
+        $("#txtPorcentaje").focus();
+        return "'No se ha ingresado un porcentaje de discapacidad'"
+      }
+    }
+    let referencia = $("#referencia").val()
+    if (referencia == "" || referencia == " ") {
+      $("#referencia").focus();
+      return "No se ha ingresado una referencia domiciliaria"
+    }
+    let calleP=$("#callePrincipal").val()
+    if(calleP=="" || calleP== " "){
+      $("#callePrincipal").focus();
+      return "No se ha ingresado una calle principal"
+    }
+   let calleS=$("#calleSegunda").val()
+   if(calleS=="" || calleS== " "){
+     $("#callePrincipal").focus();
+     return "No se ha ingresado una calle secundaria"
+   }
+   return "true"
   }
 }

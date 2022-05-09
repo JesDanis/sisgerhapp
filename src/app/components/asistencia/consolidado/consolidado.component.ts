@@ -36,6 +36,7 @@ page:any=0
 
   ngOnInit(): void {
     $("#btnImprimir").hide()
+    $("#divSpin").hide()
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
@@ -68,7 +69,7 @@ page:any=0
   }
 
 obtenerConsolidado():void{
- 
+  $("#divSpin").show()
   let Desde: string|any = $("#fechaInicio").val();
   let Hasta: string|any = $("#fechaFin").val();
   this.inDesdeR=this.datePipe.transform(Desde,"yyyy-MM-dd");
@@ -118,7 +119,9 @@ obtenerConsolidado():void{
        // dtInstance.destroy();
         this.consolidado=res;
         if(this.consolidado.length!=0){
+          $("#divSpin").hide()
           $("#btnImprimir").show()
+          
         }else{
          
           Swal.fire({
@@ -205,5 +208,9 @@ pdf.add( pdf.ln(1));
 //pdf.create().open();
 pdf.create().download('asistencia');
 }
+}
+cambio(){
+  $("#btnImprimir").hide()
+    $("#divSpin").hide()
 }
 }

@@ -10,7 +10,7 @@
                     <div class="row">
                         <label class="col-sm-4 col-md-4 col-lg-4 col-form-label lblLeft">Tipo</label>
                         <div class="col-sm-8 col-md-8 col-lg-8">
-                            <select id="estado" class="form-control" title="Estado"> 
+                            <select id="estado" class="form-control" title="Estado" (change)="cambio()"> 
                                 <option value="5">Todos</option>
                                 <option value="V">Vacaciones</option>
                                 <option value="F">Faltas</option>
@@ -24,7 +24,7 @@
                     <div class="row">
                         <label class="col-sm-3 col-md-3 col-lg-3 col-form-label lblLeft" style="font-size: 15.5px;">Inicio</label>
                         <div class="col-sm-9 col-md-9 col-lg-9">
-                            <input type="date" class="form-control" id="fechaInicio" value="{{inDesde}}" [max]="actual" title="Fecha inicio">
+                            <input type="date" class="form-control" id="fechaInicio" value="{{inDesde}}" [max]="actual" title="Fecha inicio" (change)="cambio()">
                         </div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                     <div class="row">
                         <label class="col-sm-3 col-md-3 col-lg-3 col-form-label lblLeft">Fin</label>
                         <div class="col-sm-9 col-md-9 col-lg-9">
-                            <input type="date" class="form-control" id="fechaFin" [ngModel]="fecha | date:'yyyy-MM-dd'" [max]="actual" title="Fecha fin">
+                            <input type="date" class="form-control" id="fechaFin" [ngModel]="fecha | date:'yyyy-MM-dd'" [max]="actual" title="Fecha fin" (change)="cambio()">
                         </div>
                     </div>
                 </div>
@@ -42,6 +42,9 @@
                             <button type="button" id="btnConsultar" class="btn btn-primary" (click)="obtenerConsolidado()" title="Consultar">
                                 <i class="fa fa-search"></i> Consultar
                                </button>
+                        </div>
+                        <div class="col-sm-5 col-md-5 col-xl-5 col-lg-5" id="divSpin">
+                            <div class="spinner-border text-primary"></div>
                         </div>
                         <div class="col-sm-5 col-md-5 col-xl-5 col-lg-5" id="btnImprimir">
                             <button type="button" class="btn btn-success" (click)="reporteAsistencia()" title="Reporte asistencia"> <i class="fa fa-print"></i>

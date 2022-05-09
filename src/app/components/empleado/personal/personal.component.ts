@@ -33,7 +33,6 @@ export class PersonalComponent implements OnInit {
     this.sisgerhService.obternerInformacionPer(btoa(this.inPer)).subscribe(res=>{
       this.informacion=res;
       this.informacion=this.informacion[0];
-      console.log(this.informacion)
       var fecha=this.informacion.FECHA_NACIMIENTO
       var splitted = fecha.split("/", 3); 
       this.fecha=splitted[1]+'-'+splitted[0]+'-'+splitted[2]

@@ -27,7 +27,7 @@ export class MenuComponent implements OnInit {
   }
  obtenerSesion(){
    //OBTENCION DE COOKIE
-  let inUser = 'dcadme'
+  let inUser = 'sceli'
     //'sceli' //'wmedina' //'dcadme'//'mchavez'//'jabad'//'//'wachachi'//'jsantamaria';
     
    //let inUser = this.cookieService.get('user_eeasa');

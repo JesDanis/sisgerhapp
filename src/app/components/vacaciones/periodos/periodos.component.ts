@@ -100,7 +100,6 @@ export class PeriodosComponent implements OnInit {
       // let dtInstance = $('#tblDias').DataTable();
       // dtInstance.destroy();
       this.dias=res
-      console.log(this.dias)
        //PROGRESS BAR
      document.getElementById('ordinarios_lab')?.setAttribute('aria-valuemax', this.dias[0].DCPVC_ORD_LAB);
     // if(this.dias[0].DCPVC_ORD_LAB_DISP=="0"){
@@ -147,7 +146,6 @@ export class PeriodosComponent implements OnInit {
     this.permisos=['']
     this.sisgerhService.obtenerPermisosVacaciones(this.txtPeriodo).subscribe(prm=>{
       this.permisos=prm
-      console.log(this.permisos)
     })
   }
   }
