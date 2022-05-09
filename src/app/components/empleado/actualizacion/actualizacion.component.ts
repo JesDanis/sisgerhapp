@@ -102,10 +102,13 @@ export class ActualizacionComponent implements OnInit {
   lstAdjuntos: any
   cedulaAdj: any
   nombreCedulaAdj: any
+  nombreCedulaAdj_: any
   papeletaAdj: any
   nombrePapeletaAdj: any
+  nombrePapeletaAdj_: any
   discAdj: any
   nombreDiscAdj: any
+  nombreDiscAdj_: any
   getIp:any
   constructor(private datePipe: DatePipe, private sisgerhService: SisgerhMovilService, private adminService: SisgerhAdminService, private domSanitizer: DomSanitizer,private router: Router,) { }
 
@@ -622,6 +625,7 @@ close(){
     this.cedula = data
     this.nombreCedula = this.cedula.name
     this.nombreCedulaAdj = this.nombreCedula
+    this.nombreCedulaAdj_ = " "
   }
   obtenerPapeleta(event: any) {
     let data = event.target.files[0]
@@ -634,6 +638,7 @@ close(){
     this.papeleta = data
     this.nombrePapeleta = this.papeleta.name
     this.nombrePapeletaAdj = this.nombrePapeleta
+    this.nombrePapeletaAdj_ = " "
 
   }
   obtenerCertificadoDis(event: any) {
@@ -647,6 +652,7 @@ close(){
     this.certificadoDis = data
     this.nombrecertificadoDis = this.certificadoDis.name
     this.nombreDiscAdj =this.nombrecertificadoDis
+    this.nombreDiscAdj_ =" "
 
   }
   obtenerTitulos(dato: any) {
@@ -962,11 +968,11 @@ close(){
       DMGDS_PORCENTAJE = $("#txtPorcentaje").val()
       let nombreDis
       let adjuntoDis
-      if(this.nombrePapeletaAdj==" "){
+      if(this.nombreDiscAdj_==" "){
         nombreDis=this.nombrecertificadoDis
       adjuntoDis=this.archivocertificadoDis
       }else{
-        nombreDis=this.nombrePapeletaAdj
+        nombreDis=this.nombreDiscAdj
         adjuntoDis=this.discAdj
       }
       jsonDis = ",{\r\n" +
@@ -994,14 +1000,14 @@ close(){
     let nombreCedula
     let adjuntoPapeleta
     let nombrePapeleta
-    if(this.nombreCedulaAdj==" "){
+    if(this.nombreCedulaAdj_==" "){
       adjuntoCedula= this.archivoCedula
       nombreCedula=this.nombreCedula
     }else{
       adjuntoCedula=this.cedulaAdj
       nombreCedula=this.nombreCedulaAdj
     }
-    if(this.nombrePapeletaAdj==" "){
+    if(this.nombrePapeletaAdj_==" "){
       adjuntoPapeleta=this.archivoPapeleta
       nombrePapeleta=this.nombrePapeleta
     }else{

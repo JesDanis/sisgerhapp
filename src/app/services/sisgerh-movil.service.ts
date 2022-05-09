@@ -242,23 +242,6 @@ constructor(private httpClient: HttpClient) { }
    * @param inPersona 
    * @returns 
    */
-  obtenerNoImponibles(inNomina:String,inPersona:string):Observable<IngresosInt>{
-    this.req=this.url+'obtenerNoImponibles?inNomina='+inNomina+'&inPersona='+inPersona;
-    return this.httpClient.get<IngresosInt>(this.req)
-  }
-  /**
-   * 
-   * @param inNomina 
-   * @param inPersona 
-   * @returns 
-   */
-  obtenerDescuentos(inNomina:String,inPersona:string):Observable<IngresosInt>{
-    this.req=this.url+'obtenerDescuentos?inNomina='+inNomina+'&inPersona='+inPersona;
-    return this.httpClient.get<IngresosInt>(this.req)
-  }
-  /**
-   * 
-   */
   obtenerEtnia():Observable<String>{
     this.req=this.url+'obtenerEtnia';
     return this.httpClient.get<string>(this.req);

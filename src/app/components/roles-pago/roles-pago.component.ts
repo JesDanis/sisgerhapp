@@ -28,9 +28,9 @@ export class RolesPagoComponent implements OnInit {
    inPer:any;
    inAnio:number=0;
    inMes:number=0;
-   ingIm:number=0;
-   ingNo:number=0;
-   desc:number=0;
+   sum_imp:any
+   sum_no_imp:any
+   suma_des:any
    totalIn:any;
    meses: any[] = [];
    nombre_mes:any
@@ -68,11 +68,6 @@ imprimir(){
   this.imponibles=[''];
   this.noImponibles=[''];
   this.descuentos=[''];
-  this.ingNo=0
-  this.ingIm=0
-  this.desc=0
-  this.totalIn=0
-  this.totalPago=0
   $("#parametros").show()
   $("#rolDetalle").hide()
 
@@ -153,44 +148,51 @@ obtenerMeses(): void {
       let n= $("#inMes").val()
       this.nombre_mes=Meses[Number(n)]
 
-    this.ingIm=0
-    this.ingNo=0
-    this.desc=0
-    this.totalIn=0
-    this.totalPago=0
+   
     this.resultadoNom=$("#sltNomina").val()
     this.imponibles=[''];
     this.noImponibles=[''];
     this.descuentos=[''];
+    this.sum_imp=0
     let suma=0
     this.sisgerhService.obtenerRol('obtenerImponibles',this.resultadoNom,btoa(this.inPer)).subscribe(res=>{
       this.imponibles=res;
-   //   console.log(this.imponibles)
-      for (const i in this.imponibles){
-        this.ingIm+=parseFloat(this.imponibles[i].DNMNC_VALOR);
-      }
     }) 
     this.sisgerhService.obtenerRol('obtenerNoImponibles',this.resultadoNom,btoa(this.inPer)).subscribe(res=>{
       this.noImponibles=res;
-      for (const i in this.noImponibles){
-        this.ingNo+=parseFloat(this.noImponibles[i].DNMNC_VALOR);
+    }) 
+    this.sisgerhService.obtenerRol('obtenerSumaImponibles',this.resultadoNom,btoa(this.inPer)).subscribe(res=>{
+      this.sum_imp=res
+      this.sum_imp=this.sum_imp[0].SUMA
+      if(this.sum_imp==null){
+        this.sum_imp=0
       }
-      
-      let total=this.ingIm+this.ingNo
-      this.ingNo=Math.round(this.ingNo*100)/100
-      this.ingIm=Math.round(this.ingIm*100)/100
-      this.totalIn=this.ingIm+this.ingNo//Math.round((this.ingIm+this.ingNo)*100)/100
       })
+    this.sisgerhService.obtenerRol('obtenerSumaNoImponibles',this.resultadoNom,btoa(this.inPer)).subscribe(res=>{
+        this.sum_no_imp=res
+        this.sum_no_imp=this.sum_no_imp[0].SUMA
+        if(this.sum_no_imp==null){
+          this.sum_no_imp=0
+        }
+        this.totalIn=parseFloat(this.sum_imp)+parseFloat(this.sum_no_imp)
+        this.totalIn=Math.round(this.totalIn*100)/100
+
+        })
+    this.sisgerhService.obtenerRol('obtenerSumaDescuentos',this.resultadoNom,btoa(this.inPer)).subscribe(res=>{
+          this.suma_des=res
+          this.suma_des=this.suma_des[0].SUMA
+          if(this.suma_des==null){
+            this.suma_des=0
+          }
+          this.totalPago=(parseFloat(this.totalIn)-parseFloat(this.suma_des))
+          this.totalPago=Math.round(this.totalPago*100)/100
+          })
     this.sisgerhService.obtenerRol('obtenerDescuentos',this.resultadoNom,btoa(this.inPer)).subscribe(res=>{
       this.descuentos=res;
-      for (const i in this.descuentos){
-        this.desc+=parseFloat(this.descuentos[i].DNMNC_VALOR);
-      }
-      let liq=this.totalIn-this.desc
-      this.desc=Math.round(this.desc*100)/100
 
-      this.totalPago= Math.round(liq*100)/100
       })
+      
+ 
   }
 
   async reporteRol(){
@@ -292,7 +294,7 @@ obtenerMeses(): void {
    }
    let rowTImp=[]
    rowTImp.push(new Txt('TOTAL').bold().fontSize(7).alignment('center').end)
-   rowTImp.push(new Txt(this.ingIm.toString()).bold().fontSize(7).alignment('right').end)
+   rowTImp.push(new Txt(this.sum_imp).bold().fontSize(7).alignment('right').end)
    tablaRolImp.push(rowTImp)
   //NO IMPONIBLES
  tablaRolNo.push([
@@ -309,7 +311,7 @@ obtenerMeses(): void {
    }
    let rowTNoImp=[]
    rowTNoImp.push(new Txt('TOTAL').bold().fontSize(7).alignment('center').end)
-   rowTNoImp.push(new Txt(this.ingNo.toString()).bold().fontSize(7).alignment('right').end)
+   rowTNoImp.push(new Txt(this.sum_no_imp).bold().fontSize(7).alignment('right').end)
    tablaRolNo.push(rowTNoImp)
 //DESCUENTOS
  tablaRolDes.push([
@@ -324,7 +326,7 @@ obtenerMeses(): void {
  }
  let rowTDes=[]
  rowTDes.push(new Txt('TOTAL').bold().fontSize(7).alignment('center').end)
- rowTDes.push(new Txt(this.desc.toString()).bold().fontSize(7).alignment('right').end)
+ rowTDes.push(new Txt(this.suma_des).bold().fontSize(7).alignment('right').end)
  tablaRolDes.push(rowTDes)
 let tablasTotales: any[][] = []
 tablasTotales.push([
@@ -341,7 +343,7 @@ tablasTotales.push([
 ])
 tablasTotales.push([
   new Txt('TOTAL DESCUENTOS').bold().fontSize(7).alignment('left').end,
-  new Txt(this.desc.toString()).fontSize(7).alignment('right').end,
+  new Txt(this.suma_des).fontSize(7).alignment('right').end,
 ])
 tablasTotales.push([
   new Txt('LIQUIDO A PAGAR').bold().fontSize(7).alignment('left').end,

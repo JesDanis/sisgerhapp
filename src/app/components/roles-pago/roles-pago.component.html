@@ -9,7 +9,7 @@
                     <div class="row">
                         <label class="col-sm-4 col-form-label lblLeft">Año</label>
                         <div class="col-sm-8">
-                            <input id="inAnio" class="form-control" type="number" value="2019" required min="2000" max="2050" style="text-align:center;" data-toggle="tooltip" title="Ingrese el año" (change)="obtenerNomina()" />
+                            <input id="inAnio" class="form-control" type="number" value="2022" required min="2000" max="2050" style="text-align:center;" data-toggle="tooltip" title="Ingrese el año" (change)="obtenerNomina()" />
                         </div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                             <tfoot>
                                 <tr class="table-active" style="font-size: small;">
                                     <td><strong>Total</strong></td>
-                                    <td style="text-align: right;">$ {{ingIm}}</td>
+                                    <td style="text-align: right;">$ {{sum_imp}}</td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -94,7 +94,7 @@
                             <tfoot>
                                 <tr class="table-active" style="font-size: small;">
                                     <td><strong>Total</strong></td>
-                                    <td style="text-align: right;">$ {{ingNo}}</td>
+                                    <td style="text-align: right;">$ {{sum_no_imp}}</td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -121,7 +121,7 @@
                             <tfoot>
                                 <tr class="table-active" style="font-size: small;">
                                     <td><strong>Total</strong></td>
-                                    <td style="text-align: right;">$ {{desc}}</td>
+                                    <td style="text-align: right;">$ {{suma_des}}</td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -152,7 +152,7 @@
                             <tbody>
                                 <tr style="font-size: small;">
                                     <td><strong>TOTAL DESCUENTOS</strong></td>
-                                    <td style="text-align: right;">$ {{desc}}</td>
+                                    <td style="text-align: right;">$ {{suma_des}}</td>
                                 </tr>
                                 <tr style="font-size: small;">
                                     <td><strong>LIQUIDO A PAGAR</strong></td>

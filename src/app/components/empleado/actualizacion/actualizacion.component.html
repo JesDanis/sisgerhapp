@@ -13,7 +13,7 @@
         <div style="background-color: #eaebef">
             <p style="text-align: center; color: #192A67; font-size: 24px;">Actualización de <strong>información</strong></p>
         </div>
-        <div class="div-T">
+        <div class="">
             <div class="container-fluid" style="padding-top: 10px">
                 <div class="row justify-content-center">
                     <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-sm-12">
@@ -27,7 +27,7 @@
                         </div>
                         <div class="tab-content" id="nav-tabContent">
                             <!--STEP 1 GENERAL-->
-                            <div class="tab-pane fade show active " id="step1">
+                            <div class="tab-pane fade show active div-T" id="step1">
                                 <div class="card-body">
                                     <div class="row mb-3">
                                         <div class="col-sm-12">
@@ -150,7 +150,7 @@
                                                                 <div class="row">
                                                                     <label class="col-sm-12 col-form-label lblLeft">Nombre del archivo</label>
                                                                     <div class="col-sm-12">
-                                                                        <textarea class="form-control" id="" formControlName="" readonly>{{nombreCedulaAdj}}</textarea>
+                                                                        <textarea class="form-control" readonly>{{nombreCedulaAdj}}</textarea>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mt-3">
@@ -178,7 +178,7 @@
                                                                     <div class="row">
                                                                         <label for="" class="col-sm-12 col-form-label lblLeft">Nombre del archivo</label>
                                                                         <div class="col-sm-12">
-                                                                            <textarea class="form-control" id="" formControlName="" readonly>{{nombrePapeletaAdj}}</textarea>
+                                                                            <textarea class="form-control" readonly>{{nombrePapeletaAdj}}</textarea>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row mt-3">
@@ -208,7 +208,7 @@
                                                                     <div class="row">
                                                                         <label for="" class="col-sm-12 col-form-label lblLeft">Nombre del archivo</label>
                                                                         <div class="col-sm-12">
-                                                                            <textarea class="form-control" id="" formControlName="" readonly>{{nombreDiscAdj}}</textarea>
+                                                                            <textarea class="form-control" readonly>{{nombreDiscAdj}}</textarea>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row mt-3">
@@ -235,7 +235,7 @@
                                 </div>
                             </div>
                             <!--STEP 2 CONTACTOS-->
-                            <div class="tab-pane fade " id="step5">
+                            <div class="tab-pane fade div-T" id="step5">
                                 <div class="card text-center" id="cardEncabezado">
                                     <div style="padding-top: 10px;padding-left: 10px;">
                                         <a class="btn btn-primary" role="button" style="float: left;" title="Añadir contactos" target="_blank" data-toggle="modal" data-target="#modalTelefono" (click)="limpiarDatos()"><i class="fas fa-plus-circle" style="margin-right: 5px;"></i> Nuevo Contacto</a>
@@ -247,19 +247,19 @@
                                                 <table class="table table-hover" title="Detalle de contactos">
                                                     <thead>
                                                         <tr style="background-color:#192A67;">
-                                                            <th scope="col" id="colortext">Contacto</th>
-                                                            <th scope="col" id="colortext">Descripción</th>
-                                                            <th scope="col" id="colortext">Operadora</th>
-                                                            <th scope="col" id="colortext">Principal </th>
-                                                            <th scope="col" id="colortext"></th>
+                                                            <th>Contacto</th>
+                                                            <th>Descripción</th>
+                                                            <th>Operadora</th>
+                                                            <th>Principal </th>
+                                                            <th></th>
 
                                                         </tr>
                                                     </thead>
-                                                    <tbody style="font-size: 13px;">
+                                                    <tbody>
                                                         <tr *ngFor="let con of contactos">
-                                                            <td>{{con.DTCON_DESCRIPCION}}</td>
-                                                            <td>{{con.DPCNT_DESCRIPCION}}</td>
-                                                            <td>{{con.DPCNT_OPERADORA_DET}}</td>
+                                                            <td style="text-align: left;">{{con.DTCON_DESCRIPCION}}</td>
+                                                            <td style="text-align: left;">{{con.DPCNT_DESCRIPCION}}</td>
+                                                            <td style="text-align: left;">{{con.DPCNT_OPERADORA_DET}}</td>
                                                             <td><input type="checkbox" class="form-check-input" id="chkPrincipal" [checked]="con.DPCNT_PRINCIPAL==1" disabled></td>
                                                             <td>
                                                                 <button type="button " style="float: right;" class="btn btn-outline-danger" id="btnNuevo" title="Eliminar contacto" (click)="confirmarBorrar(con.DPCNT_CODIGO)"><i class="fa fa-trash" style="margin-right: 2px;"></i></button></td>
@@ -272,7 +272,7 @@
                                 </div>
                             </div>
                             <!--STEP 3 DOMICILIARIA-->
-                            <div class="tab-pane fade " id="step2">
+                            <div class="tab-pane fade div-T" id="step2">
                                 <div class="card-body">
                                     <div class="row mb-3">
                                         <div class="col-sm-10">
@@ -340,7 +340,7 @@
 
                             </div>
                             <!--STEP 4 ACADEMICA-->
-                            <div class="tab-pane fade " id="step3">
+                            <div class="tab-pane fade div-T" id="step3">
                                 <div class="card text-center" id="cardEncabezado">
                                     <div style="padding-top: 10px;padding-left: 10px;">
                                         <a class="btn btn-primary" role="button" style="float: left;" title="Añadir instrucción" target="_blank" data-toggle="modal" data-target="#modalNuevaInformacion" (click)="limpiarCamposTit()"><i class="fas fa-plus-circle" style="margin-right: 5px;"></i>Nueva Instrucción</a>
@@ -351,22 +351,22 @@
                                                 <table class="table table-hover" title="Detalle información académica">
                                                     <thead>
                                                         <tr style="background-color:#192A67;">
-                                                            <th scope="col" id="colortext">Nivel</th>
-                                                            <th scope="col" id="colortext">Titulo</th>
-                                                            <th scope="col" id="colortext">Especialidad</th>
-                                                            <th scope="col" id="colortext">Fecha</th>
-                                                            <th scope="col" id="colortext">Adjunto</th>
+                                                            <th>Nivel</th>
+                                                            <th>Titulo</th>
+                                                            <th>Especialidad</th>
+                                                            <th>Fecha</th>
+                                                            <th>Adjunto</th>
                                                             <th></th>
                                                             <th></th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody style="font-size: 12px;">
+                                                    <tbody>
                                                         <tr *ngFor="let ins of instruccion">
-                                                            <td>{{ins.NIVEL}}</td>
-                                                            <td style="text-align: justify;">{{ins.TITULO}}</td>
-                                                            <td>{{ins.ESPECIALIDAD}} </td>
+                                                            <td style="text-align: left;">{{ins.NIVEL}}</td>
+                                                            <td style="text-align: left;">{{ins.TITULO}}</td>
+                                                            <td style="text-align: left;">{{ins.ESPECIALIDAD}} </td>
                                                             <td>{{ins.FECHA}}</td>
-                                                            <td>{{ins.NOMBRE}}</td>
+                                                            <td style="text-align: left;">{{ins.NOMBRE}}</td>
                                                             <td>
                                                                 <a class="btn btn-outline-warning" role="button" title="Editar información" data-toggle="modal" data-target="#modalInformacion" (click)="informacionIntruccion(ins.NIVEL,ins.DMNED_CODIGO,ins.TITULO,ins.DSLTT_CODIGO,ins.ESPECIALIDAD,ins.FECHA,ins.NOMBRE)"><i class="fa fa-edit" style="margin-right: 2px;"></i></a>
                                                             </td>
@@ -383,7 +383,7 @@
                                 </div>
                             </div>
                             <!--STEP 5 ADICIONAL-->
-                            <div class="tab-pane fade " id="step4">
+                            <div class="tab-pane fade div-T" id="step4">
                                 <div class="card-body">
                                     <div class="row mb-3">
                                         <div class="col-sm-12">
@@ -419,7 +419,7 @@
                                         <div class="row mb-3">
                                             <div class="col-sm-12">
                                                 <div class="row">
-                                                    <label class="col-sm-2 col-form-label lblLeft">Nombre del Cónyuge</label>
+                                                    <label class="col-sm-2 col-form-label lblLeft">Nombre del cónyuge</label>
                                                     <div class="col-sm-5">
                                                         <input type="text" class="form-control" placeholder="Nombres y Apellidos" title="Nombres y Apellidos del cónyuge" value="{{nombreCony}}" id="nombreCony">
 
@@ -433,12 +433,10 @@
                                             </div>
                                         </div>
                                         <div class="row mb-3" id="divInstitucion">
-                                            <div class="col-sm-11">
+                                            <div class="col-sm-12">
                                                 <div class="row">
-                                                    <div class="col-sm-6">
-                                                    </div>
-                                                    <label class="col-sm-2 col-form-label lblRight">Institución</label>
-                                                    <div class="col-sm-4">
+                                                    <label class="col-sm-2 col-form-label lblLeft">Trabajo cónyuge</label>
+                                                    <div class="col-sm-5">
                                                         <input type="text" class="form-control" placeholder="Institución" title="Institución trabajo cónyuge" value="{{lugarCony}}" id="trabajoCony">
                                                     </div>
                                                 </div>
@@ -730,9 +728,9 @@
                                 <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
                                     <thead>
                                         <tr style="background-color:#192A67;">
-                                            <th scope="col" id="colortext">Ciudad</th>
-                                            <th scope="col" id="colortext">Parroquia</th>
-                                            <th scope="col" id="colortext"></th>
+                                            <th>Ciudad</th>
+                                            <th>Parroquia</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody style="font-size: 12px;">
