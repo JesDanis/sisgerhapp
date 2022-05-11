@@ -156,7 +156,6 @@ export class PermisosComponent implements OnInit {
   this.dias_adi_no_lab=dias_adi_no_lab
   this.dias_ord_lab=dias_ord_lab
   this.dias_ord_no_lab=dias_ord_no_lab
-  console.log(this.remplazo)
   if(h_in==null){
     $("#horas").hide()
   }else{

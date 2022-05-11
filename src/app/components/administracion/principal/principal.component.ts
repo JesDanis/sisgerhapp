@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild  } from '@angular/core';
 import { Subject } from 'rxjs';
 import { SisgerhAdminService } from 'src/app/services/sisgerh-admin.service';
 import Swal from 'sweetalert2'
 import * as CryptoJS from 'crypto-js';
+import { ModalComponent, ModalModule } from 'ngb-modal';
 
 @Component({
   selector: 'app-principal',
@@ -54,7 +55,6 @@ export class PrincipalComponent implements OnInit {
   DMPER_correo:any
   txtObservacion:any
   constructor(private sisgerhService: SisgerhAdminService) { }
-
   ngOnInit(): void {
     this.sisgerhService.getIPAddress().subscribe((res:any)=>{
       this.getIp=res.ip
@@ -63,7 +63,7 @@ export class PrincipalComponent implements OnInit {
     this.inPer = CryptoJS.AES.decrypt(this.inPer.toString(), 'eeasaPer').toString(CryptoJS.enc.Utf8);
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 5,
+      pageLength: 10,
       info: true,
       processing: true,
       ordering: true,
@@ -85,8 +85,11 @@ export class PrincipalComponent implements OnInit {
   obtenerListado() {
     this.listado = ['']
     this.sisgerhService.obtenerListado().subscribe(r => {
+    let dtInstance = $('#tabla').DataTable();
+
       this.listado = r;
       this.dtTrigger.next();
+        dtInstance.destroy();
     });
   }
   visualizarInformacion(dato: any, nombre: any,dmper:any) {
@@ -110,11 +113,9 @@ export class PrincipalComponent implements OnInit {
       this.obtenerAdicional()
       this.obtenerAdjuntos()
     })
-    console.log(btoa(dmper))
-    console.log((dmper))
     this.sisgerhService.obtenerEmail(btoa(dmper)).subscribe((res:any)=>{
       this.DMPER_correo=res
-      console.log(res)
+      this.DMPER_correo=this.DMPER_correo.correo
     })
   }
   obtenerGeneral() {
@@ -288,12 +289,37 @@ export class PrincipalComponent implements OnInit {
             title: 'Información',
             text: res.MENSAJE
           })
+          var table = $('#tabla').DataTable();
+          table.clear()
+         this.obtenerListado()
         }
       })
     }else{
-      // this.sisgerhService.obtenerEmail().subscribe(res=>{
-      //   console.log(res)
-      // })
+    if(observacion==undefined){
+      $("#txtPorcentaje").focus();
+    }else{
+
+      this.sisgerhService.updateDatos(json).subscribe((res:any)=>{
+
+          Swal.fire({
+            title: 'Información',
+            text: "Se ha enviado un correo con la observación:"+observacion,
+            icon: 'info',
+            showCancelButton: false,
+            confirmButtonColor: '#7066e0',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              var table = $('#tabla').DataTable();
+              table.clear()
+            this.obtenerListado()
+            }
+          })
+      
+    })
+   
+      }
+      
     }
     
   }

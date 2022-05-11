@@ -8,7 +8,7 @@
 
         <div class="card-body">
             <div class="table-responsive">
-                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" title="Detalle empleados">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" title="Detalle empleados" id="tabla">
                     <thead>
                         <tr style="background-color:#192A67;">
                             <th scope="col" id="colortext">Rol</th>
@@ -42,6 +42,7 @@
 <div class="modal fade " id="modalInformacion" tabindex="-1" aria-labelledby="modalInformacionLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
+
             <div class="modal-header" style="background-color: #192A67;">
                 <h5 class="modal-title" id="modalTelefonoLabel" style="font-size: 16px; color: white; ">{{nomnbresEmpleado}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -49,6 +50,7 @@
                   </button>
             </div>
             <div class="modal-body">
+                <!-- <form class="was-validated"> -->
                 <div class="container">
                     <div class="list-group">
                         <div class="col-md-12">
@@ -308,8 +310,8 @@
                                                     <div class="col-sm-4">
                                                         <label class="col-sm-4 col-form-label lblLeft">Vive</label>
                                                         <div class="col-sm-8" style="padding-top: 10px;">
-                                                            <input type="radio" value="siP" name="padre" required [checked]="vivePadre==1" disabled> Si
-                                                            <input type="radio" value="noP" name="padre" required style="margin-left: 20px;" [checked]="vivePadre==0" disabled> No
+                                                            <input type="radio" value="siP" name="padre" [checked]="vivePadre==1" disabled> Si
+                                                            <input type="radio" value="noP" name="padre" style="margin-left: 20px;" [checked]="vivePadre==0" disabled> No
                                                         </div>
                                                     </div>
 
@@ -329,8 +331,8 @@
                                                     <div class="col-sm-4">
                                                         <label class="col-sm-4 col-form-label lblLeft">Vive</label>
                                                         <div class="col-sm-8" style="padding-top: 10px;">
-                                                            <input type="radio" value="siM" name="madre" required [checked]="viveMadre==1" disabled> Si
-                                                            <input type="radio" value="noM" name="madre" required style="margin-left: 20px;" [checked]="viveMadre==0" disabled> No
+                                                            <input type="radio" value="siM" name="madre" [checked]="viveMadre==1" disabled> Si
+                                                            <input type="radio" value="noM" name="madre" style="margin-left: 20px;" [checked]="viveMadre==0" disabled> No
                                                         </div>
                                                     </div>
 
@@ -354,8 +356,8 @@
                                                         <div class="col-sm-4">
                                                             <label class="col-sm-4 col-form-label lblLeft">Vive</label>
                                                             <div class="col-sm-8" style="padding-top: 10px;">
-                                                                <input type="radio" value="siT" name="trab" required [checked]="trabajaCony==1" disabled> Si
-                                                                <input type="radio" value="noT" name="trab" required style="margin-left: 20px;" [checked]="trabajaCony==0" disabled> No
+                                                                <input type="radio" value="siT" name="trab" [checked]="trabajaCony==1" disabled> Si
+                                                                <input type="radio" value="noT" name="trab" style="margin-left: 20px;" [checked]="trabajaCony==0" disabled> No
                                                             </div>
                                                         </div>
 
@@ -383,12 +385,19 @@
                         </div>
                     </div>
                 </div>
+
             </div>
-            <div class="modal-footer ">
-                <input type="text " placeholder="Observación " class="form-control " [(ngModel)]="txtObservacion">
+
+            <div class="modal-footer">
+                <input input type="text " placeholder="Observación " class="form-control " [(ngModel)]="txtObservacion">
                 <button type="button " class="btn btn-primary " data-dismiss="modal" (click)="aprobarInformacion('A','INFORMACION MODIFICADA DESDE SISGERH APP')"><i class="bi bi-hand-thumbs-up"></i> Aprobar</button>
-                <button type="button " class="btn btn-danger " data-dismiss="modal" (click)="aprobarInformacion('R',txtObservacion) "><i class="bi bi-hand-thumbs-down"></i> Rechazar</button>
+                <button type="submit" class="btn btn-danger " data-dismiss="modal" (click)="aprobarInformacion('R',txtObservacion)"><i class=" bi bi-hand-thumbs-down "></i> Rechazar</button>
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="bi bi-x-circle"></i> Cerrar</button>
             </div>
+
+
+
         </div>
     </div>
 </div>

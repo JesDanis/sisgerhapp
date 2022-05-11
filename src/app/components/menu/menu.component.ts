@@ -34,7 +34,6 @@ export class MenuComponent implements OnInit {
     this.sesion=[''];
     this.sisgerhService.obtenerSesion(btoa(inUser)).subscribe(res=>{
     this.sesion=res;
-    console.log(this.sesion)
     this.sesion=this.sesion[0];
     //Obtener DMPER_CODIGO
     this.inPerson=this.sesion.DMPER_CODIGO;

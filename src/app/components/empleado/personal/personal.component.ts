@@ -26,7 +26,6 @@ export class PersonalComponent implements OnInit {
     
   }
   obtenerInformacion(){
-    console.log(Date.now())
     //date:'longDate'
     this.inPer=localStorage.getItem('codPer');
     this.inPer=CryptoJS.AES.decrypt(this.inPer.toString(),'eeasaPer').toString(CryptoJS.enc.Utf8);
