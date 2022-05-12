@@ -27,10 +27,10 @@ export class MenuComponent implements OnInit {
   }
  obtenerSesion(){
    //OBTENCION DE COOKIE
-  let inUser = 'sceli'
+  //let inUser = 'sceli'
     //'sceli' //'wmedina' //'dcadme'//'mchavez'//'jabad'//'//'wachachi'//'jsantamaria';
     
-   //let inUser = this.cookieService.get('user_eeasa');
+   let inUser = this.cookieService.get('user_eeasa');
     this.sesion=[''];
     this.sisgerhService.obtenerSesion(btoa(inUser)).subscribe(res=>{
     this.sesion=res;

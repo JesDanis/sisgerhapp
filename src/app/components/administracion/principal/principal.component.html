@@ -141,17 +141,19 @@
                                                 <div class="row">
                                                     <label class="col-sm-5 col-form-label lblLeft">Tipo</label>
                                                     <div class="col-sm-7">
-                                                        <input type="text" class="form-control" placeholder="Tipo" value="{{discapacidad}}" id="">
+                                                        <input type="text" class="form-control" placeholder="Tipo" value="{{discapacidad}}" id="" disabled>
 
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div>
 
+                                            </div>
                                             <div class="col-sm-6">
                                                 <div class="row">
                                                     <label class="col-sm-5 col-form-label lblLeft">Porcentaje</label>
                                                     <div class="col-sm-7">
-                                                        <input type="text" class="form-control" placeholder="Porcentaje" value="" id="txtPorcentaje" disabled>
+                                                        <input type="text" class="form-control" placeholder="Porcentaje" value="{{porcentaje}} %" id="txtPorcentaje" disabled>
 
                                                     </div>
                                                 </div>
@@ -354,7 +356,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-4">
-                                                            <label class="col-sm-4 col-form-label lblLeft">Vive</label>
+                                                            <label class="col-sm-4 col-form-label lblLeft">Trabaja</label>
                                                             <div class="col-sm-8" style="padding-top: 10px;">
                                                                 <input type="radio" value="siT" name="trab" [checked]="trabajaCony==1" disabled> Si
                                                                 <input type="radio" value="noT" name="trab" style="margin-left: 20px;" [checked]="trabajaCony==0" disabled> No

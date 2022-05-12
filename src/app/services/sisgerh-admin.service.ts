@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SisgerhAdminService {
-  //url: string='http://172.20.0.84:7001/WSSisgerhApp/rest/sisgerh/';
- url: string='http://localhost:7001/WSSisgerhApp/rest/sisgerh/';
+url: string='http://172.20.0.84:7001/WSSisgerhApp/rest/sisgerh/';
+// url: string='http://localhost:7001/WSSisgerhApp/rest/sisgerh/';
 
   req:string='';  
   constructor(private httpClient: HttpClient) { }
@@ -67,4 +67,14 @@ export class SisgerhAdminService {
     this.req=this.url+'selectEmail?inperson='+codPer;
     return this.httpClient.get<string>(this.req);
   }   
+  obtenerDiscapacidad():Observable<String>{
+    this.req = this.url+'obtenerDiscapacidad';
+    return this.httpClient.get<String>(this.req)
+  }
+  send_mail(json:any):Observable<String>{
+    const headers = { 'content-type': 'application/json' };
+    const body = JSON.parse(json);
+    this.req = this.url + 'sendEmail';
+    return this.httpClient.post<String>(this.req, body, { 'headers': headers });
+  }
 }

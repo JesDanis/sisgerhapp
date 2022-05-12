@@ -87,8 +87,8 @@
                                                     <div class="row">
                                                         <label class="col-sm-5 col-form-label lblLeft">Discapacidad</label>
                                                         <div class="col-sm-7">
-                                                            <input type="radio" value="discSi" title="Discapacidad" name="disc" required [checked]="codDiscapacidad!=' '" (click)="discapacidadSi()"> Si
-                                                            <input type="radio" value="discNo" title="Discapacidad" name="disc" required style="margin-left: 20px;" [checked]="codDiscapacidad==' '" (click)="discapacidadNo()"> No
+                                                            <input type="radio" value="discSi" title="Discapacidad" name="disc" [checked]="codDiscapacidad!=' '" (click)="discapacidadSi()"> Si
+                                                            <input type="radio" value="discNo" title="Discapacidad" name="disc" style="margin-left: 20px;" [checked]="codDiscapacidad==' '" (click)="discapacidadNo()"> No
                                                         </div>
                                                     </div>
                                                 </div>
@@ -301,7 +301,7 @@
                                             <div class="row">
                                                 <label class="col-sm-4 col-form-label lblLeft">Referencia</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" placeholder="Referencia" title="Referencia domiciliaria" id="referencia" value="{{referencia}}">
+                                                    <input type="text" class="form-control" required placeholder="Referencia" title="Referencia domiciliaria" id="referencia" value="{{referencia}}">
                                                 </div>
                                             </div>
                                         </div>
@@ -311,7 +311,7 @@
                                             <div class="row">
                                                 <label class="col-sm-4 col-form-label lblLeft">Nº Casa</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" placeholder="Nº Casa" title="Número de casa" id="numCasa" value="{{numCasa}}">
+                                                    <input type="text" class="form-control" required placeholder="Nº Casa" title="Número de casa" id="numCasa" value="{{numCasa}}">
                                                 </div>
                                             </div>
                                         </div>
@@ -321,7 +321,7 @@
                                             <div class="row">
                                                 <label class="col-sm-4 col-form-label lblLeft">Calle Principal</label>
                                                 <div class="col-sm-8">
-                                                    <textarea class="form-control textarea" placeholder="Calle Principal" title="Calle Principal" style="resize: none;" id="callePrincipal">{{callePrin}}</textarea>
+                                                    <textarea class="form-control textarea" required placeholder="Calle Principal" title="Calle Principal" style="resize: none;" id="callePrincipal">{{callePrin}}</textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -331,7 +331,7 @@
                                             <div class="row">
                                                 <label class="col-sm-4 col-form-label lblLeft">Calle Secundaria</label>
                                                 <div class="col-sm-8">
-                                                    <textarea class="form-control textarea" placeholder="Calle Secundaria" title="Calle Secundaria" style="resize: none;" id="calleSegunda">{{calleSec}}</textarea>
+                                                    <textarea class="form-control textarea" required placeholder="Calle Secundaria" title="Calle Secundaria" style="resize: none;" id="calleSegunda">{{calleSec}}</textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -390,12 +390,12 @@
                                             <div class="row">
                                                 <label class="col-sm-2 col-form-label lblLeft">Nombre del padre</label>
                                                 <div class="col-sm-5">
-                                                    <input type="text" class="form-control" placeholder="Nombres y Apellidos" title="Nombres y Apellidos del padre" value="{{nombrePadre}}" id="nombrePadre">
+                                                    <input type="text" class="form-control" required placeholder="Nombres y Apellidos" title="Nombres y Apellidos del padre" value="{{nombrePadre}}" id="nombrePadre">
                                                 </div>
                                                 <label class="col-sm-2 col-form-label lblRight">Vive</label>
                                                 <div class="col-sm-2" style="padding-top: 10px;">
-                                                    <input type="radio" value="siP" name="padre" required [checked]="vivePadre==1"> Si
-                                                    <input type="radio" value="noP" name="padre" required style="margin-left: 20px;" [checked]="vivePadre==0"> No
+                                                    <input type="radio" value="siP" name="padre" [checked]="vivePadre==1"> Si
+                                                    <input type="radio" value="noP" name="padre" style="margin-left: 20px;" [checked]="vivePadre==0"> No
                                                 </div>
                                             </div>
                                         </div>
@@ -405,12 +405,12 @@
                                             <div class="row">
                                                 <label class="col-sm-2 col-form-label lblLeft">Nombre de la madre</label>
                                                 <div class="col-sm-5">
-                                                    <input type="text" class="form-control" placeholder="Nombres y Apellidos" title="Nombres y Apellidos de la madre" value="{{nombreMadre}}" id="nombreMadre">
+                                                    <input type="text" class="form-control" required placeholder="Nombres y Apellidos" title="Nombres y Apellidos de la madre" value="{{nombreMadre}}" id="nombreMadre">
                                                 </div>
                                                 <label class="col-sm-2 col-form-label lblRight">Vive</label>
                                                 <div class="col-sm-2" style="padding-top: 10px;">
-                                                    <input type="radio" value="siM" name="madre" required [checked]="viveMadre==1"> Si
-                                                    <input type="radio" value="noM" name="madre" required style="margin-left: 20px;" [checked]="viveMadre==0"> No
+                                                    <input type="radio" value="siM" name="madre" [checked]="viveMadre==1"> Si
+                                                    <input type="radio" value="noM" name="madre" style="margin-left: 20px;" [checked]="viveMadre==0"> No
                                                 </div>
                                             </div>
                                         </div>
@@ -426,8 +426,8 @@
                                                     </div>
                                                     <label class="col-sm-2 col-form-label lblRight">Trabaja</label>
                                                     <div class="col-sm-2" style="padding-top: 10px;">
-                                                        <input type="radio" value="siT" name="trab" required [checked]="trabajaCony==1" (click)="trabajaSi()"> Si
-                                                        <input type="radio" value="noT" name="trab" required style="margin-left: 20px;" [checked]="trabajaCony==0" (click)="trabajaNo()"> No
+                                                        <input type="radio" value="siT" name="trab" [checked]="trabajaCony==1" (click)="trabajaSi()"> Si
+                                                        <input type="radio" value="noT" name="trab" style="margin-left: 20px;" [checked]="trabajaCony==0" (click)="trabajaNo()"> No
                                                     </div>
                                                 </div>
                                             </div>
@@ -475,6 +475,7 @@
 
         </div>
     </div>
+
 </div>
 
 
@@ -513,7 +514,7 @@
                                 <label class="texto">Descripción</label>
                             </div>
                             <div class="col-md-6 pr-1 col-6">
-                                <input type="text" class="form-control" placeholder="Descripción" required title="Descripción" value="{{descripcion}}" id="mdlDescripcion">
+                                <input type="text" class="form-control" placeholder="Descripción" title="Descripción" value="{{descripcion}}" id="mdlDescripcion">
                             </div>
                         </div>
                         <div class="row" style="padding-top: 10px;padding-bottom: 10px;" id="mdlOperadora">

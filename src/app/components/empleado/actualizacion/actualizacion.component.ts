@@ -171,7 +171,7 @@ export class ActualizacionComponent implements OnInit {
     this.datos = JSON.parse(contenido + '}');
     this.lstGeneral = this.datos["GENERAL"]
     this.codEstadoCivil = this.lstGeneral.DMPER_ESTADO_CIVIL
-    this.codEtnia = this.lstGeneral.DMETI_CODIGO
+    this.codEtnia = this.lstGeneral.DMETI_CODIGO 
     this.genero = this.lstGeneral.DMPER_GENERO
     this.tipoSang = this.lstGeneral.DMGTS_CODIGO
     this.codDiscapacidad = this.lstGeneral.DMDSC_CODIGO
@@ -906,7 +906,6 @@ export class ActualizacionComponent implements OnInit {
     let DMDSC_CODIGO
     let DMGDS_PORCENTAJE
     let jsonDis
-    console.log(discapacidad)
     if (discapacidad == 'discNo') {
       DMDSC_CODIGO = ' '
       DMGDS_PORCENTAJE = 0

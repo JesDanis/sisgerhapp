@@ -22,8 +22,8 @@ import { Adjunto } from '../models/adjunto';
   providedIn: 'root'
 })
 export class SisgerhMovilService {
-//url: string='http://172.20.0.84:7001/WSSisgerhApp/rest/sisgerh/';
-url: string='http://localhost:7001/WSSisgerhApp/rest/sisgerh/';
+url: string='http://172.20.0.84:7001/WSSisgerhApp/rest/sisgerh/';
+//url: string='http://localhost:7001/WSSisgerhApp/rest/sisgerh/';
 req:string='';  
 constructor(private httpClient: HttpClient) { }
 /**

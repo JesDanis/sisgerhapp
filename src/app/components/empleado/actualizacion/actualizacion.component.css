@@ -164,7 +164,7 @@
     .div-T {
         overflow-x: scroll;
         overflow-y: scroll;
-        height: 475px
+        height: 240px
     }
 }
 
@@ -173,7 +173,7 @@
     .div-T {
         overflow-x: scroll;
         overflow-y: scroll;
-        height: 520px
+        height: 300px
     }
 }
 
@@ -182,7 +182,7 @@
     .div-T {
         overflow-x: scroll;
         overflow-y: scroll;
-        height: 670px
+        height: 500px
     }
 }
 
@@ -244,7 +244,7 @@
     .div-T {
         overflow-x: scroll;
         overflow-y: scroll;
-        height: 470px
+        height: 400px
     }
 }
 
@@ -252,6 +252,6 @@
     .div-T {
         overflow-x: scroll;
         overflow-y: scroll;
-        height: 700px
+        height: 800px
     }
 }

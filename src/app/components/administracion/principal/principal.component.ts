@@ -3,7 +3,6 @@ import { Subject } from 'rxjs';
 import { SisgerhAdminService } from 'src/app/services/sisgerh-admin.service';
 import Swal from 'sweetalert2'
 import * as CryptoJS from 'crypto-js';
-import { ModalComponent, ModalModule } from 'ngb-modal';
 
 @Component({
   selector: 'app-principal',
@@ -54,6 +53,7 @@ export class PrincipalComponent implements OnInit {
   inPer:any
   DMPER_correo:any
   txtObservacion:any
+  porcentaje:any
   constructor(private sisgerhService: SisgerhAdminService) { }
   ngOnInit(): void {
     this.sisgerhService.getIPAddress().subscribe((res:any)=>{
@@ -117,13 +117,15 @@ export class PrincipalComponent implements OnInit {
       this.DMPER_correo=res
       this.DMPER_correo=this.DMPER_correo.correo
     })
+    
+    
   }
   obtenerGeneral() {
     if (this.lstGeneraral.DMPER_ESTADO_CIVIL == 1) {
       this.estCivil = "CASADO"
     } else if (this.lstGeneraral.DMPER_ESTADO_CIVIL == 0) {
       this.estCivil = "SOLTERO"
-    } else if (this.lstGeneraral.DMPER_ESTADO_CIVIL == 2) {
+    } else if (this.lstGeneraral.DMPER_ESTADO_CIVIL == 2) { 
       this.estCivil = "DIVORCIADO"
     } else if (this.lstGeneraral.DMPER_ESTADO_CIVIL == 3) {
       this.estCivil = "UNIÓN LIBRE"
@@ -142,10 +144,18 @@ export class PrincipalComponent implements OnInit {
       this.tipoSang = res[0].DMGTS_OBSERVACION
     })
     this.discapacidad = this.lstGeneraral.DMDSC_CODIGO
+    this.porcentaje=this.lstGeneraral.DMGDS_PORCENTAJE
+    
     if (this.discapacidad == ' ') {
       $("#divDiscapacidad").hide()
     } else {
       $("#divDiscapacidad").show()
+      this.sisgerhService.obtenerDiscapacidad().subscribe((res:any)=>{
+        for(var i= 0;i<=res.length;i++){
+          if(res[i].DMDSC_CODIGO== this.discapacidad)
+          this.discapacidad=res[i].DMDSC_OBSERVACION
+        }
+      })
     }
 
   }
@@ -281,6 +291,7 @@ export class PrincipalComponent implements OnInit {
     "				\"OPERACION\":\"UPDATE\"\r\n" + 
     "				}\r\n" + 
     "}"
+   
     if(estado=='A') {
       this.sisgerhService.updateDatos(json).subscribe((res:any)=>{
         if (res.MENSAJE = "El registro fue actualizado correctamente") {
@@ -303,7 +314,7 @@ export class PrincipalComponent implements OnInit {
 
           Swal.fire({
             title: 'Información',
-            text: "Se ha enviado un correo con la observación:"+observacion,
+            text: "Se ha enviado un correo con la observación",
             icon: 'info',
             showCancelButton: false,
             confirmButtonColor: '#7066e0',
@@ -314,10 +325,17 @@ export class PrincipalComponent implements OnInit {
               table.clear()
             this.obtenerListado()
             }
-          })
-      
+          })   
     })
-   
+    let json_email="{\r\n" + 
+    "    \"ENVIO_CORREO\":{\r\n" + 
+    "	  	\"CORREO\":\""+this.DMPER_correo+"\",\r\n" + 
+    "	  	\"OBSERVACION\":\""+observacion+"\"\r\n" + 
+    "	  	}\r\n" + 
+    "}"
+    this.sisgerhService.send_mail(json_email).subscribe((res:any)=>{
+      console.log(res)
+    })
       }
       
     }
