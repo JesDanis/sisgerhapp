@@ -372,7 +372,9 @@ tablasTotales.push([
  pdf.add(new Table(tablasTotales).margin([400, 0, 0, 0]).headerRows(0).layout('headerLineOnly').widths([80,30]).end)
 pdf.add( pdf.ln(1));
  //pdf.create().open();
-  pdf.create().download('rol_pagos');
+ // pdf.create().download(this.nombreNomina);
+  let win:any = window.open('', '_blank');
+  pdf.create().open({}, win);
   }
 }
 }

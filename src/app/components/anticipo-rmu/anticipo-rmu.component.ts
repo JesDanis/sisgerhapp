@@ -76,7 +76,7 @@ export class AnticipoRmuComponent implements OnInit {
           title: 'Información',
           text: 'No cuenta con Anticipos'
         })
-        this.route.navigate(['/empleado']);
+        this.route.navigate(['/laboral']);
       }else{
         $("#btnImprimir").show()
         $("#divDetalles").show()
@@ -182,6 +182,8 @@ for (let index = 0; index < this.anticipoDet.length; index++)
  pdf.add(new Table(tablaPagos).margin([-20, 0, 0, 0]).headerRows(1).fontSize(7).layout('lightHorizontalLines').widths([10,35,46,17,30,30,30,42,48,100]).end)
  pdf.add( pdf.ln(1));
  //pdf.create().open();
- pdf.create().download('anticipo');
+ let win:any = window.open('', '_blank');
+pdf.create().open({}, win);
+ //pdf.create().download('anticipo');
  }
 }

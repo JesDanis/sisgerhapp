@@ -19,7 +19,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ActualizacionComponent implements OnInit {
   inUser: any
-  txtAlerta: any
+  txtAlerta: any 
   actual: any
   informacion: any;
   inPer: any
@@ -415,7 +415,7 @@ export class ActualizacionComponent implements OnInit {
     let op = "9"
     let con = "9"
     this.tipo = $("#contacto").val();
-    if (this.tipo == 9) {
+    if (this.tipo == 9) { 
       $("#divAlert").show()
       this.txtAlerta = "Debe seleccionar un tipo de contacto"
       $("#divAlert").fadeTo(2000, 500).slideUp(400, function () {
@@ -431,7 +431,7 @@ export class ActualizacionComponent implements OnInit {
       }
       this.descripcion = String($("#mdlDescripcion").val())
       this.operadora = Number($("#slcOperadora").val());
-      if (this.operadora == 9) {
+      if (this.operadora == 9 && this.tipo=='DTCON2') {
         $("#divAlert").show()
         this.txtAlerta = "Debe seleccionar un tipo de operadora"
         $("#divAlert").fadeTo(2000, 500).slideUp(400, function () {
@@ -444,6 +444,7 @@ export class ActualizacionComponent implements OnInit {
           $("#divAlert").fadeTo(2000, 500).slideUp(400, function () {
             $("divAlert").slideUp(500);
           });
+
         } else {
           if (this.operadora == 1) {
             op = "CNT"
@@ -463,13 +464,17 @@ export class ActualizacionComponent implements OnInit {
           } else {
             this.principal = 0
           }
+          let tipo
+          if(this.tipo=='DTCON5'){
+           op=""
+          }
           this.contactos.push({ "DPCNT_CODIGO": "", "DPCNT_DESCRIPCION": this.descripcion, "DPCNT_OPERADORA": this.operadora, "DPCNT_OPERADORA_DET": op, "DPCNT_PRINCIPAL": this.principal, "DTCON_CODIGO": this.tipo, "DTCON_DESCRIPCION": con })
         }
       }
     }
   }
   close() {
-    if (this.operadora == 9) {
+    if (this.operadora == 9 && this.tipo=='DTCON2')   {
       $("#noCerrar").hide()
       $("#cerrarModal").show()
 

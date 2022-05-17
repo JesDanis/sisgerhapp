@@ -32,8 +32,11 @@ export class PersonalComponent implements OnInit {
     
     this.informacion=[''];
     this.sisgerhService.obternerInformacionPer(btoa(this.inPer)).subscribe(res=>{
+
       this.informacion=res;
       this.informacion=this.informacion[0];
+      console.log(this.informacion.FECHA_NACIMIENTO)
+
       var fecha=this.informacion.FECHA_NACIMIENTO
       var splitted = fecha.split("/", 3); 
       this.fecha=splitted[1]+'-'+splitted[0]+'-'+splitted[2]
@@ -43,6 +46,7 @@ export class PersonalComponent implements OnInit {
       const convertAge = new Date(fecha_nac);
       const timeDiff = Math.abs(Date.now() - convertAge.getTime());
       this.edad = Math.floor((timeDiff / (1000 * 3600 * 24))/365);
+      console.log(this.edad)
       this.fecha=this.fecha.toUpperCase()
       this.direccion=this.informacion.LUGAR_DOMICILIO+'\n'+this.informacion.DIR_DOMICILIO
       if(this.informacion.DISCAPACIDAD==" "){

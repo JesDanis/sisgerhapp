@@ -27,11 +27,14 @@ export class MenuComponent implements OnInit {
   }
  obtenerSesion(){
    //OBTENCION DE COOKIE
-  //let inUser = 'sceli'
+   //let inUser = 'wmedi'
     //'sceli' //'wmedina' //'dcadme'//'mchavez'//'jabad'//'//'wachachi'//'jsantamaria';
     
-   let inUser = this.cookieService.get('user_eeasa');
+  // let inUser = this.cookieService.get('user_eeasa');
+   let User = this.cookieService.set('user_eeasa','arodriguez');
     this.sesion=[''];
+  let inUser = this.cookieService.get('user_eeasa');
+
     this.sisgerhService.obtenerSesion(btoa(inUser)).subscribe(res=>{
     this.sesion=res;
     this.sesion=this.sesion[0];
@@ -70,7 +73,13 @@ export class MenuComponent implements OnInit {
     }
   }
   salir(){
-    return 'http://172.20.0.84:7001/intranet'
+    this.cookieService.set('user_eeasa','')
+    this.cookieService.delete('user_eeasa')
+    localStorage.clear()
+    // window.location.reload();
+     
+    // window.location.href = 'https://app.eeasa.com.ec/intranet#/';
+     window.location.href = 'http://172.20.0.84:7001/intranet'
   }
   }
   

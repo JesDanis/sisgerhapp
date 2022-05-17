@@ -206,7 +206,10 @@ tablaAsistencia.push(['','','','',''])
 pdf.add(new Table(tablaAsistencia).margin([-20, 0, 0, 0]).headerRows(1).fontSize(8).layout('lightHorizontalLines').widths([20,60,25,175,200]).end)
 pdf.add( pdf.ln(1));
 //pdf.create().open();
-pdf.create().download('asistencia');
+//dfMake.createPdf(docDefinition).open({}, window);
+//pdf.create().download('asistencia');
+let win:any = window.open('', '_blank');
+pdf.create().open({}, win);
 }
 }
 cambio(){

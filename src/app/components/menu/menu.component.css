@@ -75,3 +75,10 @@ body {}
     background-color: #25356F;
     border-bottom-color: #25356F;
 }
+
+.active_admin {
+    color: #4B93FE !important;
+    /* Note: You could also use a custom theme */
+    /* background-color: #25356F; */
+    border-bottom-color: #25356F;
+}

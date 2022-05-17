@@ -364,7 +364,12 @@
                                                         <tr *ngFor="let ins of instruccion">
                                                             <td style="text-align: left;">{{ins.NIVEL}}</td>
                                                             <td style="text-align: left;">{{ins.TITULO}}</td>
-                                                            <td style="text-align: left;">{{ins.ESPECIALIDAD}} </td>
+                                                            <div *ngIf="ins.ESPECIALIDAD =='null'">
+                                                                <td> </td>
+                                                            </div>
+                                                            <div *ngIf="ins.ESPECIALIDAD !='null'">
+                                                                <td style="text-align: left;">{{ins.ESPECIALIDAD}} </td>
+                                                            </div>
                                                             <td>{{ins.FECHA}}</td>
                                                             <td style="text-align: left;">{{ins.NOMBRE}}</td>
                                                             <td>

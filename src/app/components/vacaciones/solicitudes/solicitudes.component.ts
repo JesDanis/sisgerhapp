@@ -74,10 +74,14 @@ export class SolicitudesComponent implements OnInit {
 
   let file = new File([u8arr], response[0].NOMBRE, {type:'application/pdf'});
   var url = window.URL.createObjectURL(file);
-  var anchor = document.createElement("a");
-  anchor.download = response[0].NOMBRE;
-  anchor.href = url;
-  anchor.click();
+  var a = document.createElement("a");
+  a.href = url;
+  a.target = '_blank';
+  a.click();
+  // var anchor = document.createElement("a");
+  // anchor.download = response[0].NOMBRE;
+  // anchor.href = url;
+  // anchor.click();
       }
      
     })

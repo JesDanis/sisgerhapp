@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild  } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { SisgerhAdminService } from 'src/app/services/sisgerh-admin.service';
 import Swal from 'sweetalert2'
@@ -12,7 +12,7 @@ import * as CryptoJS from 'crypto-js';
 export class PrincipalComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
-  inUser:any
+  inUser: any
   listado: any
   nomnbresEmpleado: any
   datos: any
@@ -42,22 +42,27 @@ export class PrincipalComponent implements OnInit {
   nombreCony: any
   trabajaCony: any
   lugarCony: any
-  cedula:any
-  nombreCedula:any
-  papeleta:any
-  nombrePapeleta:any
-  disc:any
-  nombreDisc:any
-  getIp:any
-  codigo:any
-  inPer:any
-  DMPER_correo:any
-  txtObservacion:any
-  porcentaje:any
+  cedula: any
+  nombreCedula: any
+  papeleta: any
+  nombrePapeleta: any
+  disc: any
+  nombreDisc: any
+  getIp: any
+  codigo: any
+  inPer: any
+  DMPER_correo: any
+  txtObservacion: any
+  porcentaje: any
+  txtAlerta: any
+
   constructor(private sisgerhService: SisgerhAdminService) { }
   ngOnInit(): void {
-    this.sisgerhService.getIPAddress().subscribe((res:any)=>{
-      this.getIp=res.ip
+    $("#divAlert").hide()
+    $("#noCerrar").show()
+    $("#cerrarModal").hide()
+    this.sisgerhService.getIPAddress().subscribe((res: any) => {
+      this.getIp = res.ip
     })
     this.inPer = localStorage.getItem('codPer');
     this.inPer = CryptoJS.AES.decrypt(this.inPer.toString(), 'eeasaPer').toString(CryptoJS.enc.Utf8);
@@ -85,16 +90,17 @@ export class PrincipalComponent implements OnInit {
   obtenerListado() {
     this.listado = ['']
     this.sisgerhService.obtenerListado().subscribe(r => {
-    let dtInstance = $('#tabla').DataTable();
+      let dtInstance = $('#tabla').DataTable();
 
       this.listado = r;
       this.dtTrigger.next();
-        dtInstance.destroy();
+      dtInstance.destroy();
     });
   }
-  visualizarInformacion(dato: any, nombre: any,dmper:any) {
+  visualizarInformacion(dato: any, nombre: any, dmper: any) {
+    this.txtObservacion = ''
     this.nomnbresEmpleado = nombre
-    this.codigo=dato
+    this.codigo = dato
     this.lstGeneraral = ['']
     this.lstContactos = ['']
     this.sisgerhService.obtenerDatos(dato).subscribe((res: any) => {
@@ -112,25 +118,31 @@ export class PrincipalComponent implements OnInit {
       this.obtenerInstruccion()
       this.obtenerAdicional()
       this.obtenerAdjuntos()
+
     })
-    this.sisgerhService.obtenerEmail(btoa(dmper)).subscribe((res:any)=>{
-      this.DMPER_correo=res
-      this.DMPER_correo=this.DMPER_correo.correo
+    this.sisgerhService.obtenerEmail(btoa(dmper)).subscribe((res: any) => {
+      this.DMPER_correo = res
+      this.DMPER_correo = this.DMPER_correo.correo
     })
-    
-    
+
+
   }
   obtenerGeneral() {
     if (this.lstGeneraral.DMPER_ESTADO_CIVIL == 1) {
       this.estCivil = "CASADO"
     } else if (this.lstGeneraral.DMPER_ESTADO_CIVIL == 0) {
       this.estCivil = "SOLTERO"
-    } else if (this.lstGeneraral.DMPER_ESTADO_CIVIL == 2) { 
+    } else if (this.lstGeneraral.DMPER_ESTADO_CIVIL == 2) {
       this.estCivil = "DIVORCIADO"
     } else if (this.lstGeneraral.DMPER_ESTADO_CIVIL == 3) {
       this.estCivil = "UNIÓN LIBRE"
     } else if (this.lstGeneraral.DMPER_ESTADO_CIVIL == 4) {
       this.estCivil = "VIUDO"
+    }
+    if (this.lstGeneraral.DMPER_ESTADO_CIVIL == 1 || this.lstGeneraral.DMPER_ESTADO_CIVIL == 3) {
+      $("#divEstadoCivil").show()
+    } else {
+      $("#divEstadoCivil").hide()
     }
     if (this.lstGeneraral.DMPER_GENERO == 0) {
       this.genero = "MASCULINO"
@@ -144,16 +156,16 @@ export class PrincipalComponent implements OnInit {
       this.tipoSang = res[0].DMGTS_OBSERVACION
     })
     this.discapacidad = this.lstGeneraral.DMDSC_CODIGO
-    this.porcentaje=this.lstGeneraral.DMGDS_PORCENTAJE
-    
+    this.porcentaje = this.lstGeneraral.DMGDS_PORCENTAJE
+
     if (this.discapacidad == ' ') {
       $("#divDiscapacidad").hide()
     } else {
       $("#divDiscapacidad").show()
-      this.sisgerhService.obtenerDiscapacidad().subscribe((res:any)=>{
-        for(var i= 0;i<=res.length;i++){
-          if(res[i].DMDSC_CODIGO== this.discapacidad)
-          this.discapacidad=res[i].DMDSC_OBSERVACION
+      this.sisgerhService.obtenerDiscapacidad().subscribe((res: any) => {
+        for (var i = 0; i <= res.length; i++) {
+          if (res[i].DMDSC_CODIGO == this.discapacidad)
+            this.discapacidad = res[i].DMDSC_OBSERVACION
         }
       })
     }
@@ -217,27 +229,27 @@ export class PrincipalComponent implements OnInit {
       this.lugarCony = ""
     }
   }
-  obtenerAdjuntos(){
-    let v=this.lstAdjuntos
+  obtenerAdjuntos() {
+    let v = this.lstAdjuntos
     //DCFTD13
     for (let index = 0; index < v.length; index++) {
-      if(v[index].DCFTD_CODIGO=="DCFTD3"){
-        this.cedula= this.lstAdjuntos[index].DMDAJ_DOCUMENTO
-        this.nombreCedula= this.lstAdjuntos[index].DMDAJ_NOMBRE
+      if (v[index].DCFTD_CODIGO == "DCFTD3") {
+        this.cedula = this.lstAdjuntos[index].DMDAJ_DOCUMENTO
+        this.nombreCedula = this.lstAdjuntos[index].DMDAJ_NOMBRE
 
       }
-      if(v[index].DCFTD_CODIGO=="DCFTD13"){
-        this.papeleta= this.lstAdjuntos[index].DMDAJ_DOCUMENTO
-        this.nombrePapeleta=this.lstAdjuntos[index].DMDAJ_NOMBRE
+      if (v[index].DCFTD_CODIGO == "DCFTD13") {
+        this.papeleta = this.lstAdjuntos[index].DMDAJ_DOCUMENTO
+        this.nombrePapeleta = this.lstAdjuntos[index].DMDAJ_NOMBRE
       }
-      if(v[index].DCFTD_CODIGO=="DCFTD7"){
-        this.disc= this.lstAdjuntos[index].DMDAJ_DOCUMENTO
-        this.nombreDisc=this.lstAdjuntos[index].DMDAJ_NOMBRE
+      if (v[index].DCFTD_CODIGO == "DCFTD7") {
+        this.disc = this.lstAdjuntos[index].DMDAJ_DOCUMENTO
+        this.nombreDisc = this.lstAdjuntos[index].DMDAJ_NOMBRE
       }
     }
   }
   verAdjunto(adjunto: any, nombre: any) {
-    if (adjunto == null || adjunto=="undefined" || adjunto=="null") {
+    if (adjunto == null || adjunto == "undefined" || adjunto == "null") {
       Swal.fire({
         icon: 'info',
         title: 'Información',
@@ -262,38 +274,50 @@ export class PrincipalComponent implements OnInit {
 
 
   }
-  verAdjuntoCedula(){
+  verAdjuntoCedula() {
 
-    this.verAdjunto(this.cedula,this.nombreCedula)
+    this.verAdjunto(this.cedula, this.nombreCedula)
   }
-  verAdjuntoPapeleta(){
-    this.verAdjunto(this.papeleta,this.nombrePapeleta)
+  verAdjuntoPapeleta() {
+    this.verAdjunto(this.papeleta, this.nombrePapeleta)
   }
-  verAdjuntoDisc(){
-    this.verAdjunto(this.disc,this.nombreDisc)
+  verAdjuntoDisc() {
+    this.verAdjunto(this.disc, this.nombreDisc)
 
   }
-  
-  aprobarInformacion(estado:any,observacion:any){
+
+  aprobarInformacion(estado: any, observacion: any) {
     this.inUser = localStorage.getItem('user');
     this.inUser = CryptoJS.AES.decrypt(this.inUser.toString(), 'eeasaPer').toString(CryptoJS.enc.Utf8);
     //
-    let json="{\r\n" + 
-    "    \"DRI_MA_APP\":{\"DMAPP_CODIGO\":\""+this.codigo+"\", \r\n" + 
-    "				\"DMPER_CODIGO\":\""+this.inPer+"\",\r\n" + 
-    "				\"DMAPP_ESTADO_SUBIDA\":\""+estado+"\",  \r\n" + 
-    "				\"DMAPP_OBSERVACION\":\""+observacion+"\"\r\n" + 
-    "	},\r\n" + 
-    "    \"AUDITORIA\": {\r\n" + 
-    "        \"PROYECTO\":\"SISGERH_APP\", \r\n" + 
-    "				\"HOST\":\""+ this.getIp+"\",  \r\n" + 
-    "				\"USUARIO\":\""+this.inUser+"\", \r\n" + 
-    "				\"OPERACION\":\"UPDATE\"\r\n" + 
-    "				}\r\n" + 
-    "}"
-   
-    if(estado=='A') {
-      this.sisgerhService.updateDatos(json).subscribe((res:any)=>{
+    let json = "{\r\n" +
+      "    \"DRI_MA_APP\":{\"DMAPP_CODIGO\":\"" + this.codigo + "\", \r\n" +
+      "				\"DMPER_CODIGO\":\"" + this.inPer + "\",\r\n" +
+      "				\"DMAPP_ESTADO_SUBIDA\":\"" + estado + "\",  \r\n" +
+      "				\"DMAPP_OBSERVACION\":\"" + observacion + "\"\r\n" +
+      "	},\r\n" +
+      "    \"AUDITORIA\": {\r\n" +
+      "        \"PROYECTO\":\"SISGERH_APP\", \r\n" +
+      "				\"HOST\":\"" + this.getIp + "\",  \r\n" +
+      "				\"USUARIO\":\"" + this.inUser + "\", \r\n" +
+      "				\"OPERACION\":\"UPDATE\"\r\n" +
+      "				}\r\n" +
+      "}"
+    let json_email_rechazar = "{\r\n" +
+      "    \"ENVIO_CORREO\":{\r\n" +
+      "	  	\"CORREO\":\"" + this.DMPER_correo + "\",\r\n" +
+      "	  	\"PERSONA\":\"" + this.nomnbresEmpleado + "\",\r\n" +
+      "	  	\"OBSERVACION\":\"" + observacion + "\"\r\n" +
+      "	  	}\r\n" +
+      "}"
+    let json_email_aprobar = "{\r\n" +
+      "    \"ENVIO_CORREO\":{\r\n" +
+      "	  	\"CORREO\":\"" + this.DMPER_correo + "\",\r\n" +
+      "	  	\"PERSONA\":\"" + this.nomnbresEmpleado + "\"\r\n" +
+      "	  	}\r\n" +
+      "}"
+    if (estado == 'A') {
+      this.sisgerhService.updateDatos(json).subscribe((res: any) => {
         if (res.MENSAJE = "El registro fue actualizado correctamente") {
           Swal.fire({
             icon: 'info',
@@ -302,15 +326,20 @@ export class PrincipalComponent implements OnInit {
           })
           var table = $('#tabla').DataTable();
           table.clear()
-         this.obtenerListado()
+          this.obtenerListado()
         }
       })
-    }else{
-    if(observacion==undefined){
-      $("#txtPorcentaje").focus();
-    }else{
-
-      this.sisgerhService.updateDatos(json).subscribe((res:any)=>{
+      this.sisgerhService.send_mail_aprobar(json_email_aprobar).subscribe((res: any) => {
+        console.log(res)
+      })
+    } else {
+      if (observacion == '' || observacion==undefined) {
+        this.txtAlerta = "Debe ingresar una observación"
+        $("#divAlert").fadeTo(2000, 500).slideUp(400, function () {
+          $("divAlert").slideUp(500);
+        });
+      } else {
+        this.sisgerhService.updateDatos(json).subscribe((res: any) => {
 
           Swal.fire({
             title: 'Información',
@@ -323,22 +352,27 @@ export class PrincipalComponent implements OnInit {
             if (result.isConfirmed) {
               var table = $('#tabla').DataTable();
               table.clear()
-            this.obtenerListado()
+              this.obtenerListado()
             }
-          })   
-    })
-    let json_email="{\r\n" + 
-    "    \"ENVIO_CORREO\":{\r\n" + 
-    "	  	\"CORREO\":\""+this.DMPER_correo+"\",\r\n" + 
-    "	  	\"OBSERVACION\":\""+observacion+"\"\r\n" + 
-    "	  	}\r\n" + 
-    "}"
-    this.sisgerhService.send_mail(json_email).subscribe((res:any)=>{
-      console.log(res)
-    })
+          })
+        })
+        this.sisgerhService.send_mail_rechazar(json_email_rechazar).subscribe((res: any) => {
+          console.log(res)
+        })
       }
-      
+
+
     }
-    
+  }
+  close() {
+    if (this.txtObservacion!=undefined)   {
+      $("#noCerrar").hide()
+      $("#cerrarModal").show()
+
+    } else {
+      $("#cerrarModal").show()
+      $("#noCerrar").hide()
+
+    }
   }
 }

@@ -134,15 +134,31 @@ export class PermisosComponent implements OnInit {
 
   let file = new File([u8arr], response[0].NOMBRE, {type:'application/pdf'});
   var url = window.URL.createObjectURL(file);
-  var anchor = document.createElement("a");
-  anchor.download = response[0].NOMBRE;
-  anchor.href = url;
-  anchor.click();
+  var a = document.createElement("a");
+  a.href = url;
+  a.target = '_blank';
+  a.click();
+  // var anchor = document.createElement("a");
+  // anchor.download = response[0].NOMBRE;
+  // anchor.href = url;
+  // anchor.click();
       }
      
     })
   }
-  obtenerInformacion(cod_adj:string,cod:string,h_in:string,h_fin:string,h_t:string,dias_sol:string,dias_per:string,mod:string,remp:string,dias_adi_lab:string,dias_adi_no_lab:string,dias_ord_lab:string,dias_ord_no_lab:string){
+  obtenerInformacion(cod_adj:string,cod:string
+    ,h_in:string,
+    h_fin:string,
+    h_t:string,
+    dias_sol:string,
+    dias_per:string,
+    mod:string,
+    remp:string,
+    dias_ord_lab:string,
+    dias_ord_no_lab:string,
+    dias_adi_lab:string,
+    dias_adi_no_lab:string
+    ){
   this.codigo=cod
   this.cod_adj=cod_adj
   this.hora_inicio=h_in
