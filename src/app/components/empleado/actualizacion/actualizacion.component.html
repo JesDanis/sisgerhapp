@@ -11,7 +11,13 @@
     </div> -->
     <div class="card text-center" id="cardEncabezado" style="height:100%;">
         <div style="background-color: #eaebef">
-            <p style="text-align: center; color: #192A67; font-size: 24px;">Actualización de <strong>información</strong></p>
+            <p style="text-align: center; color: #192A67; font-size: 24px; padding-top: 10px;">Actualización de <strong>información</strong>
+                <button id="procesandoBtn" type="button" class="btn btn-primary" disabled style="float: right;">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Procesando...
+                    </button>
+                <button type="submit" class="btn btn-success btn-round" (click)="actualizar()" title="Actualizar información" style="float: right;"><i class="bi bi-pencil-square"></i> Actualizar</button>
+            </p>
         </div>
         <div class="">
             <div class="container-fluid" style="padding-top: 10px">
@@ -460,22 +466,15 @@
             </div>
             <div class="card-footer text-center" style=" text-align: center;">
 
-                <div class="col-sm-6" style=" display: inline-block;">
+                <!-- <div class="col-sm-6" style=" display: inline-block;">
                     <div class="row">
                         <div class="col-sm-4">
-                            <button type="submit" class="btn btn-success btn-round" (click)="actualizar()" title="Actualizar información"><i class="bi bi-pencil-square"></i> Actualizar</button>
                         </div>
                         <div class="col-sm-4">
                             <button id="cancelarBtn" type="button" class="btn btn-danger" (click)="cancelar()"><i class="far fa-times-circle mr-2"></i> Salir</button>
                         </div>
-                        <div class="col-sm-4">
-                            <button id="procesandoBtn" type="button" class="btn btn-primary" disabled>
-                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                            Procesando...
-                            </button>
-                        </div>
                     </div>
-                </div>
+                </div> -->
             </div>
 
         </div>

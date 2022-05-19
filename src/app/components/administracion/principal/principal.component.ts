@@ -91,7 +91,6 @@ export class PrincipalComponent implements OnInit {
     this.listado = ['']
     this.sisgerhService.obtenerListado().subscribe(r => {
       let dtInstance = $('#tabla').DataTable();
-
       this.listado = r;
       this.dtTrigger.next();
       dtInstance.destroy();
@@ -303,19 +302,17 @@ export class PrincipalComponent implements OnInit {
       "				\"OPERACION\":\"UPDATE\"\r\n" +
       "				}\r\n" +
       "}"
-    let json_email_rechazar = "{\r\n" +
+    let json_email = "{\r\n" +
       "    \"ENVIO_CORREO\":{\r\n" +
       "	  	\"CORREO\":\"" + this.DMPER_correo + "\",\r\n" +
       "	  	\"PERSONA\":\"" + this.nomnbresEmpleado + "\",\r\n" +
-      "	  	\"OBSERVACION\":\"" + observacion + "\"\r\n" +
+      "	  	\"OBSERVACION\":\"" + observacion + "\",\r\n" +
+      "	  	\"ESTADO\":\"" + estado + "\"\r\n" +
       "	  	}\r\n" +
       "}"
-    let json_email_aprobar = "{\r\n" +
-      "    \"ENVIO_CORREO\":{\r\n" +
-      "	  	\"CORREO\":\"" + this.DMPER_correo + "\",\r\n" +
-      "	  	\"PERSONA\":\"" + this.nomnbresEmpleado + "\"\r\n" +
-      "	  	}\r\n" +
-      "}"
+      this.sisgerhService.send_mail(json_email).subscribe((res: any) => {
+        console.log(res)
+      })
     if (estado == 'A') {
       this.sisgerhService.updateDatos(json).subscribe((res: any) => {
         if (res.MENSAJE = "El registro fue actualizado correctamente") {
@@ -329,9 +326,7 @@ export class PrincipalComponent implements OnInit {
           this.obtenerListado()
         }
       })
-      this.sisgerhService.send_mail_aprobar(json_email_aprobar).subscribe((res: any) => {
-        console.log(res)
-      })
+      
     } else {
       if (observacion == '' || observacion==undefined) {
         this.txtAlerta = "Debe ingresar una observación"
@@ -355,9 +350,6 @@ export class PrincipalComponent implements OnInit {
               this.obtenerListado()
             }
           })
-        })
-        this.sisgerhService.send_mail_rechazar(json_email_rechazar).subscribe((res: any) => {
-          console.log(res)
         })
       }
 

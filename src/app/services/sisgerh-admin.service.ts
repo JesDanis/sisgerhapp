@@ -71,16 +71,10 @@ url: string='http://172.20.0.84:7001/WSSisgerhApp/rest/sisgerh/';
     this.req = this.url+'obtenerDiscapacidad';
     return this.httpClient.get<String>(this.req)
   }
-  send_mail_rechazar(json:any):Observable<String>{
+  send_mail(json:any):Observable<String>{
     const headers = { 'content-type': 'application/json' };
     const body = JSON.parse(json);
     this.req = this.url + 'sendEmail_rechazar';
-    return this.httpClient.post<String>(this.req, body, { 'headers': headers });
-  }
-  send_mail_aprobar(json:any):Observable<String>{
-    const headers = { 'content-type': 'application/json' };
-    const body = JSON.parse(json);
-    this.req = this.url + 'sendEmail_aprobar';
     return this.httpClient.post<String>(this.req, body, { 'headers': headers });
   }
 }

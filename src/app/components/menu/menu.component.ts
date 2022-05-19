@@ -31,7 +31,7 @@ export class MenuComponent implements OnInit {
     //'sceli' //'wmedina' //'dcadme'//'mchavez'//'jabad'//'//'wachachi'//'jsantamaria';
     
   // let inUser = this.cookieService.get('user_eeasa');
-   let User = this.cookieService.set('user_eeasa','arodriguez');
+   //let User = this.cookieService.set('user_eeasa','arodriguez');
     this.sesion=[''];
   let inUser = this.cookieService.get('user_eeasa');
 
