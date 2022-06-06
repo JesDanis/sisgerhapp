@@ -1,6 +1,4 @@
-<div style="height: 100%; width: 100%; background-color:#F4F5F6;">
-    <div style="height: 10px">
-    </div>
+<div id="pageContent" class="container-fluid py-3">
     <p style="text-align: center; color: #192A67; font-size: 24px;padding-top: 10px;">Detalle de <strong>sobretiempo</strong></p>
     <div class="card text-center" id="cardEncabezado">
         <div class="card-header" style="background-color: #EAEBEF">
@@ -9,7 +7,7 @@
                     <div class="row">
                         <label for="fechaInicio" class="col-sm-4 col-form-label">Año</label>
                         <div class="col-sm-7">
-                            <input id="inAnio" class="form-control" type="number" value="2022" required min="2000" [max]="anio" style="text-align:center;" data-toggle="tooltip" title="Año" />
+                            <input id="inAnio" class="form-control" type="number" value="2022" required min="2000" [max]="anio" style="text-align:left;" data-toggle="tooltip" title="Año" />
                         </div>
                     </div>
                 </div>
@@ -17,16 +15,16 @@
                     <div class="row">
                         <label for="fechaFin" class="col-sm-4 col-form-label">Mes</label>
                         <div class="col-sm-8">
-                            <select id="inMes" class="form-control" style="vertical-align : middle;text-align:center; margin-right:10px;border-radius: 3px; border-color: #20315F; padding-top: 2px;" title="Mes">
+                            <select id="inMes" class="form-control" style="vertical-align : middle;text-align:left; margin-right:10px;border-radius: 3px; border-color: #20315F; padding-top: 2px;" title="Mes">
                                 <option *ngFor="let mes of meses " [value]="mes.value" [selected]="mes.value==mesActual">{{mes.text}}</option>
                                 </select>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4 div-M">
                     <div class="row">
                         <div class="col-sm-6 col-xs-12">
-                            <button type="button" style="float: right;" id="btnConsultar" class="btn btn-primary" (click)="obtenerSobretiempos()" title="Consultar sobretiempo"><i class="bi bi-search"></i> Consultar
+                            <button type="button" id="btnConsultar" class="btn btn-primary" (click)="obtenerSobretiempos()" title="Consultar sobretiempo"><i class="bi bi-search"></i> Consultar
 </button>
                         </div>
                     </div>
@@ -147,7 +145,5 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div style="height: 50px">
     </div>
 </div>

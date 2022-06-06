@@ -1,11 +1,9 @@
-<div style="background-color: #f7f7f9; width: 100%; height:100%;">
-    <div style="height: 10px">
-    </div>
+<div id="pageContent" class="container-fluid py-3">
     <div class="card text-center" id="cardEncabezado" style="height:100%;">
         <div style="background-color: #eaebef">
             <p style="text-align: center; color: #192A67; font-size: 24px;padding-top: 10px;">Anticipo<strong> RMU</strong></p>
         </div>
-        <div class="div-T">
+        <div>
             <div class="row" style="padding-top: 10px; padding-left: 5px; padding-right: 5px;">
                 <div class="col-md">
                     <div class="card mb-2 border-1 card-border-1" style="background-color: #55BD9C; color: #FFFFFF;">
@@ -120,12 +118,11 @@
                                         </div>
                                     </div>
                                     <div class="row mb-3 ">
-                                        <div class="col-sm-5 ">
+                                        <div class="col-sm-5">
                                             <div class="row ">
                                                 <label for="estado " class="col-sm-4 col-form-label lblLeft ">Imprimir pagos</label>
-                                                <div class="col-sm-2 ">
-                                                    <a id="btnImprimir" (click)="reportePagos()" class="btn btn-success" role="button" style="float: right;" title="Editar"><i class="bi bi-printer"></i></a>
-
+                                                <div class="col-sm-1" style="margin-left: -20px;">
+                                                    <a id="btnImprimir" (click)="reportePagos()" class="btn btn-success" role="button" title="Imprimir lista de pagos"><i class="bi bi-printer"></i></a>
                                                 </div>
                                             </div>
                                         </div>

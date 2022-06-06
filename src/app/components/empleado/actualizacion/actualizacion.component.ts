@@ -464,9 +464,9 @@ export class ActualizacionComponent implements OnInit {
           } else {
             this.principal = 0
           }
-          let tipo
           if(this.tipo=='DTCON5'){
            op=""
+           this.operadora=0
           }
           this.contactos.push({ "DPCNT_CODIGO": "", "DPCNT_DESCRIPCION": this.descripcion, "DPCNT_OPERADORA": this.operadora, "DPCNT_OPERADORA_DET": op, "DPCNT_PRINCIPAL": this.principal, "DTCON_CODIGO": this.tipo, "DTCON_DESCRIPCION": con })
         }
@@ -474,17 +474,23 @@ export class ActualizacionComponent implements OnInit {
     }
   }
   close() {
-    if (this.operadora == 9 && this.tipo=='DTCON2')   {
+    
+    if (this.operadora == 9)   {
       $("#noCerrar").hide()
       $("#cerrarModal").show()
-
-    } else {
-      $("#cerrarModal").show()
-      $("#noCerrar").hide()
-
-    }
+    } 
+     else {
+       $("#cerrarModal").show()
+       $("#noCerrar").hide()
+     }
   }
-
+cambio_personal(){
+  let tipo = $("#contacto").val();
+  if(tipo=='DTCON5'){
+    this.operadora=0
+    this.close()
+  }
+}
   limpiarDatos() {
     this.contactoLst = ['']
     this.descripcion = ''
@@ -551,10 +557,10 @@ export class ActualizacionComponent implements OnInit {
 
         let file = new File([u8arr], response[0].NOMBRE, { type: 'application/pdf' });
         var url = window.URL.createObjectURL(file);
-        var anchor = document.createElement("a");
-        anchor.download = response[0].NOMBRE;
-        anchor.href = url;
-        anchor.click();
+        var a = document.createElement("a");
+        a.href = url;
+        a.target = '_blank';
+        a.click();
       }
 
     })
@@ -881,10 +887,10 @@ export class ActualizacionComponent implements OnInit {
 
       let file = new File([u8arr], nombre.NOMBRE, { type: 'application/pdf' });
       var url = window.URL.createObjectURL(file);
-      var anchor = document.createElement("a");
-      anchor.download = nombre;
-      anchor.href = url;
-      anchor.click();
+      var a = document.createElement("a");
+      a.href = url;
+      a.target = '_blank';
+      a.click();
     }
 
 

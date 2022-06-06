@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SisgerhMovilService } from "src/app/services/sisgerh-movil.service";
 import * as CryptoJS from 'crypto-js';
+
 @Component({
   selector: 'app-informacion',
   templateUrl: './informacion.component.html',

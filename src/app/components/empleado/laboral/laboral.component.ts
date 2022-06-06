@@ -19,7 +19,7 @@ export class LaboralComponent implements OnInit {
     
   }
  
-  obtenerInformacion(){
+  obtenerInformacion(){ 
     this.inPer=localStorage.getItem('codPer');
     this.inPer=CryptoJS.AES.decrypt(this.inPer.toString(),'eeasaPer').toString(CryptoJS.enc.Utf8);
     
@@ -32,6 +32,6 @@ export class LaboralComponent implements OnInit {
     this.sisgerhService.obtenerTiempoServicio(btoa(this.inPer)).subscribe(res => {
       this.tiempo = res
     })
-  }
+  } 
 
 }

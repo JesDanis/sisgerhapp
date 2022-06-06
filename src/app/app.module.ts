@@ -1,4 +1,4 @@
-import { LOCALE_ID,NgModule } from '@angular/core';
+import { APP_INITIALIZER,NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {DatePipe, HashLocationStrategy, LocationStrategy,registerLocaleData} from '@angular/common';
 import {NgxPaginationModule} from 'ngx-pagination';
@@ -30,12 +30,11 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { LaboralComponent } from './components/empleado/laboral/laboral.component';
 import { AutosizeModule } from 'ngx-autosize';
 import { PersonalComponent } from './components/empleado/personal/personal.component';
-import localeEs from '@angular/common/locales/es';
-registerLocaleData(localeEs, 'es');
+
 const routes: Routes=[
   
-   {path:'',redirectTo:'laboral',pathMatch:'full'},
-  //{path:'',component:InformacionComponent,pathMatch:'full'},
+  // {path:'',redirectTo:'laboral',pathMatch:'full'},
+  {path:'',component:LaboralComponent,pathMatch:'full'},
   {path:'personal',component:PersonalComponent},
   {path:'instruccion', component:InstruccionComponent},
   {path:'laboral', component:LaboralComponent},
@@ -92,7 +91,8 @@ const routes: Routes=[
   ],
   providers: [DatePipe,CookieService,
   {provide:LocationStrategy,useClass:HashLocationStrategy},
-  { provide: LOCALE_ID, useValue: 'es' } ],
+  
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

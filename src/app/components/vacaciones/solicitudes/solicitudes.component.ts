@@ -34,11 +34,11 @@ export class SolicitudesComponent implements OnInit {
           "orderable": false
         },
         {
-          targets: [0, 1, 2],
+          targets: [0, 1, 2,3],
           className: 'dt-body-left',
         },
         {
-          targets: [3],
+          targets: [4],
           className: 'dt-body-right',
         }
       ]
@@ -51,6 +51,7 @@ export class SolicitudesComponent implements OnInit {
     this.solicitud=['']
     this.sisgerhService.obtenerSolicitud(btoa(this.inPer)).subscribe(res=>{
       this.solicitud=res;
+      console.log(this.solicitud)
       this.dtTrigger.next();
     });
   }

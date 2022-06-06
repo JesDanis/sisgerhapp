@@ -1,46 +1,45 @@
-<div style="background-color: #f7f7f9; width: auto; height:100%;">
-    <div style="height: 10px">
-    </div>
+<div id="pageContent" class="container-fluid py-3">
     <div class="card text-center" id="cardEncabezado">
         <div style="background-color: #eaebef">
             <p style="text-align: center; color: #192A67; font-size: 24px; padding-top: 10px;">Administración de<strong> información</strong> </p>
         </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" title="Detalle empleados" id="tabla">
+                    <thead>
+                        <tr style="background-color:#192A67;">
+                            <th scope="col" id="colortext">Rol</th>
+                            <th scope="col" id="colortext">Empleado</th>
+                            <th scope="col" id="colortext">Fecha</th>
+                            <th scope="col" id="colortext">Estado</th>
+                            <th scope="col" id="colortext">Visualizar</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size: small;">
+                        <tr *ngFor="let lst of listado">
+                            <td width="100px">{{lst.DMPER_NUMERO_ROL}}</td>
+                            <td width="400px">{{lst.DMPER_NOMBRE_EMPLEADO}}</td>
+                            <td width="200px">{{lst.FECHA}}</td>
 
-        <div class="table-responsive div-T">
-            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover" title="Detalle empleados" id="tabla">
-                <thead>
-                    <tr style="background-color:#192A67;">
-                        <th scope="col" id="colortext">Rol</th>
-                        <th scope="col" id="colortext">Empleado</th>
-                        <th scope="col" id="colortext">Fecha</th>
-                        <th scope="col" id="colortext">Estado</th>
-                        <th scope="col" id="colortext">Visualizar</th>
-                    </tr>
-                </thead>
-                <tbody style="font-size: small;">
-                    <tr *ngFor="let lst of listado">
-                        <td width="100px">{{lst.DMPER_NUMERO_ROL}}</td>
-                        <td width="400px">{{lst.DMPER_NOMBRE_EMPLEADO}}</td>
-                        <td width="200px">{{lst.FECHA}}</td>
-
-                        <td width="200px">
-                            <div *ngIf="lst.DMAPP_ESTADO_SUBIDA=='RECHAZADO'">
-                                <h6><span class="badge badge-pill badge-danger">{{lst.DMAPP_ESTADO_SUBIDA}}</span></h6>
-                            </div>
-                            <div *ngIf="lst.DMAPP_ESTADO_SUBIDA=='PENDIENTE'">
-                                <h6><span class="badge badge-pill badge-success">{{lst.DMAPP_ESTADO_SUBIDA}}</span></h6>
-                            </div>
-                        </td>
-                        <td width="100px">
-                            <button data-toggle="modal" data-target="#modalInformacion" class="btn btn-outline-primary" title="Ver Información" (click)="visualizarInformacion(lst.DMAPP_CODIGO,lst.DMPER_NOMBRE_EMPLEADO,lst.DMPER_CODIGO)">
+                            <td width="200px">
+                                <div *ngIf="lst.DMAPP_ESTADO_SUBIDA=='RECHAZADO'">
+                                    <h6><span class="badge badge-pill badge-danger">{{lst.DMAPP_ESTADO_SUBIDA}}</span></h6>
+                                </div>
+                                <div *ngIf="lst.DMAPP_ESTADO_SUBIDA=='PENDIENTE'">
+                                    <h6><span class="badge badge-pill badge-success">{{lst.DMAPP_ESTADO_SUBIDA}}</span></h6>
+                                </div>
+                            </td>
+                            <td width="100px">
+                                <button data-toggle="modal" data-target="#modalInformacion" class="btn btn-outline-primary" title="Ver Información" (click)="visualizarInformacion(lst.DMAPP_CODIGO,lst.DMPER_NOMBRE_EMPLEADO,lst.DMPER_CODIGO)">
                                             <i class="fa fa-eye"></i>
                                         </button>
 
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -419,3 +418,4 @@
             </div>
         </div>
     </div>
+</div>

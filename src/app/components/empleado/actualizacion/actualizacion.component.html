@@ -1,237 +1,220 @@
-<div style="background-color: #f7f7f9; width: 100%; height:100%;">
-    <div style="height: 10px">
-    </div>
-    <!-- <div class="row justify-content-center">
-        <div class="col-sm-11">
-            <button type="submit" class="btn btn-success btn-round" (click)="actualizar()" style="float: right;" title="Actualizar información"><i class="bi bi-pencil-square"></i>Actualizar</button>
-
-            <p style="text-align: center; color: #192A67; font-size: 24px;">Actualización de <strong>información</strong></p>
-
-        </div>
-    </div> -->
-    <div class="card text-center" id="cardEncabezado" style="height:100%;">
+<div id="pageContent" class="container-fluid py-3">
+    <div class="card text-center" id="cardEncabezado">
         <div style="background-color: #eaebef">
-            <p style="text-align: center; color: #192A67; font-size: 24px; padding-top: 10px;">Actualización de <strong>información</strong>
-                <button id="procesandoBtn" type="button" class="btn btn-primary" disabled style="float: right;">
-                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                    Procesando...
-                    </button>
-                <button type="submit" class="btn btn-success btn-round" (click)="actualizar()" title="Actualizar información" style="float: right;"><i class="bi bi-pencil-square"></i> Actualizar</button>
-            </p>
+            <p style="text-align: center; color: #192A67; font-size: 24px; padding-top: 10px;">Actualización de <strong>información</strong></p>
         </div>
-        <div class="">
-            <div class="container-fluid" style="padding-top: 10px">
-                <div class="row justify-content-center">
-                    <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-sm-12">
 
-                        <div class="nav nav-pills nav-fill" id="nav-tab" role="tablist" style="background-color:#DFDFDF;">
-                            <a class="nav-link active" id="step1-tab" data-toggle="tab" href="#step1" title="General"><i class="bi bi-info-circle"></i> General</a>
-                            <a class="nav-link" id="step5-tab" data-toggle="tab" href="#step5" title="Contactos"><i class="bi bi-person-lines-fill"></i> Contactos</a>
-                            <a class="nav-link" id="step2-tab" data-toggle="tab" href="#step2" title="Domiciliaria"><i class="bi bi-house-door"></i> Domiciliaria</a>
-                            <a class="nav-link" id="step3-tab" data-toggle="tab" href="#step3" title="Académica"><i class="bi bi-book"></i> Académica</a>
-                            <a class="nav-link" id="step4-tab" data-toggle="tab" href="#step4" title="Adicional"><i class="bi bi-plus-circle"></i> Adicional</a>
-                        </div>
-                        <div class="tab-content" id="nav-tabContent">
-                            <!--STEP 1 GENERAL-->
-                            <div class="tab-pane fade show active div-T" id="step1">
+        <div class="card-body">
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-sm-12">
+                    <div class="nav nav-pills nav-fill" id="nav-tab" role="tablist" style="background-color:#DFDFDF;">
+                        <a class="nav-link active" id="step1-tab" data-toggle="tab" href="#step1" title="General"><i class="bi bi-info-circle"></i> General</a>
+                        <a class="nav-link" id="step5-tab" data-toggle="tab" href="#step5" title="Contactos"><i class="bi bi-person-lines-fill"></i> Contactos</a>
+                        <a class="nav-link" id="step2-tab" data-toggle="tab" href="#step2" title="Domiciliaria"><i class="bi bi-house-door"></i> Domiciliaria</a>
+                        <a class="nav-link" id="step3-tab" data-toggle="tab" href="#step3" title="Académica"><i class="bi bi-book"></i> Académica</a>
+                        <a class="nav-link" id="step4-tab" data-toggle="tab" href="#step4" title="Adicional"><i class="bi bi-plus-circle"></i> Adicional</a>
+                    </div>
+                    <div class="tab-content" id="nav-tabContent">
+
+                        <!--STEP 1 GENERAL-->
+                        <div class="tab-pane fade show active div-T" id="step1">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="row">
+                                                    <label class="col-sm-5 col-form-label lblLeft">Estado civil</label>
+                                                    <div class="col-sm-7">
+                                                        <select class="form-control" id="estCivil" (change)="estadoCivil()" title="Estado civil">
+                                                                            <option value="0" [selected]="codEstadoCivil==0">SOLTERO</option>
+                                                                            <option value="1" [selected]="codEstadoCivil==1">CASADO</option>
+                                                                            <option value="2" [selected]="codEstadoCivil==2">DIVORCIADO</option>
+                                                                            <option value="3" [selected]="codEstadoCivil==3">UNIÓN LIBRE</option>
+                                                                            <option value="4" [selected]="codEstadoCivil==4">VIUDO</option>
+                                                                            </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="row">
+                                                    <label class="col-sm-4 col-form-label lblLeft">Etnia</label>
+                                                    <div class="col-sm-8">
+                                                        <select class="form-control" id="sltEtnina" title="Etnia">
+                                                                <option *ngFor="let et of etnia" [value]="et.DMETI_CODIGO" [selected]="et.DMETI_CODIGO==codEtnia" >{{et.DMETI_DESCRIPCION}}</option>
+                                                                </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="row">
+                                                    <label class="col-sm-5 col-form-label lblLeft">Género</label>
+                                                    <div class="col-sm-7">
+                                                        <select class="form-control" id="sltSexo" title="Género">
+                                                                            <option value="0"  [selected]="genero==0">MASCULINO</option>
+                                                                            <option value="1" [selected]="genero==1">FEMENINO</option>
+                                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="row">
+                                                    <label class="col-sm-5 col-form-label lblLeft">Tipo Sanguineo </label>
+                                                    <div class="col-sm-7">
+                                                        <select class="form-control" id="tipoSang" title="Tipo Sanguineo">
+                                                                            <option *ngFor="let sg of sangre" [value]="sg.DMGTS_CODIGO" [selected]="sg.DMGTS_CODIGO==tipoSang" >{{sg.DMGTS_OBSERVACION}}</option>
+                                                                            </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="row">
+                                                    <label class="col-sm-5 col-form-label lblLeft">Discapacidad</label>
+                                                    <div class="col-sm-7">
+                                                        <input type="radio" value="discSi" title="Discapacidad" name="disc" [checked]="codDiscapacidad!=' '" (click)="discapacidadSi()"> Si
+                                                        <input type="radio" value="discNo" title="Discapacidad" name="disc" style="margin-left: 20px;" [checked]="codDiscapacidad==' '" (click)="discapacidadNo()"> No
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3" id="divDiscapacidad">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="row">
+                                                    <label class="col-sm-4 col-form-label lblLeft">Tipo</label>
+                                                    <div class="col-sm-8">
+                                                        <select class="form-control" id="sltDiscapacidad" title="Tipo discapacidad">
+                                                                    <option *ngFor="let ds of discapacidad" [value]="ds.DMDSC_CODIGO" [selected]="ds.DMDSC_CODIGO==datoDisc" >{{ds.DMDSC_OBSERVACION}}</option>
+                                                                    </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="row">
+                                                    <label class="col-sm-5 col-form-label lblLeft">Porcentaje</label>
+                                                    <div class="col-sm-7">
+                                                        <input type="number" class="form-control" title="Porcentaje discapacidad" placeholder="Porcentaje" value="{{porcDis}}" id="txtPorcentaje">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="row">
+                                                    <label class="col-sm-5 col-form-label lblLeft"><strong>Adjuntos</strong></label>
+
+                                                    <div class="col-sm-7">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
                                 <div class="card-body">
                                     <div class="row mb-3">
                                         <div class="col-sm-12">
                                             <div class="row">
-                                                <div class="col-sm-4">
-                                                    <div class="row">
-                                                        <label class="col-sm-5 col-form-label lblLeft">Estado civil</label>
-                                                        <div class="col-sm-7">
-                                                            <select class="form-control" id="estCivil" (change)="estadoCivil()" title="Estado civil">
-                                                                        <option value="0" [selected]="codEstadoCivil==0">SOLTERO</option>
-                                                                        <option value="1" [selected]="codEstadoCivil==1">CASADO</option>
-                                                                        <option value="2" [selected]="codEstadoCivil==2">DIVORCIADO</option>
-                                                                        <option value="3" [selected]="codEstadoCivil==3">UNIÓN LIBRE</option>
-                                                                        <option value="4" [selected]="codEstadoCivil==4">VIUDO</option>
-                                                                        </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="row">
-                                                        <label class="col-sm-4 col-form-label lblLeft">Etnia</label>
-                                                        <div class="col-sm-8">
-                                                            <select class="form-control" id="sltEtnina" title="Etnia">
-                                                             <option *ngFor="let et of etnia" [value]="et.DMETI_CODIGO" [selected]="et.DMETI_CODIGO==codEtnia" >{{et.DMETI_DESCRIPCION}}</option>
-                                                              </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="row">
-                                                        <label class="col-sm-5 col-form-label lblLeft">Género</label>
-                                                        <div class="col-sm-7">
-                                                            <select class="form-control" id="sltSexo" title="Género">
-                                                                        <option value="0"  [selected]="genero==0">MASCULINO</option>
-                                                                        <option value="1" [selected]="genero==1">FEMENINO</option>
-                                                                    </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-sm-12">
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <div class="row">
-                                                        <label class="col-sm-5 col-form-label lblLeft">Tipo Sanguineo </label>
-                                                        <div class="col-sm-7">
-                                                            <select class="form-control" id="tipoSang" title="Tipo Sanguineo">
-                                                                        <option *ngFor="let sg of sangre" [value]="sg.DMGTS_CODIGO" [selected]="sg.DMGTS_CODIGO==tipoSang" >{{sg.DMGTS_OBSERVACION}}</option>
-                                                                         </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="row">
-                                                        <label class="col-sm-5 col-form-label lblLeft">Discapacidad</label>
-                                                        <div class="col-sm-7">
-                                                            <input type="radio" value="discSi" title="Discapacidad" name="disc" [checked]="codDiscapacidad!=' '" (click)="discapacidadSi()"> Si
-                                                            <input type="radio" value="discNo" title="Discapacidad" name="disc" style="margin-left: 20px;" [checked]="codDiscapacidad==' '" (click)="discapacidadNo()"> No
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3" id="divDiscapacidad">
-                                        <div class="col-sm-12">
-                                            <div class="row">
-                                                <div class="col-sm-4">
 
-                                                </div>
+                                                <!--Adjunto Cedula-->
                                                 <div class="col-sm-4">
-                                                    <div class="row">
-                                                        <label class="col-sm-4 col-form-label lblLeft">Tipo</label>
-                                                        <div class="col-sm-8">
-                                                            <select class="form-control" id="sltDiscapacidad" title="Tipo discapacidad">
-                                                                <option *ngFor="let ds of discapacidad" [value]="ds.DMDSC_CODIGO" [selected]="ds.DMDSC_CODIGO==datoDisc" >{{ds.DMDSC_OBSERVACION}}</option>
-                                                                 </select>
+                                                    <div class="card">
+                                                        <h5 class="card-header text-white" style="background-color: #192A67; font-size: 14px;">Cédula </h5>
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                <label class="col-sm-12 col-form-label lblLeft">Nombre del archivo</label>
+                                                                <div class="col-sm-12">
+                                                                    <textarea class="form-control" readonly>{{nombreCedulaAdj}}</textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mt-3">
+                                                                <label class="col-sm-12 col-form-label lblLeft">Adjunto</label>
+                                                                <div class="col-sm-12">
+                                                                    <input class="form-control-file" title="Cédula" (change)="obtenerCedula($event)" type="file" id="fileCedula" accept="application/pdf">
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mt-3">
+                                                                <div class="col-sm-12">
+                                                                    <button id="informeBtn" class="btn btn-primary text-white w-100" (click)="visualizarCedula()"><i class="fas fa-download" ></i> Descargar</button>
+                                                                </div>
+                                                            </div>
+                                                            <hr>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-4">
-                                                    <div class="row">
-                                                        <label class="col-sm-5 col-form-label lblLeft">Porcentaje</label>
-                                                        <div class="col-sm-7">
-                                                            <input type="number" class="form-control" title="Porcentaje discapacidad" placeholder="Porcentaje" value="{{porcDis}}" id="txtPorcentaje">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-sm-12">
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <div class="row">
-                                                        <label class="col-sm-5 col-form-label lblLeft"><strong>Adjuntos</strong></label>
 
-                                                        <div class="col-sm-7">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="card-body">
-                                        <div class="row mb-3">
-                                            <div class="col-sm-12">
-                                                <div class="row">
-
-                                                    <!--Adjunto Cedula-->
-                                                    <div class="col-sm-4">
-                                                        <div class="card">
-                                                            <h5 class="card-header text-white" style="background-color: #192A67; font-size: 14px;">Cédula </h5>
-                                                            <div class="card-body">
+                                                <!--Adjunto Papeleta-->
+                                                <div class="col-sm-4">
+                                                    <div class="card">
+                                                        <h5 class="card-header text-white" style="background-color: #192A67;font-size: 14px;">Papeleta </h5>
+                                                        <div class="card-body">
+                                                            <form>
                                                                 <div class="row">
-                                                                    <label class="col-sm-12 col-form-label lblLeft">Nombre del archivo</label>
+                                                                    <label for="" class="col-sm-12 col-form-label lblLeft">Nombre del archivo</label>
                                                                     <div class="col-sm-12">
-                                                                        <textarea class="form-control" readonly>{{nombreCedulaAdj}}</textarea>
+                                                                        <textarea class="form-control" readonly>{{nombrePapeletaAdj}}</textarea>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mt-3">
                                                                     <label class="col-sm-12 col-form-label lblLeft">Adjunto</label>
                                                                     <div class="col-sm-12">
-                                                                        <input class="form-control-file" title="Cédula" (change)="obtenerCedula($event)" type="file" id="fileCedula" accept="application/pdf">
+                                                                        <input class="form-control-file" title="Papeleta votación" type="file" id="filePapeleta" (change)="obtenerPapeleta($event)" accept="application/pdf">
+
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mt-3">
                                                                     <div class="col-sm-12">
-                                                                        <button id="informeBtn" class="btn btn-primary text-white w-100" (click)="visualizarCedula()"><i class="fas fa-download" ></i> Descargar</button>
+                                                                        <button id="informeBtn2" (click)="visualizarPapeleta()" class="btn btn-primary text-white w-100"><i class="fas fa-download"></i> Descargar</button>
                                                                     </div>
+
                                                                 </div>
                                                                 <hr>
-                                                            </div>
+                                                            </form>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <!--Adjunto Carnte-->
+                                                <div class="col-sm-4" id="divDiscapacidadA">
+                                                    <div class="card">
+                                                        <h5 class="card-header text-white" style="background-color: #192A67;font-size: 14px;">Carnet </h5>
+                                                        <div class="card-body">
+                                                            <form>
+                                                                <div class="row">
+                                                                    <label for="" class="col-sm-12 col-form-label lblLeft">Nombre del archivo</label>
+                                                                    <div class="col-sm-12">
+                                                                        <textarea class="form-control" readonly>{{nombreDiscAdj}}</textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mt-3">
+                                                                    <label class="col-sm-12 col-form-label lblLeft">Adjunto</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input class="form-control-file" title="Carnet discapacidad" (change)="obtenerCertificadoDis($event)" type="file" id="fileArchivo" accept="application/pdf">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mt-3">
+                                                                    <div class="col-sm-12">
+                                                                        <button id="informeBtn" (click)="visualizarCertificado()" class="btn btn-primary text-white w-100"><i class="fas fa-download"></i> Descargar</button>
+                                                                    </div>
 
-                                                    <!--Adjunto Papeleta-->
-                                                    <div class="col-sm-4">
-                                                        <div class="card">
-                                                            <h5 class="card-header text-white" style="background-color: #192A67;font-size: 14px;">Papeleta </h5>
-                                                            <div class="card-body">
-                                                                <form>
-                                                                    <div class="row">
-                                                                        <label for="" class="col-sm-12 col-form-label lblLeft">Nombre del archivo</label>
-                                                                        <div class="col-sm-12">
-                                                                            <textarea class="form-control" readonly>{{nombrePapeletaAdj}}</textarea>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row mt-3">
-                                                                        <label class="col-sm-12 col-form-label lblLeft">Adjunto</label>
-                                                                        <div class="col-sm-12">
-                                                                            <input class="form-control-file" title="Papeleta votación" type="file" id="filePapeleta" (change)="obtenerPapeleta($event)" accept="application/pdf">
-
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row mt-3">
-                                                                        <div class="col-sm-12">
-                                                                            <button id="informeBtn2" (click)="visualizarPapeleta()" class="btn btn-primary text-white w-100"><i class="fas fa-download"></i> Descargar</button>
-                                                                        </div>
-
-                                                                    </div>
-                                                                    <hr>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!--Adjunto Carnte-->
-                                                    <div class="col-sm-4" id="divDiscapacidadA">
-                                                        <div class="card">
-                                                            <h5 class="card-header text-white" style="background-color: #192A67;font-size: 14px;">Carnet </h5>
-                                                            <div class="card-body">
-                                                                <form>
-                                                                    <div class="row">
-                                                                        <label for="" class="col-sm-12 col-form-label lblLeft">Nombre del archivo</label>
-                                                                        <div class="col-sm-12">
-                                                                            <textarea class="form-control" readonly>{{nombreDiscAdj}}</textarea>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row mt-3">
-                                                                        <label class="col-sm-12 col-form-label lblLeft">Adjunto</label>
-                                                                        <div class="col-sm-12">
-                                                                            <input class="form-control-file" title="Carnet discapacidad" (change)="obtenerCertificadoDis($event)" type="file" id="fileArchivo" accept="application/pdf">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row mt-3">
-                                                                        <div class="col-sm-12">
-                                                                            <button id="informeBtn" (click)="visualizarCertificado()" class="btn btn-primary text-white w-100"><i class="fas fa-download"></i> Descargar</button>
-                                                                        </div>
-
-                                                                    </div>
-                                                                    <hr>
-                                                                </form>
-                                                            </div>
+                                                                </div>
+                                                                <hr>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -240,246 +223,238 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--STEP 2 CONTACTOS-->
-                            <div class="tab-pane fade div-T" id="step5">
-                                <div class="card text-center" id="cardEncabezado">
-                                    <div style="padding-top: 10px;padding-left: 10px;">
-                                        <a class="btn btn-primary" role="button" style="float: left;" title="Añadir contactos" target="_blank" data-toggle="modal" data-target="#modalTelefono" (click)="limpiarDatos()"><i class="fas fa-plus-circle" style="margin-right: 5px;"></i> Nuevo Contacto</a>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row mb-3">
-
-                                            <div class="table-responsive">
-                                                <table class="table table-hover" title="Detalle de contactos">
-                                                    <thead>
-                                                        <tr style="background-color:#192A67;">
-                                                            <th>Contacto</th>
-                                                            <th>Descripción</th>
-                                                            <th>Operadora</th>
-                                                            <th>Principal </th>
-                                                            <th></th>
-
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr *ngFor="let con of contactos">
-                                                            <td style="text-align: left;">{{con.DTCON_DESCRIPCION}}</td>
-                                                            <td style="text-align: left;">{{con.DPCNT_DESCRIPCION}}</td>
-                                                            <td style="text-align: left;">{{con.DPCNT_OPERADORA_DET}}</td>
-                                                            <td><input type="checkbox" class="form-check-input" id="chkPrincipal" [checked]="con.DPCNT_PRINCIPAL==1" disabled></td>
-                                                            <td>
-                                                                <button type="button " style="float: right;" class="btn btn-outline-danger" id="btnNuevo" title="Eliminar contacto" (click)="confirmarBorrar(con.DPCNT_CODIGO)"><i class="fa fa-trash" style="margin-right: 2px;"></i></button></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
+                        </div>
+                        <!--STEP 2 CONTACTOS-->
+                        <div class="tab-pane fade div-T" id="step5">
+                            <div class="card text-center" id="cardEncabezado">
+                                <div style="padding-top: 10px;padding-left: 10px;">
+                                    <a class="btn btn-primary" role="button" style="float: left;" title="Añadir contactos" target="_blank" data-toggle="modal" data-target="#modalTelefono" (click)="limpiarDatos()"><i class="fas fa-plus-circle" style="margin-right: 5px;"></i> Nuevo Contacto</a>
                                 </div>
-                            </div>
-                            <!--STEP 3 DOMICILIARIA-->
-                            <div class="tab-pane fade div-T" id="step2">
                                 <div class="card-body">
                                     <div class="row mb-3">
-                                        <div class="col-sm-10">
-                                            <div class="row">
-                                                <label class="col-sm-4 col-form-label lblLeft">División política</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" placeholder="División política" title="División política" value="{{divPol}}" disabled>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-sm-10">
-                                            <div class="row">
-                                                <label class="col-sm-4 col-form-label lblLeft">Parroquia</label>
-                                                <div class="col-sm-8 input-group">
-                                                    <input type="text" class="form-control" placeholder="Parroquia" title="Parroquia" value="{{parroquia}}" disabled>
-                                                    <a data-toggle="modal" data-target="#modalParroquia"><span class="input-group-text" title="Seleccionar parroquia"><i class="bi bi-search" style="font-size: 1rem; color: #007bff;"></i></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <div class="row mb-3">
-                                        <div class="col-sm-10">
-                                            <div class="row">
-                                                <label class="col-sm-4 col-form-label lblLeft">Referencia</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" required placeholder="Referencia" title="Referencia domiciliaria" id="referencia" value="{{referencia}}">
-                                                </div>
+                                        <div class="table-responsive">
+                                            <table class="table table-hover" title="Detalle de contactos">
+                                                <thead>
+                                                    <tr style="background-color:#192A67;">
+                                                        <th>Contacto</th>
+                                                        <th>Descripción</th>
+                                                        <th>Operadora</th>
+                                                        <th>Principal </th>
+                                                        <th></th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let con of contactos">
+                                                        <td style="text-align: left;">{{con.DTCON_DESCRIPCION}}</td>
+                                                        <td style="text-align: left;">{{con.DPCNT_DESCRIPCION}}</td>
+                                                        <td style="text-align: left;">{{con.DPCNT_OPERADORA_DET}}</td>
+                                                        <td><input type="checkbox" class="form-check-input" id="chkPrincipal" [checked]="con.DPCNT_PRINCIPAL==1" disabled></td>
+                                                        <td>
+                                                            <button type="button " style="float: right;" class="btn btn-outline-danger" id="btnNuevo" title="Eliminar contacto" (click)="confirmarBorrar(con.DPCNT_CODIGO)"><i class="fa fa-trash" style="margin-right: 2px;"></i></button></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--STEP 3 DOMICILIARIA-->
+                        <div class="tab-pane fade div-T" id="step2">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-sm-10">
+                                        <div class="row">
+                                            <label class="col-sm-4 col-form-label lblLeft">División política</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" placeholder="División política" title="División política" value="{{divPol}}" disabled>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col-sm-10">
-                                            <div class="row">
-                                                <label class="col-sm-4 col-form-label lblLeft">Nº Casa</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" required placeholder="Nº Casa" title="Número de casa" id="numCasa" value="{{numCasa}}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-sm-10">
-                                            <div class="row">
-                                                <label class="col-sm-4 col-form-label lblLeft">Calle Principal</label>
-                                                <div class="col-sm-8">
-                                                    <textarea class="form-control textarea" required placeholder="Calle Principal" title="Calle Principal" style="resize: none;" id="callePrincipal">{{callePrin}}</textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-sm-10">
-                                            <div class="row">
-                                                <label class="col-sm-4 col-form-label lblLeft">Calle Secundaria</label>
-                                                <div class="col-sm-8">
-                                                    <textarea class="form-control textarea" required placeholder="Calle Secundaria" title="Calle Secundaria" style="resize: none;" id="calleSegunda">{{calleSec}}</textarea>
-                                                </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-10">
+                                        <div class="row">
+                                            <label class="col-sm-4 col-form-label lblLeft">Parroquia</label>
+                                            <div class="col-sm-8 input-group">
+                                                <input type="text" class="form-control" placeholder="Parroquia" title="Parroquia" value="{{parroquia}}" disabled>
+                                                <a data-toggle="modal" data-target="#modalParroquia"><span class="input-group-text" title="Seleccionar parroquia"><i class="bi bi-search" style="font-size: 1rem; color: #007bff;"></i></span></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                            </div>
-                            <!--STEP 4 ACADEMICA-->
-                            <div class="tab-pane fade div-T" id="step3">
-                                <div class="card text-center" id="cardEncabezado">
-                                    <div style="padding-top: 10px;padding-left: 10px;">
-                                        <a class="btn btn-primary" role="button" style="float: left;" title="Añadir instrucción" target="_blank" data-toggle="modal" data-target="#modalNuevaInformacion" (click)="limpiarCamposTit()"><i class="fas fa-plus-circle" style="margin-right: 5px;"></i>Nueva Instrucción</a>
+                                <div class="row mb-3">
+                                    <div class="col-sm-10">
+                                        <div class="row">
+                                            <label class="col-sm-4 col-form-label lblLeft">Referencia</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" required placeholder="Referencia" title="Referencia domiciliaria" id="referencia" value="{{referencia}}">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="card-body">
-                                        <div class="row mb-3">
-                                            <div class="table-responsive">
-                                                <table class="table table-hover" title="Detalle información académica">
-                                                    <thead>
-                                                        <tr style="background-color:#192A67;">
-                                                            <th>Nivel</th>
-                                                            <th>Titulo</th>
-                                                            <th>Especialidad</th>
-                                                            <th>Fecha</th>
-                                                            <th>Adjunto</th>
-                                                            <th></th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr *ngFor="let ins of instruccion">
-                                                            <td style="text-align: left;">{{ins.NIVEL}}</td>
-                                                            <td style="text-align: left;">{{ins.TITULO}}</td>
-                                                            <div *ngIf="ins.ESPECIALIDAD =='null'">
-                                                                <td> </td>
-                                                            </div>
-                                                            <div *ngIf="ins.ESPECIALIDAD !='null'">
-                                                                <td style="text-align: left;">{{ins.ESPECIALIDAD}} </td>
-                                                            </div>
-                                                            <td>{{ins.FECHA}}</td>
-                                                            <td style="text-align: left;">{{ins.NOMBRE}}</td>
-                                                            <td>
-                                                                <a class="btn btn-outline-warning" role="button" title="Editar información" data-toggle="modal" data-target="#modalInformacion" (click)="informacionIntruccion(ins.NIVEL,ins.DMNED_CODIGO,ins.TITULO,ins.DSLTT_CODIGO,ins.ESPECIALIDAD,ins.FECHA,ins.NOMBRE)"><i class="fa fa-edit" style="margin-right: 2px;"></i></a>
-                                                            </td>
-                                                            <td>
-
-                                                                <a class="btn btn-outline-danger" role="button" title="Borrar información" (click)="confirmarBorrarInst(ins.DSLPT_CODIGO)"><i class="fa fa-trash" style="margin-right: 2px;"></i></a></td>
-
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-10">
+                                        <div class="row">
+                                            <label class="col-sm-4 col-form-label lblLeft">Nº Casa</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" required placeholder="Nº Casa" title="Número de casa" id="numCasa" value="{{numCasa}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-10">
+                                        <div class="row">
+                                            <label class="col-sm-4 col-form-label lblLeft">Calle Principal</label>
+                                            <div class="col-sm-8">
+                                                <textarea class="form-control textarea" required placeholder="Calle Principal" title="Calle Principal" style="resize: none;" id="callePrincipal">{{callePrin}}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-10">
+                                        <div class="row">
+                                            <label class="col-sm-4 col-form-label lblLeft">Calle Secundaria</label>
+                                            <div class="col-sm-8">
+                                                <textarea class="form-control textarea" required placeholder="Calle Secundaria" title="Calle Secundaria" style="resize: none;" id="calleSegunda">{{calleSec}}</textarea>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!--STEP 5 ADICIONAL-->
-                            <div class="tab-pane fade div-T" id="step4">
+
+                        </div>
+                        <!--STEP 4 ACADEMICA-->
+                        <div class="tab-pane fade div-T" id="step3">
+                            <div class="card text-center" id="cardEncabezado">
+                                <div style="padding-top: 10px;padding-left: 10px;">
+                                    <a class="btn btn-primary" role="button" style="float: left;" title="Añadir instrucción" target="_blank" data-toggle="modal" data-target="#modalNuevaInformacion" (click)="limpiarCamposTit()"><i class="fas fa-plus-circle" style="margin-right: 5px;"></i>Nueva Instrucción</a>
+                                </div>
                                 <div class="card-body">
+                                    <div class="row mb-3">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover" title="Detalle información académica">
+                                                <thead>
+                                                    <tr style="background-color:#192A67;">
+                                                        <th>Nivel</th>
+                                                        <th>Titulo</th>
+                                                        <th>Especialidad</th>
+                                                        <th>Fecha</th>
+                                                        <th>Adjunto</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let ins of instruccion">
+                                                        <td style="text-align: left;">{{ins.NIVEL}}</td>
+                                                        <td style="text-align: left;">{{ins.TITULO}}</td>
+                                                        <div *ngIf="ins.ESPECIALIDAD =='null'">
+                                                            <td> </td>
+                                                        </div>
+                                                        <div *ngIf="ins.ESPECIALIDAD !='null'">
+                                                            <td style="text-align: left;">{{ins.ESPECIALIDAD}} </td>
+                                                        </div>
+                                                        <td>{{ins.FECHA}}</td>
+                                                        <td style="text-align: left;">{{ins.NOMBRE}}</td>
+                                                        <td>
+                                                            <a class="btn btn-outline-warning" role="button" title="Editar información" data-toggle="modal" data-target="#modalInformacion" (click)="informacionIntruccion(ins.NIVEL,ins.DMNED_CODIGO,ins.TITULO,ins.DSLTT_CODIGO,ins.ESPECIALIDAD,ins.FECHA,ins.NOMBRE)"><i class="fa fa-edit" style="margin-right: 2px;"></i></a>
+                                                        </td>
+                                                        <td>
+
+                                                            <a class="btn btn-outline-danger" role="button" title="Borrar información" (click)="confirmarBorrarInst(ins.DSLPT_CODIGO)"><i class="fa fa-trash" style="margin-right: 2px;"></i></a></td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--STEP 5 ADICIONAL-->
+                        <div class="tab-pane fade div-T" id="step4">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <label class="col-sm-2 col-form-label lblLeft">Nombre del padre</label>
+                                            <div class="col-sm-5">
+                                                <input type="text" class="form-control" required placeholder="Nombres y Apellidos" title="Nombres y Apellidos del padre" value="{{nombrePadre}}" id="nombrePadre">
+                                            </div>
+                                            <label class="col-sm-2 col-form-label lblRight">Vive</label>
+                                            <div class="col-sm-2" style="padding-top: 10px;">
+                                                <input type="radio" value="siP" name="padre" [checked]="vivePadre==1"> Si
+                                                <input type="radio" value="noP" name="padre" style="margin-left: 20px;" [checked]="vivePadre==0"> No
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <label class="col-sm-2 col-form-label lblLeft">Nombre de la madre</label>
+                                            <div class="col-sm-5">
+                                                <input type="text" class="form-control" required placeholder="Nombres y Apellidos" title="Nombres y Apellidos de la madre" value="{{nombreMadre}}" id="nombreMadre">
+                                            </div>
+                                            <label class="col-sm-2 col-form-label lblRight">Vive</label>
+                                            <div class="col-sm-2" style="padding-top: 10px;">
+                                                <input type="radio" value="siM" name="madre" [checked]="viveMadre==1"> Si
+                                                <input type="radio" value="noM" name="madre" style="margin-left: 20px;" [checked]="viveMadre==0"> No
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="divEstadoCivil">
                                     <div class="row mb-3">
                                         <div class="col-sm-12">
                                             <div class="row">
-                                                <label class="col-sm-2 col-form-label lblLeft">Nombre del padre</label>
+                                                <label class="col-sm-2 col-form-label lblLeft">Nombre del cónyuge</label>
                                                 <div class="col-sm-5">
-                                                    <input type="text" class="form-control" required placeholder="Nombres y Apellidos" title="Nombres y Apellidos del padre" value="{{nombrePadre}}" id="nombrePadre">
+                                                    <input type="text" class="form-control" placeholder="Nombres y Apellidos" title="Nombres y Apellidos del cónyuge" value="{{nombreCony}}" id="nombreCony">
+
                                                 </div>
-                                                <label class="col-sm-2 col-form-label lblRight">Vive</label>
+                                                <label class="col-sm-2 col-form-label lblRight">Trabaja</label>
                                                 <div class="col-sm-2" style="padding-top: 10px;">
-                                                    <input type="radio" value="siP" name="padre" [checked]="vivePadre==1"> Si
-                                                    <input type="radio" value="noP" name="padre" style="margin-left: 20px;" [checked]="vivePadre==0"> No
+                                                    <input type="radio" value="siT" name="trab" [checked]="trabajaCony==1" (click)="trabajaSi()"> Si
+                                                    <input type="radio" value="noT" name="trab" style="margin-left: 20px;" [checked]="trabajaCony==0" (click)="trabajaNo()"> No
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
+                                    <div class="row mb-3" id="divInstitucion">
                                         <div class="col-sm-12">
                                             <div class="row">
-                                                <label class="col-sm-2 col-form-label lblLeft">Nombre de la madre</label>
+                                                <label class="col-sm-2 col-form-label lblLeft">Trabajo cónyuge</label>
                                                 <div class="col-sm-5">
-                                                    <input type="text" class="form-control" required placeholder="Nombres y Apellidos" title="Nombres y Apellidos de la madre" value="{{nombreMadre}}" id="nombreMadre">
-                                                </div>
-                                                <label class="col-sm-2 col-form-label lblRight">Vive</label>
-                                                <div class="col-sm-2" style="padding-top: 10px;">
-                                                    <input type="radio" value="siM" name="madre" [checked]="viveMadre==1"> Si
-                                                    <input type="radio" value="noM" name="madre" style="margin-left: 20px;" [checked]="viveMadre==0"> No
+                                                    <input type="text" class="form-control" placeholder="Institución" title="Institución trabajo cónyuge" value="{{lugarCony}}" id="trabajoCony">
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
-                                    <div id="divEstadoCivil">
-                                        <div class="row mb-3">
-                                            <div class="col-sm-12">
-                                                <div class="row">
-                                                    <label class="col-sm-2 col-form-label lblLeft">Nombre del cónyuge</label>
-                                                    <div class="col-sm-5">
-                                                        <input type="text" class="form-control" placeholder="Nombres y Apellidos" title="Nombres y Apellidos del cónyuge" value="{{nombreCony}}" id="nombreCony">
-
-                                                    </div>
-                                                    <label class="col-sm-2 col-form-label lblRight">Trabaja</label>
-                                                    <div class="col-sm-2" style="padding-top: 10px;">
-                                                        <input type="radio" value="siT" name="trab" [checked]="trabajaCony==1" (click)="trabajaSi()"> Si
-                                                        <input type="radio" value="noT" name="trab" style="margin-left: 20px;" [checked]="trabajaCony==0" (click)="trabajaNo()"> No
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3" id="divInstitucion">
-                                            <div class="col-sm-12">
-                                                <div class="row">
-                                                    <label class="col-sm-2 col-form-label lblLeft">Trabajo cónyuge</label>
-                                                    <div class="col-sm-5">
-                                                        <input type="text" class="form-control" placeholder="Institución" title="Institución trabajo cónyuge" value="{{lugarCony}}" id="trabajoCony">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
                                 </div>
+
                             </div>
                         </div>
 
                     </div>
                 </div>
-
             </div>
-            <div class="card-footer text-center" style=" text-align: center;">
-
-                <!-- <div class="col-sm-6" style=" display: inline-block;">
-                    <div class="row">
-                        <div class="col-sm-4">
-                        </div>
-                        <div class="col-sm-4">
-                            <button id="cancelarBtn" type="button" class="btn btn-danger" (click)="cancelar()"><i class="far fa-times-circle mr-2"></i> Salir</button>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
-
+        </div>
+        <div class="card-footer text-center py-3">
+            <button type="submit" class="btn btn-success btn-round" (click)="actualizar()" title="Actualizar información"><i class="bi bi-pencil-square"></i> Actualizar</button>
+            <button id="procesandoBtn" type="button" class="btn btn-primary" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Procesando...
+                </button>
         </div>
     </div>
-
 </div>
 
 
@@ -505,7 +480,7 @@
                                 <label class="texto">Contacto</label>
                             </div>
                             <div class="col-md-6 pr-1 col-6">
-                                <select class="form-control" id="contacto" title="Tipo contacto"> 
+                                <select class="form-control" id="contacto" title="Tipo contacto" (change)="cambio_personal()"> 
                               <option value ="9" [selected]="tipo==9">Seleccione...</option>
                               <option value="DTCON2" [selected]="tipo==0">Celular</option>
                               <option value="DTCON1" [selected]="tipo==1">Teléfono</option>
@@ -585,7 +560,7 @@
                             <div class="col-md-2 pr-1 col-12">
                                 <label class="texto2">Titulo</label>
                             </div>
-                            <div class="col-md-7 pr-1 col-12">
+                            <div class="col-md-12 pr-1 col-12">
                                 <div style="padding-top: 10px;">
                                     <textarea id="txtTitulo" class="form-control textarea" placeholder="Título" title="Título" style="resize: none;" disabled>{{titulo}}</textarea>
                                 </div>

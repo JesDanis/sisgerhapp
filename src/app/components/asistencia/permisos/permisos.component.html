@@ -1,6 +1,4 @@
-<div style="height: 100%; width: 100%; background-color:#F4F5F6;">
-    <div style="height: 10px">
-    </div>
+<div id="pageContent" class="container-fluid py-3">
     <p style="text-align: center; color: #192A67; font-size: 24px; padding-top: 10px;">Permisos de <strong>asistencia</strong></p>
     <div class="card text-center" id="cardEncabezado">
         <div class="card-header" style="background-color: #EAEBEF">
@@ -37,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3 div-M">
                     <div class="row">
                         <div class="col-sm-7">
                             <button type="button" id="btnBuscar" class="btn btn-primary" (click)="obtenerPermisos()" title="Consultar permiso">
@@ -75,7 +73,7 @@
                             <td>{{per.DCPRM_FECHA_INICIO}}</td>
                             <td>{{per.DCPRM_FECHA_FIN}}</td>
                             <td>
-                                <button type="button " style="float: right;" class="btn btn-outline-primary" (click)="obtenerInformacion(per.CODIGO,per.DCPRM_NUM_SOLICITUD,per.DCPRM_HORA_INICIO,per.DCPRM_HORA_FIN,per.DCPRM_HORAS_TOTAL,per.DCPRM_TIEMPO_SOLIC,per.DCTPR_NUMERO_DIA,per.DCTPR_MODALIDAD,per.DCPRM_REEMPLAZO, per.DCPRM_ORD_LAB,per.DCPRM_ORD_NLAB,per.DCPRM_ADS_LAB,per.DCPRM_ADS_NLAB)"
+                                <button type="button " style="float: right;" class="btn btn-outline-primary" (click)="obtenerInformacion(per.CODIGO,per.DCPRM_NUM_SOLICITUD,per.DCPRM_HORA_INICIO,per.DCPRM_HORA_FIN,per.DCPRM_HORAS_TOTAL,per.DCPRM_TIEMPO_SOLIC,per.DCTPR_NUMERO_DIA,per.DCTPR_MODALIDAD,per.DCPRM_REEMPLAZO, per.DCPRM_ORD_LAB,per.DCPRM_ORD_NLAB,per.DCPRM_ADS_LAB,per.DCPRM_ADS_NLAB,per.DCPVC_DESCRIPCION)"
                                     title="Visualizar información" target="_blank" data-toggle="modal" data-target="#modalInformacion"><i class="fa fa-eye" style="margin-right: 5px;"></i></button>
                             </td>
 
@@ -84,8 +82,6 @@
                 </table>
             </div>
         </div>
-    </div>
-    <div style="height: 50px">
     </div>
 </div>
 <!--MODAL INFORMACION-->
@@ -144,36 +140,43 @@
                                 </div>
                             </div>
                         </div>
+                        <div id="cargo_vacaciones">
+                            <div class="row" style="padding-bottom: 10px;">
+                                <div class="col-md-10 pr-1 col-10">
+                                    <label class="texto">Periodo</label>
+                                    <input type="text" class="form-control" placeholder="Periodo" disabled title="Periodo" value="{{periodo}}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 pr-1 col-6">
+                                    <label class="texto">Días Ordinarios</label>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-bottom: 5px;">
+                                <div class="col-md-5 pr-1 col-5">
+                                    <label class="texto">Laborables</label>
+                                    <input type="text" class="form-control" placeholder="Laborables" disabled title="Días Ordinarios Laborables" value="{{dias_ord_lab}}">
 
-                        <div class="row">
-                            <div class="col-md-4 pr-1 col-6">
-                                <label class="texto">Días Ordinarios</label>
+                                </div>
+                                <div class="col-md-5 pr-1 col-5">
+                                    <label class="texto">No Laborables</label>
+                                    <input type="text" class="form-control" placeholder="No Laborables" disabled title="Días Ordinarios No Laborables" value="{{dias_ord_no_lab}}">
+                                </div>
                             </div>
-                        </div>
-                        <div class="row" style="padding-bottom: 5px;">
-                            <div class="col-md-5 pr-1 col-5">
-                                <label class="texto">Laborables</label>
-                                <input type="text" class="form-control" placeholder="Laborables" disabled title="Días Ordinarios Laborables" value="{{dias_ord_lab}}">
-
+                            <div class="row" style="padding-bottom: 3px;">
+                                <div class="col-md-4 pr-1 col-6">
+                                    <label class="texto">Días Adicionales</label>
+                                </div>
                             </div>
-                            <div class="col-md-5 pr-1 col-5">
-                                <label class="texto">No Laborables</label>
-                                <input type="text" class="form-control" placeholder="No Laborables" disabled title="Días Ordinarios No Laborables" value="{{dias_ord_no_lab}}">
-                            </div>
-                        </div>
-                        <div class="row" style="padding-bottom: 3px;">
-                            <div class="col-md-4 pr-1 col-6">
-                                <label class="texto">Días Adicionales</label>
-                            </div>
-                        </div>
-                        <div class="row" style="padding-bottom: 10px;">
-                            <div class="col-md-5 pr-1 col-5">
-                                <label class="texto">Laborables</label>
-                                <input type="text" class="form-control" placeholder="Laborables" disabled title="Días Adicionales Laborables" value="{{dias_adi_lab}}">
-                            </div>
-                            <div class="col-md-5 pr-1 col-5">
-                                <label class="texto">No Laborables</label>
-                                <input type="text" class="form-control" placeholder="No Laborables" disabled title="Días Adicionales No Laborables" value="{{dias_adi_no_lab}}">
+                            <div class="row" style="padding-bottom: 10px;">
+                                <div class="col-md-5 pr-1 col-5">
+                                    <label class="texto">Laborables</label>
+                                    <input type="text" class="form-control" placeholder="Laborables" disabled title="Días Adicionales Laborables" value="{{dias_adi_lab}}">
+                                </div>
+                                <div class="col-md-5 pr-1 col-5">
+                                    <label class="texto">No Laborables</label>
+                                    <input type="text" class="form-control" placeholder="No Laborables" disabled title="Días Adicionales No Laborables" value="{{dias_adi_no_lab}}">
+                                </div>
                             </div>
                         </div>
                         <!-- <div class="row" style="padding-bottom: 10px;">

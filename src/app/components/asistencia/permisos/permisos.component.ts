@@ -33,6 +33,7 @@ export class PermisosComponent implements OnInit {
   dias_ord_no_lab:any
   dias_adi_lab:any
   dias_adi_no_lab:any
+  periodo:any
   constructor(private datePipe: DatePipe,private sisgerhService:SisgerhMovilService) { }
 
   ngOnInit(): void {
@@ -65,6 +66,8 @@ export class PermisosComponent implements OnInit {
     this.actual =this.datePipe.transform(this.fecha,"yyyy-MM-dd");
     let tmpFecha=new Date();
     this.inDesde =this.datePipe.transform((tmpFecha.getFullYear()+"-"+(tmpFecha.getMonth() +1) +"-"+ 1),'yyyy-MM-dd');
+    $("#cargo_vacaciones").hide()
+
   }
   obtenerPermisos(){
   let Desde: string|any = $("#fechaInicio").val();
@@ -97,18 +100,29 @@ export class PermisosComponent implements OnInit {
   this.inHasta=this.datePipe.transform(Hasta,"dd/MM/yyyy");
   this.inPer=CryptoJS.AES.decrypt(this.inPer.toString(),'eeasaPer').toString(CryptoJS.enc.Utf8);
   this.permisos=[''];
+  
   if(this.inEstado==5){
+    var table = $('#tblPermisos').DataTable();
+    table.clear()
     this.sisgerhService.obtenerPermiso(btoa(this.inPer),"0","4",this.inDesde,this.inHasta).subscribe(res=>{
       let dtInstance = $('#tblPermisos').DataTable();
       dtInstance.destroy();
       this.permisos=res;
-
       this.dtTrigger.next();
+      console.log(this.permisos)
     })
   }  else{
+    var table = $('#tblPermisos').DataTable();
+    table.clear()
     this.sisgerhService.obtenerPermiso(btoa(this.inPer),this.inEstado,this.inEstado,this.inDesde,this.inHasta).subscribe(res=>{
+      let dtInstance = $('#tblPermisos').DataTable();
+      dtInstance.destroy();
+      console.log(this.permisos.DCTPR_MODALIDAD)
       this.permisos=res;
       this.dtTrigger.next();
+      console.log(this.permisos)
+
+
     })
   }}
   let tmpFecha=new Date();
@@ -157,7 +171,8 @@ export class PermisosComponent implements OnInit {
     dias_ord_lab:string,
     dias_ord_no_lab:string,
     dias_adi_lab:string,
-    dias_adi_no_lab:string
+    dias_adi_no_lab:string,
+    per:string
     ){
   this.codigo=cod
   this.cod_adj=cod_adj
@@ -172,6 +187,7 @@ export class PermisosComponent implements OnInit {
   this.dias_adi_no_lab=dias_adi_no_lab
   this.dias_ord_lab=dias_ord_lab
   this.dias_ord_no_lab=dias_ord_no_lab
+  this.periodo=per
   if(h_in==null){
     $("#horas").hide()
   }else{
@@ -179,8 +195,17 @@ export class PermisosComponent implements OnInit {
   }
   if(remp==' '){
     $("#remplazo").hide()
-  }else
-  $("#remplazo").show()
+  }else{
+    $("#remplazo").show()
+  }
+  if(mod=="CARGO A VACACIONES"){
+    $("#cargo_vacaciones").show()
+
+  }else{
+    $("#cargo_vacaciones").hide()
 
   }
+
+}
+      
 }

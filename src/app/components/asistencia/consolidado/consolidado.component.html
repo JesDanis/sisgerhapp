@@ -1,6 +1,4 @@
-<div style="height: 100%; width: 100%; background-color:#F4F5F6;">
-    <div style="height: 10px">
-    </div>
+<div id="pageContent" class="container-fluid py-3">
     <p style="text-align: center; color: #192A67; font-size: 24px; padding-top: 10px;">Asistencia <strong>consolidada</strong></p>
     <div class="card text-center" id="cardEncabezado">
 
@@ -36,17 +34,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3 col-md-6 col-xl-3 col-lg-3">
+                <div class="col-sm-2 col-md-6 col-xl-3 col-lg-2">
                     <div class="row">
-                        <div class="col-sm-7 col-md-6 col-xl-7 col-lg-7">
+                        <div class="col-sm-7 col-md-6 col-xl-7 col-lg-7 div-M">
                             <button type="button" id="btnConsultar" class="btn btn-primary" (click)="obtenerConsolidado()" title="Consultar">
                                 <i class="fa fa-search"></i> Consultar
                                </button>
                         </div>
-                        <div class="col-sm-5 col-md-5 col-xl-5 col-lg-5" id="divSpin">
+                        <div class="col-sm-5 col-md-5 col-xl-5 col-lg-5 div-M" id="divSpin">
                             <div class="spinner-border text-primary"></div>
                         </div>
-                        <div class="col-sm-5 col-md-5 col-xl-5 col-lg-5" id="btnImprimir">
+                        <div class="col-sm-5 col-md-5 col-xl-5 col-lg-5 div-M" id="btnImprimir" style="">
                             <button type="button" class="btn btn-success" (click)="reporteAsistencia()" title="Reporte asistencia"> <i class="fa fa-print"></i>
                             </button>
                         </div>
@@ -79,7 +77,5 @@
                 </table>
             </div>
         </div>
-    </div>
-    <div style="height: 50px">
     </div>
 </div>

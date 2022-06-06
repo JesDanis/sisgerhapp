@@ -265,10 +265,10 @@ export class PrincipalComponent implements OnInit {
 
       let file = new File([u8arr], nombre.NOMBRE, { type: 'application/pdf' });
       var url = window.URL.createObjectURL(file);
-      var anchor = document.createElement("a");
-      anchor.download = nombre;
-      anchor.href = url;
-      anchor.click();
+      var a = document.createElement("a");
+      a.href = url;
+      a.target = '_blank';
+      a.click();
     }
 
 

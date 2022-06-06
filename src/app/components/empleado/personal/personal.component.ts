@@ -48,9 +48,13 @@ export class PersonalComponent implements OnInit {
       this.fecha=this.fecha.toUpperCase()
       this.direccion=this.informacion.LUGAR_DOMICILIO+'\n'+this.informacion.DIR_DOMICILIO
       if(this.informacion.DISCAPACIDAD==" "){
-        this.discapacidad='NINGUNA - 0%'
+        this.discapacidad='NINGUNA - 0%' 
       }else{
         this.discapacidad=this.informacion.DISCAPACIDAD+' - '+this.informacion.PORCENTAJE+'%'
+      }
+      if(this.informacion.ESTADO_CIVIL!="Casado"){
+        $("#estCivN").hide()
+        $("#estCivI").hide()
       }
     });
     this.tiempo = ['']

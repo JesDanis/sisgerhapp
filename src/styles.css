@@ -1,59 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+
 @font-face {
     font-family: "Aileron";
     src: local("Aileron"), url(./assets/fonts/aileron/Aileron-Light.otf) format("truetype");
 }
 
-@import "~@ng-select/ng-select/themes/default.theme.css";
-a {
-    color: #192A67;
-    text-decoration: none;
-    background-color: transparent;
-}
-
-.rotate.down {
-    -moz-transform: rotate(90deg);
-    -webkit-transform: rotate(90deg);
-    transform: rotate(90deg);
-}
-
-.nav-pills .nav-link.active,
-.nav-pills .show>.nav-link {
-    color: #fff;
-    background-color: #192A67;
-}
-
 body {
+    overflow: hidden;
     font-family: 'Aileron';
 }
 
-input[type=text]:disabled {
-    background: #F8F9F9;
-    /*#F8F9F9*/
+body::-webkit-scrollbar {
+    display: none;
 }
 
-.form-control:disabled,
-.form-control[readonly] {
-    background-color: #F8F9F9;
-}
-
-#cardEncabezado {
-    width: 96%;
-    margin-top: 1%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 1%;
-    background-color: #ffffff;
-}
-
-#colortext {
+.table th {
     color: #ffffff;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: lighter;
     vertical-align: text-top;
+    background-color: #192A67;
 }
 
-.btn {
-    margin-right: 1%;
+.table td {
+    font-size: 14px;
+}
+
+.table.dataTable {
+    padding-top: 1%;
+}
+
+.table.dataTable th {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: lighter;
+    vertical-align: text-top;
+    background-color: #192A67;
+}
+
+.table.dataTable td {
+    font-size: 14px;
 }
 
 #titulo {
@@ -88,88 +74,41 @@ input[type=text]:disabled {
     color: #505256;
 }
 
-.selectpicker {
-    color: #505256;
-}
-
 .form-select {
     color: #505256;
 }
 
-.tablas {
-    background-color: #25356F;
-    color: white;
-    text-align: center;
-    font-size: small;
+.btn {
+    margin-right: 1%;
 }
 
-.dis {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: left;
+#pageContent {
+    -ms-overflow-style: none;
+    /* for Internet Explorer, Edge */
+    scrollbar-width: none;
+    /* for Firefox */
+    overflow-y: scroll;
+    height: 92vh;
+    background-color: white;
 }
 
-.borderless td,
-.borderless th {
-    border: none;
-}
-
-.card-user form .form-group {
-    margin-bottom: 20px;
-}
-
-.card-tasks .card-body .table {
-    margin-bottom: 0;
-}
-
-.card-tasks .card-body .table>thead>tr>th,
-.card-tasks .card-body .table>tbody>tr>th,
-.card-tasks .card-body .table>tfoot>tr>th,
-.card-tasks .card-body .table>thead>tr>td,
-.card-tasks .card-body .table>tbody>tr>td,
-.card-tasks .card-body .table>tfoot>tr>td {
-    padding-top: 0;
-    padding-bottom: 0;
-}
-
-.card {
-    background-color: #FFFFFF;
-    color: #252422;
-    margin-bottom: 20px;
-    position: relative;
-    border: 1 none;
-    transition: transform 300ms cubic-bezier(0.34, 2, 0.6, 1), box-shadow 200ms ease;
-}
-
-.table th {
-    color: #ffffff;
-    font-size: 15px;
-    font-weight: lighter;
-    vertical-align: text-top;
-    background-color: #192A67;
-}
-
-.table td {
-    font-size: 14px;
-}
-
-.table.dataTable {
-    padding-top: 1%;
-}
-
-.table.dataTable th {
-    color: #ffffff;
-    font-size: 15px;
-    font-weight: lighter;
-    vertical-align: text-top;
-    background-color: #192A67;
-}
-
-.table.dataTable td {
-    font-size: 14px;
-}
-
-::-webkit-scrollbar {
+#pageContent::-webkit-scrollbar {
     display: none;
+    /* for Chrome, Safari, and Opera */
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #192A67;
+}
+
+#page-content-wrapper {
+    background-color: white;
+}
+
+@media only screen and (min-device-width: 300px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+    .div-M {
+        padding-top: 20px;
+    }
 }

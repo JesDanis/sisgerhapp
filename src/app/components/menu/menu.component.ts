@@ -1,49 +1,47 @@
 import { Component, OnInit  } from "@angular/core"; 
 import { SisgerhMovilService } from "src/app/services/sisgerh-movil.service";
 import { DomSanitizer } from '@angular/platform-browser';
-import * as $ from 'jquery';
 import * as CryptoJS from 'crypto-js';
 import { Router} from '@angular/router';
+import {AdministracionService} from 'src/app/guards/administracion.service'
 
 import { CookieService } from 'ngx-cookie-service';
-import { InformacionComponent } from "../empleado/informacion/informacion.component";
 @Component({
     selector: 'app-menu',
     templateUrl:'./menu.component.html',
     styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-
   sesion:any;
   fotografia:any;
   imageUrl:any;
   inPerson:any;
   sidebarShow:boolean = true;
   user:any
-  constructor(private cookieService: CookieService,private sisgerhService:SisgerhMovilService, private domSanitizer:DomSanitizer,private router: Router) { }
+  constructor(private cookieService: CookieService,
+    private sisgerhService:SisgerhMovilService, 
+    private domSanitizer:DomSanitizer,
+    private router: Router,
+    private authService:AdministracionService
+    ) { }
 
   ngOnInit(): void {
     this.obtenerSesion();  
   }
  obtenerSesion(){
-   //OBTENCION DE COOKIE
-   //let inUser = 'wmedi'
-    //'sceli' //'wmedina' //'dcadme'//'mchavez'//'jabad'//'//'wachachi'//'jsantamaria';
-    
-  // let inUser = this.cookieService.get('user_eeasa');
-   //let User = this.cookieService.set('user_eeasa','arodriguez');
     this.sesion=[''];
-  let inUser = this.cookieService.get('user_eeasa');
+    let inUser='dcadme'
+  //  let inUser = this.cookieService.get('user_eeasa');
 
     this.sisgerhService.obtenerSesion(btoa(inUser)).subscribe(res=>{
+     
     this.sesion=res;
     this.sesion=this.sesion[0];
     //Obtener DMPER_CODIGO
     this.inPerson=this.sesion.DMPER_CODIGO;
     this.inPerson=CryptoJS.AES.encrypt(this.inPerson.toString(),'eeasaPer');
     this.user=CryptoJS.AES.encrypt(inUser,'eeasaPer');
-    localStorage.setItem('codPer',this.inPerson);
-    localStorage.setItem('user',this.user);
+    this.authService.login(this.inPerson,this.user);
     
     //Cargar fotogafria
     this.fotografia=this.sesion.DMPER_FOTOGRAFIA;
@@ -73,13 +71,11 @@ export class MenuComponent implements OnInit {
     }
   }
   salir(){
-    this.cookieService.set('user_eeasa','')
-    this.cookieService.delete('user_eeasa')
-    localStorage.clear()
-    // window.location.reload();
-     
-    // window.location.href = 'https://app.eeasa.com.ec/intranet#/';
-     window.location.href = 'http://172.20.0.84:7001/intranet'
+    this.authService.logout();
+    //window.location.href = 'https://app.eeasa.com.ec/intranet#/';
+    window.location.href = 'http://172.20.0.84:7001/intranet#/';
+   
   }
+ 
   }
   

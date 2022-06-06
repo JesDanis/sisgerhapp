@@ -74,7 +74,7 @@ url: string='http://172.20.0.84:7001/WSSisgerhApp/rest/sisgerh/';
   send_mail(json:any):Observable<String>{
     const headers = { 'content-type': 'application/json' };
     const body = JSON.parse(json);
-    this.req = this.url + 'sendEmail_rechazar';
+    this.req = this.url + 'sendEmail';
     return this.httpClient.post<String>(this.req, body, { 'headers': headers });
   }
 }
