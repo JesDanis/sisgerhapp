@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SisgerhMovilService } from "src/app/services/sisgerh-movil.service";
 import * as CryptoJS from 'crypto-js';
 import { Subject } from 'rxjs';
+import {AdministracionService} from 'src/app/guards/administracion.service'
+
 @Component({
   selector: 'app-formacion',
   templateUrl: './formacion.component.html',
@@ -13,7 +15,7 @@ export class FormacionComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
  
-  constructor(private sisgerhService:SisgerhMovilService){}
+  constructor(private sisgerhService:SisgerhMovilService,private authService:AdministracionService){}
   
 
   ngOnInit(): void {
@@ -47,7 +49,7 @@ export class FormacionComponent implements OnInit {
     this.getFormacion();
   }
   getFormacion(){
-    this.inPer=localStorage.getItem('codPer');
+    this.inPer=this.authService.getCodPer()
     this.inPer=CryptoJS.AES.decrypt(this.inPer.toString(),'eeasaPer').toString(CryptoJS.enc.Utf8);
     this.formacion=['']
     this.sisgerhService.obternerFormacion(btoa(this.inPer)).subscribe(res=>{

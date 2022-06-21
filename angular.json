@@ -39,10 +39,8 @@
                             "node_modules/jquery/dist/jquery.js",
                             "node_modules/datatables.net/js/jquery.dataTables.js"
 
-                        ],
-                        "buildOptimizer": true,
-                        "serviceWorker": true,
-                        "ngswConfigPath": "ngsw-config.json"
+                        ]
+
                     },
                     "configurations": {
                         "production": {

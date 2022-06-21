@@ -5,6 +5,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient } from "@angular/common/http";
 import { Subject } from 'rxjs';
 import Swal from 'sweetalert2'
+import {AdministracionService} from 'src/app/guards/administracion.service'
 
 @Component({
   selector: 'app-instruccion',
@@ -18,7 +19,7 @@ export class InstruccionComponent implements OnInit {
   instruccion: any;
   inPer: any;
   archivo: any
-  constructor(private sisgerhService: SisgerhMovilService, private domSanitizer: DomSanitizer, private _http: HttpClient) { }
+  constructor(private sisgerhService: SisgerhMovilService, private domSanitizer: DomSanitizer, private _http: HttpClient,private authService:AdministracionService) { }
 
   ngOnInit(): void {
   
@@ -48,7 +49,7 @@ export class InstruccionComponent implements OnInit {
     this.obtenerInstruccion();
   }
   obtenerInstruccion() {
-    this.inPer = localStorage.getItem('codPer');
+    this.inPer =this.authService.getCodPer()
     this.inPer = CryptoJS.AES.decrypt(this.inPer.toString(), 'eeasaPer').toString(CryptoJS.enc.Utf8);
     this.instruccion = ['']
     this.sisgerhService.obternerInstruccion(btoa(this.inPer)).subscribe(res => {

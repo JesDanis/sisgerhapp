@@ -18,11 +18,15 @@ import { TiempoInt } from '../models/vacaciones/tiempo-int';
 import {InformacionAntInt} from '../models/anticipo/informacion-ant-int'
 import {DetalleInt} from '../models/anticipo/detalle-int'
 import { Adjunto } from '../models/adjunto';
+import { environment } from 'src/environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class SisgerhMovilService {
-url: string='http://172.20.0.84:7001/WSSisgerhApp/rest/sisgerh/';
+url: string=environment.urlSisgerh
+
+//url: string='http://172.20.0.84:7001/WSSisgerhApp/rest/sisgerh/';
 //url: string='http://localhost:7001/WSSisgerhApp/rest/sisgerh/';
 req:string='';  
 constructor(private httpClient: HttpClient) { }

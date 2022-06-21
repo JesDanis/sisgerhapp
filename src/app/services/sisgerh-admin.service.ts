@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SisgerhAdminService {
-url: string='http://172.20.0.84:7001/WSSisgerhApp/rest/sisgerh/';
-//url: string='http://localhost:7001/WSSisgerhApp/rest/sisgerh/';
+url: string=environment.urlSisgerh
 
   req:string='';  
   constructor(private httpClient: HttpClient) { }

@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  urlSisgerh: 'http://172.20.0.84:7001/WSSisgerhApp/rest/sisgerh/'
+
 };
 
 /*

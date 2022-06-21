@@ -3,6 +3,7 @@ import { SisgerhMovilService } from "src/app/services/sisgerh-movil.service";
 import * as CryptoJS from 'crypto-js';
 import { Subject } from 'rxjs';
 import Swal from 'sweetalert2'
+import {AdministracionService} from 'src/app/guards/administracion.service'
 
 @Component({
   selector: 'app-periodos',
@@ -27,7 +28,7 @@ export class PeriodosComponent implements OnInit {
   porcentaje_adicional_nolab:number=0
   permisos:any
 
-  constructor(private sisgerhService:SisgerhMovilService) { }
+  constructor(private sisgerhService:SisgerhMovilService,private authService:AdministracionService) { }
   
   ngOnInit(): void {
     this.obtener_periodos()
@@ -52,7 +53,7 @@ export class PeriodosComponent implements OnInit {
     };
   }
   obtener_periodos(){
-    this.inPer=localStorage.getItem('codPer');
+    this.inPer=this.authService.getCodPer()
     this.inPer=CryptoJS.AES.decrypt(this.inPer.toString(),'eeasaPer').toString(CryptoJS.enc.Utf8);
     this.periodos=['']
     this.sisgerhService.obtenerPeriodos(btoa(this.inPer),3,3).subscribe(res=>{
@@ -63,7 +64,6 @@ export class PeriodosComponent implements OnInit {
   obtenerPeriodos(){
     this.txtEstado=$("#estado").val()
     this.txtTipo=$("#tipo").val()
-  this.inPer=localStorage.getItem('codPer');
   this.inPer=CryptoJS.AES.decrypt(this.inPer.toString(),'eeasaPer').toString(CryptoJS.enc.Utf8);
   this.periodos=['']
   this.sisgerhService.obtenerPeriodos(btoa(this.inPer),this.txtTipo,this.txtEstado).subscribe(res=>{

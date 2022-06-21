@@ -3,6 +3,9 @@ import { SisgerhMovilService } from "src/app/services/sisgerh-movil.service";
 import * as CryptoJS from 'crypto-js';
 import { Subject } from 'rxjs';
 import Swal from 'sweetalert2'
+import {AdministracionService} from 'src/app/guards/administracion.service'
+
+
 @Component({
   selector: 'app-solicitudes',
   templateUrl: './solicitudes.component.html',
@@ -13,7 +16,7 @@ export class SolicitudesComponent implements OnInit {
   solicitud:any;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
-  constructor(private sisgerhService:SisgerhMovilService) { }
+  constructor(private sisgerhService:SisgerhMovilService,private authService:AdministracionService) { }
 
   ngOnInit(): void {
     this.dtOptions = {
@@ -46,7 +49,7 @@ export class SolicitudesComponent implements OnInit {
     this.getSolicitud();
   }
   getSolicitud(){
-    this.inPer=localStorage.getItem('codPer');
+    this.inPer=this.authService.getCodPer()
     this.inPer=CryptoJS.AES.decrypt(this.inPer.toString(),'eeasaPer').toString(CryptoJS.enc.Utf8);
     this.solicitud=['']
     this.sisgerhService.obtenerSolicitud(btoa(this.inPer)).subscribe(res=>{

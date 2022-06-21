@@ -10,7 +10,8 @@ import * as $ from "jquery";
 import { TituloInt } from 'src/app/models/actualizar/titulo-int';
 import { NivelInt } from 'src/app/models/actualizar/nivel-int';
 import { SisgerhAdminService } from 'src/app/services/sisgerh-admin.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import {  Router } from '@angular/router';
+import {AdministracionService} from 'src/app/guards/administracion.service'
 
 @Component({
   selector: 'app-actualizacion',
@@ -110,7 +111,13 @@ export class ActualizacionComponent implements OnInit {
   nombreDiscAdj: any
   nombreDiscAdj_: any
   getIp: any
-  constructor(private datePipe: DatePipe, private sisgerhService: SisgerhMovilService, private adminService: SisgerhAdminService, private domSanitizer: DomSanitizer, private router: Router,) { }
+  constructor(private datePipe: DatePipe, 
+    private sisgerhService: SisgerhMovilService, 
+    private adminService: SisgerhAdminService, 
+    private domSanitizer: DomSanitizer, 
+    private router: Router,
+    private authService:AdministracionService
+    ) { }
 
   ngOnInit(): void {
 
@@ -152,7 +159,7 @@ export class ActualizacionComponent implements OnInit {
     this.obtenerDiscapacidad();
     this.obtenerNivelEducativo();
     this.obtenerParroquias();
-    this.inPer = localStorage.getItem('codPer');
+    this.inPer = this.authService.getCodPer()
     this.inPer = CryptoJS.AES.decrypt(this.inPer.toString(), 'eeasaPer').toString(CryptoJS.enc.Utf8);
     this.adminService.obtenerActualizacion(btoa(this.inPer)).subscribe((res: any) => {
       if (res.length == 1) {
@@ -1073,7 +1080,7 @@ cambio_personal(){
       "\"DMAPP_ESTADO_SUBIDA\":\"P\",\r\n" +
       "\"DMAPP_OBSERVACION\":\"INFORMACION MODIFICADA DESDE SISGERH APP\",\r\n" +
       "\"CONTENIDO\":\""
-    this.inUser = localStorage.getItem('user');
+    this.inUser = this.authService.getUser()
     this.inUser = CryptoJS.AES.decrypt(this.inUser.toString(), 'eeasaPer').toString(CryptoJS.enc.Utf8);
     let jsonContenido = btoa(jsonGeneral + jsonAdjuntos + jsonContacto + jsonDomicilio + jsonAcademica + jsonAdicional) + "\"\r\n" +
       "}, \r\n" +

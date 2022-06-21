@@ -5,10 +5,13 @@ import {Meses} from 'src/app/models/meses'
 import Swal from 'sweetalert2'
 import {DatePipe} from '@angular/common';
 import { PdfMakeWrapper,Img, Table, Ul, Line } from 'pdfmake-wrapper';
+import {AdministracionService} from 'src/app/guards/administracion.service'
+
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import { Txt, Columns} from 'pdfmake-wrapper';
 import {NominaInt} from '../../models/rolPagos/nomina-int'
 PdfMakeWrapper.setFonts(pdfFonts);
+
 
 @Component({
   selector: 'app-roles-pago',
@@ -50,7 +53,7 @@ export class RolesPagoComponent implements OnInit {
    color: 'black'
 };
 txtNomina: string = '0';
-  constructor(private datePipe: DatePipe,private sisgerhService:SisgerhMovilService) { }
+  constructor(private datePipe: DatePipe,private sisgerhService:SisgerhMovilService,private authService:AdministracionService) { }
 
   ngOnInit(): void {
     $("#rolDetalle").hide()
@@ -82,7 +85,7 @@ obtenerMeses(): void {
 
 }
   obtenerInformacion(){
-    this.inPer=localStorage.getItem('codPer');
+    this.inPer=this.authService.getCodPer()
     this.inPer=CryptoJS.AES.decrypt(this.inPer.toString(),'eeasaPer').toString(CryptoJS.enc.Utf8);
     this.informacion=[''];
     this.sisgerhService.obternerInformacionPer(btoa(this.inPer)).subscribe(res=>{
@@ -154,46 +157,48 @@ obtenerMeses(): void {
     this.noImponibles=[''];
     this.descuentos=[''];
     this.sum_imp=0
-    let suma=0
+    this.sum_no_imp=0
+    this.suma_des=0
+    this.totalPago=0
     this.sisgerhService.obtenerRol('obtenerImponibles',this.resultadoNom,btoa(this.inPer)).subscribe(res=>{
       this.imponibles=res;
     }) 
     this.sisgerhService.obtenerRol('obtenerNoImponibles',this.resultadoNom,btoa(this.inPer)).subscribe(res=>{
       this.noImponibles=res;
     }) 
-    this.sisgerhService.obtenerRol('obtenerSumaImponibles',this.resultadoNom,btoa(this.inPer)).subscribe(res=>{
-      this.sum_imp=res
-      this.sum_imp=this.sum_imp[0].SUMA
-      if(this.sum_imp==null){
-        this.sum_imp=0
-      }
-      })
-    this.sisgerhService.obtenerRol('obtenerSumaNoImponibles',this.resultadoNom,btoa(this.inPer)).subscribe(res=>{
-        this.sum_no_imp=res
+    this.sisgerhService.obtenerRol('obtenerDescuentos',this.resultadoNom,btoa(this.inPer)).subscribe(res=>{
+      this.descuentos=res;
+    })
+    this.obtenerValoresRol(this.inPer)
+  } 
+
+obtenerValoresRol(dato:any){
+  this.sisgerhService.obtenerRol('obtenerSumaImponibles',this.resultadoNom,btoa(dato)).subscribe(res1=>{
+    this.sisgerhService.obtenerRol('obtenerSumaNoImponibles',this.resultadoNom,btoa(dato)).subscribe(res2=>{
+      this.sisgerhService.obtenerRol('obtenerSumaDescuentos',this.resultadoNom,btoa(this.inPer)).subscribe(res3=>{
+        this.sum_imp=res1
+        this.sum_imp=this.sum_imp[0].SUMA
+          if(this.sum_imp==null){
+            this.sum_imp=0
+          }
+        this.sum_no_imp=res2
         this.sum_no_imp=this.sum_no_imp[0].SUMA
         if(this.sum_no_imp==null){
           this.sum_no_imp=0
         }
-        this.totalIn=parseFloat(this.sum_imp)+parseFloat(this.sum_no_imp)
-        this.totalIn=Math.round(this.totalIn*100)/100
-
-        })
-    this.sisgerhService.obtenerRol('obtenerSumaDescuentos',this.resultadoNom,btoa(this.inPer)).subscribe(res=>{
-          this.suma_des=res
-          this.suma_des=this.suma_des[0].SUMA
-          if(this.suma_des==null){
-            this.suma_des=0
-          }
-          this.totalPago=(parseFloat(this.totalIn)-parseFloat(this.suma_des))
-          this.totalPago=Math.round(this.totalPago*100)/100
-          })
-    this.sisgerhService.obtenerRol('obtenerDescuentos',this.resultadoNom,btoa(this.inPer)).subscribe(res=>{
-      this.descuentos=res;
-
+        this.suma_des=res3
+        this.suma_des=this.suma_des[0].SUMA
+        if(this.suma_des==null){
+          this.suma_des=0
+        }
+        let ing =parseFloat(this.sum_imp)+parseFloat(this.sum_no_imp)
+        this.totalIn=Math.round(ing*100)/100
+        let total=(parseFloat(this.totalIn)-parseFloat(this.suma_des))
+        this.totalPago=Math.round(total*100)/100 
       })
-      
- 
-  }
+    })
+  }) 
+}
 
   async reporteRol(){
     this.resultadoNom=$("#sltNomina").val()

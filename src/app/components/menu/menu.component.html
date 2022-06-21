@@ -2,19 +2,20 @@
     <!-- Sidebar -->
     <div id="sidebar-wrapper" style="background-color:#192A67;">
         <div class="sidebar-heading " style="width: 100%;text-align: center; color:#f3f3f3 ; position: sticky;">
-            <img [src]="imageUrl" class="rounded-circle perfil" alt="Foto" style=" border:2.5px solid;width: 11ex; height: 11ex; color: {{sesion.COLOR_ESCALA}}"><br>
-            <strong> <a style="font-size: medium;font-weight: lighter; "> Rol: {{sesion.DMPER_NUMERO_ROL}} </a><br>          
-            <a style="font-size: medium;font-weight: lighter;" > {{sesion.DMPER_NOMBRE_EMPLEADO}} </a> 
+            <img [src]="imageUrl" class="rounded-circle perfil" alt="Foto" style=" border:2.5px solid;width: 11ex; height: 11ex; color: {{color}}"><br>
+            <strong> <a style="font-size: medium;font-weight: lighter; "> Rol: {{num_rol}} </a><br>          
+            <a style="font-size: medium;font-weight: lighter;" > {{empleado}} </a> 
             </strong>
         </div>
         <div class="list-group list-group-flush" id="menu">
+
             <a routerLink='actualizacion' class="list-group-item list-mio" routerLinkActive='active' title="Actualización" data-toggle="#collapse">
                 <i class="bi bi-pencil-square"></i> Actualización</a>
             <a href="#empleado" class="list-group-item list-mio rotate" data-toggle="collapse" title="Empleado">
                 <i class="bi bi-caret-down-fill rotate" style="margin-right: 15px;" id="iconEmpleado" name="iconEmpleado"></i>Empleado
             </a>
             <div class="list-group collapse" id="empleado" data-parent="#menu">
-                <a routerLink='laboral' routerLinkActive='active' class="list-group-item list-mio-item" title="Información laboral"><i class="bi bi-briefcase-fill"></i> Información laboral</a>
+                <a routerLink='index' routerLinkActive='active' class="list-group-item list-mio-item" title="Información laboral"><i class="bi bi-briefcase-fill"></i> Información laboral</a>
                 <a routerLink='personal' routerLinkActive='active' class="list-group-item list-mio-item" title="Información personal"><i class="bi bi-info-circle"></i> Información personal</a>
                 <a routerLink='instruccion' routerLinkActive='active' class="list-group-item list-mio-item" title="Instrucción"><i class="bi bi-book"></i> Instrucción</a>
                 <a routerLink='experiencia' routerLinkActive='active' class="list-group-item list-mio-item" title="Experiencia"><i class="bi bi-award"></i> Experiencia</a>
@@ -54,18 +55,16 @@
 
         <nav class="navbar navbar-expand-lg navbar-dark border-bottom">
             <button class="btn btn-primary" id="menu-toggle"><i class="bi bi-menu-button-wide"></i></button>
-
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="bi bi-person-lines-fill" style="color: #25356F;"></i>
-                </button>
-
+                <i class="bi bi-person-lines-fill" style="color: #25356F;"></i>
+            </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item " style="visibility: hidden;" id="menuAdmin" title="Administración">
                         <a class=" nav-link" routerLinkActive='active_admin' routerLink="principal-admi" style="color: #20315F; "> <i class="bi bi-gear-fill" style="margin-right: 5px;"></i><strong>Administración</strong ></a>
                     </li>
                     <li class="nav-item " title="Usuario">
-                        <a class=" nav-link disabled " href="# " style="color: #20315F; "><i class="bi bi-person-fill" style="margin-right:5px; "></i><strong>USUARIO: </strong > <a> {{sesion.DSGUS_CUENTA}}</a></a>
+                        <a class=" nav-link disabled " href="# " style="color: #20315F; "><i class="bi bi-person-fill" style="margin-right:5px; "></i><strong>USUARIO: </strong > <a> {{cuenta}}</a></a>
                     </li>
                     <li class="nav-item " title="Salir">
                         <a (click)="salir()" title="Salir" class="btn btn-outline-danger border-0 w-100">

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {DatePipe} from '@angular/common';
 import { SisgerhMovilService } from "src/app/services/sisgerh-movil.service";
-import { ActivatedRoute, Router } from '@angular/router';
 import * as CryptoJS from 'crypto-js';
 import { Subject } from 'rxjs';
 import Swal from 'sweetalert2'
+import {AdministracionService} from 'src/app/guards/administracion.service'
+
 import { PdfMakeWrapper,Img, Table, Ul, Line } from 'pdfmake-wrapper';
 //import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import * as pdfFonts from "pdfmake/build/vfs_fonts"
@@ -32,7 +33,10 @@ dtOptions: DataTables.Settings = {};
 dtTrigger: Subject<any> = new Subject<any>();
 page:any=0 
 
-  constructor(private datePipe: DatePipe,private sisgerhService:SisgerhMovilService,private router: Router, private route: ActivatedRoute) {   }
+  constructor(private datePipe: DatePipe,
+    private sisgerhService:SisgerhMovilService,
+     private authService:AdministracionService
+     ) {   }
 
   ngOnInit(): void {
     $("#btnImprimir").hide()
@@ -103,7 +107,7 @@ obtenerConsolidado():void{
      } else {
       this.inDesdeR=this.datePipe.transform(Desde,"dd/MM/yyyy");
     this.inHasta=this.datePipe.transform(Hasta,"dd/MM/yyyy");//
-      this.inPer=localStorage.getItem('codPer');
+      this.inPer=this.authService.getCodPer()
       this.inPer=CryptoJS.AES.decrypt(this.inPer.toString(),'eeasaPer').toString(CryptoJS.enc.Utf8);  
       this.consolidado=[''];
       let est:any=''

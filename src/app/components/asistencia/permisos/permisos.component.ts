@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {DatePipe} from '@angular/common';
-import { SisgerhMovilService } from "src/app/services/sisgerh-movil.service";
 import * as CryptoJS from 'crypto-js';
 import { Subject } from 'rxjs';
 import Swal from 'sweetalert2'
+import { SisgerhMovilService } from "src/app/services/sisgerh-movil.service";
+import {AdministracionService} from 'src/app/guards/administracion.service'
+
 @Component({
   selector: 'app-permisos',
   templateUrl: './permisos.component.html',
@@ -34,7 +36,7 @@ export class PermisosComponent implements OnInit {
   dias_adi_lab:any
   dias_adi_no_lab:any
   periodo:any
-  constructor(private datePipe: DatePipe,private sisgerhService:SisgerhMovilService) { }
+  constructor(private datePipe: DatePipe,private sisgerhService:SisgerhMovilService, private authService:AdministracionService) { }
 
   ngOnInit(): void {
       this.dtOptions = {
@@ -74,7 +76,7 @@ export class PermisosComponent implements OnInit {
   let Hasta: string|any = $("#fechaFin").val();
   
   this.inEstado=Number($("#estado").val())
-  this.inPer=localStorage.getItem('codPer');
+  this.inPer=this.authService.getCodPer()
   this.inDesde=this.datePipe.transform(Desde,"yyyy-MM-dd");
   this.inHasta=this.datePipe.transform(Hasta,"yyyy-MM-dd");
   if(this.inEstado==9){

@@ -5,6 +5,8 @@ import { Subject } from 'rxjs';
 import { PdfMakeWrapper,Img, Table, Ul, Line } from 'pdfmake-wrapper';
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import Swal from 'sweetalert2'
+import {AdministracionService} from 'src/app/guards/administracion.service'
+
 import { Txt, Columns} from 'pdfmake-wrapper';
 import {Router} from '@angular/router';
 PdfMakeWrapper.setFonts(pdfFonts);
@@ -32,7 +34,7 @@ export class AnticipoRmuComponent implements OnInit {
   tipo_prestamo:any
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
-  constructor(private sisgerhService:SisgerhMovilService, private route:Router) { }
+  constructor(private sisgerhService:SisgerhMovilService, private route:Router,private authService:AdministracionService) { }
 
   ngOnInit(): void {
     this.dtOptions = {
@@ -64,7 +66,7 @@ export class AnticipoRmuComponent implements OnInit {
   }
 
   verificarExistencia(){
-  this.inPer=localStorage.getItem('codPer');
+  this.inPer=this.authService.getCodPer()
   this.inPer=CryptoJS.AES.decrypt(this.inPer.toString(),'eeasaPer').toString(CryptoJS.enc.Utf8);
 
     this.sisgerhService.obtenerInformacionAnticipo(btoa(this.inPer)).subscribe((res:any)=>{
@@ -76,7 +78,7 @@ export class AnticipoRmuComponent implements OnInit {
           title: 'Información',
           text: 'No cuenta con Anticipos'
         })
-        this.route.navigate(['/laboral']);
+        this.route.navigate(['/index']);
       }else{
         $("#btnImprimir").show()
         $("#divDetalles").show()

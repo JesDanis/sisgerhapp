@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SisgerhMovilService } from "src/app/services/sisgerh-movil.service";
 import * as CryptoJS from 'crypto-js';
 import {DatePipe} from '@angular/common';
+import {AdministracionService} from 'src/app/guards/administracion.service'
 
 @Component({
   selector: 'app-personal',
@@ -18,7 +19,7 @@ export class PersonalComponent implements OnInit {
   discapacidad:any
   edad:any
 
-  constructor(private sisgerhService:SisgerhMovilService,private datePipe: DatePipe) { }
+  constructor(private sisgerhService:SisgerhMovilService,private datePipe: DatePipe,private authService:AdministracionService) { }
 
   ngOnInit(): void {
     // this.scrollToBottom();
@@ -27,7 +28,7 @@ export class PersonalComponent implements OnInit {
   }
   obtenerInformacion(){
     //date:'longDate'
-    this.inPer=localStorage.getItem('codPer');
+    this.inPer=this.authService.getCodPer()
     this.inPer=CryptoJS.AES.decrypt(this.inPer.toString(),'eeasaPer').toString(CryptoJS.enc.Utf8);
     
     this.informacion=[''];

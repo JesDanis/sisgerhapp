@@ -3,6 +3,8 @@ import { Subject } from 'rxjs';
 import { SisgerhAdminService } from 'src/app/services/sisgerh-admin.service';
 import Swal from 'sweetalert2'
 import * as CryptoJS from 'crypto-js';
+import {AdministracionService} from 'src/app/guards/administracion.service'
+
 
 @Component({
   selector: 'app-principal',
@@ -56,7 +58,7 @@ export class PrincipalComponent implements OnInit {
   porcentaje: any
   txtAlerta: any
 
-  constructor(private sisgerhService: SisgerhAdminService) { }
+  constructor(private sisgerhService: SisgerhAdminService,private authService:AdministracionService) { }
   ngOnInit(): void {
     $("#divAlert").hide()
     $("#noCerrar").show()
@@ -64,7 +66,7 @@ export class PrincipalComponent implements OnInit {
     this.sisgerhService.getIPAddress().subscribe((res: any) => {
       this.getIp = res.ip
     })
-    this.inPer = localStorage.getItem('codPer');
+    this.inPer = this.authService.getCodPer()
     this.inPer = CryptoJS.AES.decrypt(this.inPer.toString(), 'eeasaPer').toString(CryptoJS.enc.Utf8);
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -286,7 +288,7 @@ export class PrincipalComponent implements OnInit {
   }
 
   aprobarInformacion(estado: any, observacion: any) {
-    this.inUser = localStorage.getItem('user');
+    this.inUser = this.authService.getUser()
     this.inUser = CryptoJS.AES.decrypt(this.inUser.toString(), 'eeasaPer').toString(CryptoJS.enc.Utf8);
     //
     let json = "{\r\n" +

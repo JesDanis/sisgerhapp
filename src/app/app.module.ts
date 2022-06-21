@@ -30,14 +30,20 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { LaboralComponent } from './components/empleado/laboral/laboral.component';
 import { AutosizeModule } from 'ngx-autosize';
 import { PersonalComponent } from './components/empleado/personal/personal.component';
+import { ParameterProviderService } from './providers/parameter-provider.service';
+ export function parameterProviderFactory(provider: ParameterProviderService) {
+   return () => provider.searchParameters();
+ }
 
 const routes: Routes=[
   
   // {path:'',redirectTo:'laboral',pathMatch:'full'},
-  {path:'',component:LaboralComponent,pathMatch:'full'},
+  { path: '', pathMatch: 'full', redirectTo: 'index' },
+  { path: 'index', component: LaboralComponent},
+
+ // {path:'',component:LaboralComponent,pathMatch:'full'},
   {path:'personal',component:PersonalComponent},
   {path:'instruccion', component:InstruccionComponent},
-  {path:'laboral', component:LaboralComponent},
   {path:'experiencia', component:ExperienciaComponent},
   {path:'formacion', component:FormacionComponent},
   {path:'consolidado',component:ConsolidadoComponent},
@@ -81,16 +87,22 @@ const routes: Routes=[
     DataTablesModule,
     AutosizeModule,
      ReactiveFormsModule,
-      NgSelectModule,
-      ServiceWorkerModule.register('ngsw-worker.js', {
-        enabled: environment.production,
-        // Register the ServiceWorker as soon as the app is stable
-        // or after 30 seconds (whichever comes first).
-        registrationStrategy: 'registerWhenStable:30'
-      })
+      NgSelectModule
+      // ServiceWorkerModule.register('ngsw-worker.js', {
+      //   enabled: environment.production,
+      //   // Register the ServiceWorker as soon as the app is stable
+      //   // or after 30 seconds (whichever comes first).
+      //   registrationStrategy: 'registerWhenStable:30'
+      // })
   ],
   providers: [DatePipe,CookieService,
   {provide:LocationStrategy,useClass:HashLocationStrategy},
+   {
+     provide: APP_INITIALIZER,
+     useFactory: parameterProviderFactory,
+     deps: [ParameterProviderService],
+     multi: true
+   }
   
 ],
   bootstrap: [AppComponent]

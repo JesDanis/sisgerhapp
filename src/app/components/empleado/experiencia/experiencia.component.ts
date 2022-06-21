@@ -3,6 +3,7 @@ import { SisgerhMovilService } from "src/app/services/sisgerh-movil.service";
 import * as CryptoJS from 'crypto-js';
 import { Subject } from 'rxjs';
 import Swal from 'sweetalert2'
+import {AdministracionService} from 'src/app/guards/administracion.service'
 
 
 @Component({
@@ -16,7 +17,7 @@ export class ExperienciaComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
 
-  constructor(private sisgerhService:SisgerhMovilService) { }
+  constructor(private sisgerhService:SisgerhMovilService,private authService:AdministracionService) { }
 
   ngOnInit(): void {
     this.dtOptions = {
@@ -48,7 +49,7 @@ export class ExperienciaComponent implements OnInit {
     this.getExperiencia();
   }
   getExperiencia(){
-    this.inPer=localStorage.getItem('codPer');
+    this.inPer=  this.authService.getCodPer()
     this.inPer=CryptoJS.AES.decrypt(this.inPer.toString(),'eeasaPer').toString(CryptoJS.enc.Utf8);
     this.experiencia=['']
     this.sisgerhService.obternerExperiencia(btoa(this.inPer)).subscribe(res=>{
